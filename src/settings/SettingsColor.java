@@ -15,10 +15,10 @@ public class SettingsColor
     public ArrayList<Component> componentsBackground = new ArrayList<>();
     public ArrayList<Component> componentsForeground = new ArrayList<>();
 
-    private static final Color BACKGROUND_LIGHT = new Color(200,200,200);
-    private static final Color BACKGROUND_DARK  = new Color(55,55,55);
-    private static final Color FOREGROUND_LIGHT = new Color(55,55,55);
-    private static final Color FOREGROUND_DARK  = new Color(200,200,200);
+    private static final Color BACKGROUND_LIGHT = new Color(225,225,225);
+    private static final Color BACKGROUND_DARK  = new Color(30,30,30);
+    private static final Color FOREGROUND_LIGHT = new Color(30,30,30);
+    private static final Color FOREGROUND_DARK  = new Color(225,225,225);
     private boolean isLight = true;
 
 

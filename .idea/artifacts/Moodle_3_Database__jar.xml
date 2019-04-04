@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Moodle-3-Database-:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Moodle_3_Database__jar</output-path>
+    <root id="archive" name="Moodle-3-Database-.jar">
+      <element id="module-output" name="Moodle-3-Database-" />
+    </root>
+  </artifact>
+</component>
