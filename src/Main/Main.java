@@ -1,7 +1,7 @@
 package Main;
 
 
-import Windows.*;
+import GUI.*;
 import javax.swing.*;
 
 
@@ -14,7 +14,6 @@ public class Main
     public static void main(String[] argv) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException
     {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        Window_Login Login = new Window_Login("Login");
-        System.out.println(Login);
+        GUI_Login Login = new GUI_Login();
     }
 }

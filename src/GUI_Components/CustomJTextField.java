@@ -1,11 +1,10 @@
-package GUI;
+package GUI_Components;
 
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.Segment;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -23,12 +22,11 @@ public class CustomJTextField extends JPasswordField
     private boolean password;
 
 
-    public CustomJTextField(String type, boolean password, int maxChar, int round, int shadeWidth, int textSpacing)
+    public CustomJTextField(String type, boolean password, int maxChar)
     {
         this.type = type;
         this.password = password;
         if(0 < maxChar) setDocument(new Limit_JTextField(maxChar));
-        setUI(new RoundedCustom_JTextFieldUI(round, shadeWidth, textSpacing));
 
         setHorizontalAlignment(JTextField.CENTER);
         validInput();
