@@ -4,6 +4,7 @@ package GUI;
 import GUI_Components.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 
 /**
@@ -64,60 +65,29 @@ public class GUI_Login extends CustomJFrame
     }
 
 
+
+
+
     private void loginVerifier()
     {
-        /*
-        int inputID = 0;
-        String inputPassword = "";
+        String ID = "12341234";
+        String MDP = "azerty";
 
-        Professeur userProf = null;
-        Eleve userEleve = null;
+        String inputID = fieldID.getText();
+        String inputMDP = String.valueOf( fieldPassword.getPassword() );
+        String message;
 
-
-        // On vérifie la taille de l'input ID : si nulle, on évite toute vérification
-        if(fieldID.getText().length() != 0)
+        if( Objects.equals(ID, inputID) && Objects.equals(MDP, inputMDP) )
         {
-            inputID = Integer.parseInt(fieldID.getText());
-            inputPassword = new String(fieldPassword.getPassword());
-
-
-            // On vérifie s'il y a correspondance avec un PROFESSEUR
-            for (Professeur prof : ecole.getProfesseur())
-            {
-                if( prof.getID() == inputID &&  Objects.equals(prof.getPassword(), inputPassword) )
-                    userProf = prof;
-            }
-
-
-            // On vérifie s'il y a correspondance avec un ELEVE
-
-            // On charge toutes les promotions
-            for ( Map.Entry<String, Promotion> promo : ecole.getPromo().entrySet() )
-            {
-                // Dans chaque Promotion, on vérifie chaque élève
-                for (Eleve eleve : promo.getValue().getEleves())
-                {
-                    if( eleve.getID() == inputID && Objects.equals(eleve.getPassword(), inputPassword) )
-                        userEleve = eleve;
-                }
-            }
-        }
-
-
-        // On agit en conséquence : ouverture de fenêtre appropriée si Login réussi, sinon message d'erreur
-        if(userProf != null || userEleve != null)
-        {
-            // Ouverture de la page appropriée
-            CustomJFrame mainWindow;
-            if( userProf != null )  mainWindow = new GUI_Professeur(userProf, ecole);
-            if( userEleve != null ) mainWindow = new GUI_Eleve(userEleve, ecole);
-
-
-            // Fermeture du login
-            this.dispose();
+            message = "Bien joué : bons inputs !!";
+            labelIncorrect.setVisible(false);
         }
         else
+        {
+            message = "Dommage : mauvais inputs..";
             labelIncorrect.setVisible(true);
-            */
+        }
+
+        JOptionPane.showMessageDialog(this, message);
     }
 }

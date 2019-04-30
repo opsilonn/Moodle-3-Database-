@@ -7,31 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5649d6a6-8244-44c3-a737-425e665ac77a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_15.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Moodle-3-Database-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Moodle-3-Database-.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/CustomJFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/CustomJTextField$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/CustomJTextField.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/Limit_JTextField.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/RoundedCustom_JTextFieldUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Windows/Window_Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/settings/Settings.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/settings/SettingsColor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/settings/SettingsWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/CustomJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/CustomJTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Limit_JTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/Limit_JTextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/RoundedCustom_JTextFieldUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Windows/Window_Login.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Windows/Window_Login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings/Settings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings/SettingsColor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings/SettingsWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Login.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,12 +61,17 @@
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+              <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.form">
+          <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
     </leaf>
@@ -148,6 +132,19 @@
               <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI_Login" type="e9f4de52:FormNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -159,7 +156,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556586435155" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556586955434" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -216,18 +213,18 @@
       <workItem from="1555568653426" duration="10814000" />
       <workItem from="1555932881426" duration="1700000" />
       <workItem from="1556015948565" duration="57000" />
-      <workItem from="1556585627958" duration="804000" />
+      <workItem from="1556585627958" duration="1323000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24478000" />
+    <option name="totallyTimeSpent" value="24997000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27114093" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27114093" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -236,7 +233,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3297587" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -308,9 +305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-119">
@@ -331,10 +325,13 @@
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
