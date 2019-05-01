@@ -25,6 +25,7 @@ public abstract class CustomJFrame extends JFrame
      * default @CustomJFrame's constructor.
      * @deprecated We'll prefer using the other constructor
      * */
+    @Deprecated
     public CustomJFrame()
     {
         setPreferredSize(new Dimension(500, 500));

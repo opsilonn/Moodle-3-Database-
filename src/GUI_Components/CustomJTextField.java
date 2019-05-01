@@ -9,17 +9,27 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
+/**
+ * Cette classe est customisée et permet d'accueillir un meilleur  {@link JPasswordField}.
+ *
+ * Le texte entré est centré, on peut choisir le type d'input, et si l'input doit être caché ou non.
+ *
+ * Cette classe hérite de {@link JPasswordField}
+ *
+ * @author Hugues
+ */
 public class CustomJTextField extends JPasswordField
 {
     // "NUMERIC",
+    // "DECIMAL",
     // "LOWER_ALPHABET",
     // "UPPER_ALPHABET",
     // "ALPHABET",
     // "ALPHA_NUMERIC",
     // "ALL"
 
-    private String type;
-    private boolean password;
+    private final String type;
+    private final boolean password;
 
 
     public CustomJTextField(String type, boolean password, int maxChar)
@@ -27,7 +37,6 @@ public class CustomJTextField extends JPasswordField
         this.type = type;
         this.password = password;
         if(0 < maxChar) setDocument(new Limit_JTextField(maxChar));
-
         setHorizontalAlignment(JTextField.CENTER);
         validInput();
 
@@ -51,10 +60,12 @@ public class CustomJTextField extends JPasswordField
     private boolean isCorrect(char ch)
     {
         boolean numeric = ch >= '0' && ch <= '9';
+        boolean decimal = numeric || ch == '.';
         boolean lowLetter = ch >= 'a' && ch <= 'z';
         boolean upLetter = ch >= 'A' && ch <= 'Z';
 
         if(type.equals("NUMERIC"))           return numeric;
+        if(type.equals("DECIMAL"))           return decimal;
         if(type.equals("LOWER_ALPHABET"))    return lowLetter;
         if(type.equals("UPPER_ALPHABET"))    return upLetter;
         if(type.equals("ALPHABET"))          return lowLetter || upLetter;
@@ -68,7 +79,7 @@ public class CustomJTextField extends JPasswordField
      * Returns the text contained in this <code>TextComponent</code>.
      * @return the text
      */
-    public String Field()
+    private String Field()
     {
         Document doc = getDocument();
         Segment txt = new Segment();

@@ -6,7 +6,7 @@ import javax.swing.text.PlainDocument;
 
 class Limit_JTextField extends PlainDocument
 {
-    private int limit;
+    private final int limit;
 
     Limit_JTextField(int limit)
     {
@@ -20,6 +20,7 @@ class Limit_JTextField extends PlainDocument
         this.limit = limit;
     }
 
+    @Override
     public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException
     {
         if (str == null)
