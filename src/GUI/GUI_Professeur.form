@@ -42,7 +42,7 @@
               <text value="John DOE"/>
             </properties>
           </component>
-          <component id="8ca47" class="javax.swing.JLabel" binding="labelID">
+          <component id="8ca47" class="javax.swing.JLabel" binding="labelMatricule">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -57,7 +57,7 @@
             </constraints>
             <properties>
               <font size="12"/>
-              <text value="ID :"/>
+              <text value="Matricule :"/>
             </properties>
           </component>
           <component id="895cb" class="javax.swing.JLabel">

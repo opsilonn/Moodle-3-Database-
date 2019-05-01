@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 
 
 /**
@@ -26,7 +25,7 @@ public class GUI_Login extends CustomJFrame
 
     private JLabel labelLogo;
 
-    public JTextField fieldID;
+    public JTextField fieldMatricule;
     public JPasswordField fieldPassword;
 
     public JButton buttonLogin;
@@ -62,7 +61,7 @@ public class GUI_Login extends CustomJFrame
 
     private void createUIComponents()
     {
-        fieldID = new CustomJTextField("NUMERIC",  false, 8);
+        fieldMatricule = new CustomJTextField("NUMERIC",  false, 8);
         fieldPassword = new CustomJTextField("ALL",  true, 20);
     }
 
@@ -77,10 +76,10 @@ public class GUI_Login extends CustomJFrame
         boolean professeur = loginTest("professeur");
 
         if (etudiant)
-            frame = new GUI_Etudiant(database, fieldID.getText());
+            frame = new GUI_Etudiant(database, fieldMatricule.getText());
 
         if(professeur)
-            frame = new GUI_Professeur(database, fieldID.getText());
+            frame = new GUI_Professeur(database, fieldMatricule.getText());
 
         if(etudiant || professeur)
             dispose();
@@ -96,29 +95,29 @@ public class GUI_Login extends CustomJFrame
      */
     private boolean loginTest(String table)
     {
-        String inputID = fieldID.getText();
+        String inputM = fieldMatricule.getText();
         String inputMDP = String.valueOf( fieldPassword.getPassword() );
 
-        try
+        if(inputM.length() != 0)
         {
-            String query =
-                    "SELECT * " +
-                            "FROM personne " +
-                            "INNER JOIN " + table + " " +
-                            "ON personne.ID = " + table + ".ID_Personne;";
-
-            ResultSet resultat = database.run_Statement_READ(query);
-
-            while ( resultat.next() )
+            try
             {
-                if(Objects.equals( inputID, resultat.getString("personne.ID") )
-                        && Objects.equals( inputMDP, resultat.getString(table + ".Password") ))
-                        return true;
+                String query =
+                        "SELECT Matricule, Password " +
+                                "FROM " + table + " " +
+                                "WHERE Matricule = " + inputM + " " +
+                                "AND Password = '" + inputMDP + "' ;";
+
+                ResultSet resultat = database.run_Statement_READ(query);
+
+                if ( resultat.next() )
+                    return true;
+
             }
-        }
-        catch (SQLException e1)
-        {
-            e1.printStackTrace();
+            catch (SQLException e1)
+            {
+                e1.printStackTrace();
+            }
         }
 
         return false;
