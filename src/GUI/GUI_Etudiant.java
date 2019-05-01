@@ -55,8 +55,10 @@ class GUI_Etudiant extends CustomJFrame
         {
             String query =
                     "SELECT * " +
-                    "FROM personne, etudiant " +
-                    "WHERE personne.ID = etudiant.ID_Personne AND Matricule = " + matricule +  " ;";
+                    "FROM personne, etudiant, groupe " +
+                    "WHERE personne.ID = etudiant.ID_Personne " +
+                    "AND Matricule = " + matricule +  " " +
+                    "AND groupe.Groupe_ID = etudiant.Groupe_ID ;";
 
             ResultSet resultat = database.run_Statement_READ(query);
 
@@ -64,7 +66,7 @@ class GUI_Etudiant extends CustomJFrame
             {
                 labelNom.setText( resultat.getString("Prenom") + " " + resultat.getString("Nom").toUpperCase() );
                 labelMatricule.setText( matricule );
-                labelGroupe.setText( resultat.getString( "Groupe_ID" ));
+                labelGroupe.setText( resultat.getString( "Groupe_ID") + " - " + resultat.getString( "groupe.Nom"));
                 // labelMatiere.setText( "I DONT KNOW");
             }
         }
