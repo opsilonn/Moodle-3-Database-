@@ -72,51 +72,43 @@ public class GUI_Login extends CustomJFrame
 
     private void loginVerifier()
     {
+        CustomJFrame frame;
+        boolean etudiant = loginTest("etudiant");
+        boolean professeur = loginTest("professeur");
+
+        if (etudiant)
+            frame = new GUI_Etudiant(database, fieldID.getText());
+
+        if(professeur)
+            frame = new GUI_Professeur(database, fieldID.getText());
+
+        if(etudiant || professeur)
+            dispose();
+        else
+            labelIncorrect.setVisible(true);
+    }
+
+
+    private boolean loginTest(String type)
+    {
         String inputID = fieldID.getText();
         String inputMDP = String.valueOf( fieldPassword.getPassword() );
 
         try
         {
-            ResultSet resultat;
-
-            // REQUÊTE POUR ETUDIANT
-            String queryETUDIANT =
+            String query =
                     "SELECT * " +
                             "FROM personne " +
-                            "INNER JOIN etudiant " +
-                            "ON personne.ID = etudiant.ID_Personne;";
+                            "INNER JOIN " + type + " " +
+                            "ON personne.ID = " + type + ".ID_Personne;";
 
-            resultat = database.run_Statement_READ(queryETUDIANT);
-
-            while ( resultat.next() )
-            {
-                if(Objects.equals( inputID, resultat.getString("personne.ID") )
-                        && Objects.equals( inputMDP, resultat.getString("etudiant.Password") ))
-                {
-                    GUI_Etudiant prof = new GUI_Etudiant(database, inputID);
-                    dispose();
-                }
-            }
-
-
-
-            // REQUÊTE POUR PROFESSEUR
-            String queryPROF =
-                "SELECT * " +
-                "FROM personne " +
-                "INNER JOIN professeur " +
-                "ON personne.ID = professeur.ID_Personne;";
-
-            resultat = database.run_Statement_READ(queryPROF);
+            ResultSet resultat = database.run_Statement_READ(query);
 
             while ( resultat.next() )
             {
                 if(Objects.equals( inputID, resultat.getString("personne.ID") )
-                    && Objects.equals( inputMDP, resultat.getString("professeur.Password") ))
-                {
-                    GUI_Professeur prof = new GUI_Professeur(database, inputID);
-                    dispose();
-                }
+                        && Objects.equals( inputMDP, resultat.getString(type + ".Password") ))
+                        return true;
             }
         }
         catch (SQLException e1)
@@ -124,6 +116,6 @@ public class GUI_Login extends CustomJFrame
             e1.printStackTrace();
         }
 
-        labelIncorrect.setVisible(true);
+        return false;
     }
 }

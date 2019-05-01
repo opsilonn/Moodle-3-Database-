@@ -8,11 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5649d6a6-8244-44c3-a737-425e665ac77a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Login.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Login.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gestion_admin/Display_ResultSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gestion_admin/Display_ResultSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,8 +83,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="92" column="72" selection-start-line="92" selection-start-column="64" selection-end-line="92" selection-end-column="72" />
+            <state relative-caret-position="336">
+              <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,7 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="950" />
     <option name="width" value="980" />
     <option name="height" value="1090" />
@@ -163,32 +160,6 @@
               <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
               <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI_Etudiant" type="e9f4de52:FormNode" />
-            </path>
-            <path>
-              <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI_Professeur" type="e9f4de52:FormNode" />
-            </path>
-            <path>
-              <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI_Components" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -270,12 +241,12 @@
       <workItem from="1556634000019" duration="2099000" />
       <workItem from="1556636596322" duration="2376000" />
       <workItem from="1556708231255" duration="5000" />
-      <workItem from="1556714228995" duration="5336000" />
+      <workItem from="1556714228995" duration="5939000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34813000" />
+    <option name="totallyTimeSpent" value="35416000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -412,8 +383,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="92" column="72" selection-start-line="92" selection-start-column="64" selection-end-line="92" selection-end-column="72" />
+        <state relative-caret-position="336">
+          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
