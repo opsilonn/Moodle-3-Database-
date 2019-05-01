@@ -7,8 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5649d6a6-8244-44c3-a737-425e665ac77a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Login.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -83,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+            <state relative-caret-position="166">
+              <caret line="94" column="79" selection-start-line="94" selection-start-column="79" selection-end-line="94" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -241,12 +239,12 @@
       <workItem from="1556634000019" duration="2099000" />
       <workItem from="1556636596322" duration="2376000" />
       <workItem from="1556708231255" duration="5000" />
-      <workItem from="1556714228995" duration="5939000" />
+      <workItem from="1556714228995" duration="6168000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35416000" />
+    <option name="totallyTimeSpent" value="35645000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -383,8 +381,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+        <state relative-caret-position="166">
+          <caret line="94" column="79" selection-start-line="94" selection-start-column="79" selection-end-line="94" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

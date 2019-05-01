@@ -67,9 +67,9 @@ public class GUI_Login extends CustomJFrame
     }
 
 
-
-
-
+    /**
+     * Lance les vérification du login en testant successivement les tables "etudiant" et "professeur"
+     */
     private void loginVerifier()
     {
         CustomJFrame frame;
@@ -89,7 +89,12 @@ public class GUI_Login extends CustomJFrame
     }
 
 
-    private boolean loginTest(String type)
+    /**
+     * Vérifie si les valeurs entrées correspondent aux valeurs d'une table précise
+     * @param  table Nom de la table SQL à vérifier
+     * @return Retourne true si les valeurs correspondent, sinon retourne false
+     */
+    private boolean loginTest(String table)
     {
         String inputID = fieldID.getText();
         String inputMDP = String.valueOf( fieldPassword.getPassword() );
@@ -99,15 +104,15 @@ public class GUI_Login extends CustomJFrame
             String query =
                     "SELECT * " +
                             "FROM personne " +
-                            "INNER JOIN " + type + " " +
-                            "ON personne.ID = " + type + ".ID_Personne;";
+                            "INNER JOIN " + table + " " +
+                            "ON personne.ID = " + table + ".ID_Personne;";
 
             ResultSet resultat = database.run_Statement_READ(query);
 
             while ( resultat.next() )
             {
                 if(Objects.equals( inputID, resultat.getString("personne.ID") )
-                        && Objects.equals( inputMDP, resultat.getString(type + ".Password") ))
+                        && Objects.equals( inputMDP, resultat.getString(table + ".Password") ))
                         return true;
             }
         }
