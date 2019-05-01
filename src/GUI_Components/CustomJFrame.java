@@ -1,6 +1,8 @@
 package GUI_Components;
 
 
+import Gestion_admin.Database_Connection;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +19,7 @@ public abstract class CustomJFrame extends JFrame
 {
     protected final static String PATH_LOGO = "./src/pictures/logo.png";
     protected final static String PATH_LOGO_FULL = "./src/pictures/logoFull.png";
+    protected Database_Connection database;
 
     /**
      * default @CustomJFrame's constructor.

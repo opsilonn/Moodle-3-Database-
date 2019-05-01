@@ -2,8 +2,11 @@ package GUI;
 
 
 import GUI_Components.*;
+import Gestion_admin.Database_Connection;
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 
@@ -20,9 +23,6 @@ public class GUI_Login extends CustomJFrame
     private static final int DIM_Y = 500;
 
     private JPanel panel;
-    private JPanel panelLogo;
-    private JPanel panelInputs;
-    private JPanel panelForm;
 
     private JLabel labelLogo;
 
@@ -34,10 +34,12 @@ public class GUI_Login extends CustomJFrame
 
     /**
      * Création de l'interface de login
+     * @param  database liaison à la base de données SQL
      */
-    public GUI_Login()
+    public GUI_Login(Database_Connection database)
     {
         super("Login", true, DIM_X, DIM_Y);
+        this.database = database;
 
         // Adds the logo image
         ImageIcon imageIcon = new ImageIcon(PATH_LOGO_FULL); // load the image to a imageIcon
@@ -70,24 +72,58 @@ public class GUI_Login extends CustomJFrame
 
     private void loginVerifier()
     {
-        String ID = "12341234";
-        String MDP = "azerty";
-
         String inputID = fieldID.getText();
         String inputMDP = String.valueOf( fieldPassword.getPassword() );
-        String message;
 
-        if( Objects.equals(ID, inputID) && Objects.equals(MDP, inputMDP) )
+        try
         {
-            message = "Bien joué : bons inputs !!";
-            labelIncorrect.setVisible(false);
+            ResultSet resultat;
+
+            // REQUÊTE POUR ETUDIANT
+            String queryETUDIANT =
+                    "SELECT * " +
+                            "FROM personne " +
+                            "INNER JOIN etudiant " +
+                            "ON personne.ID = etudiant.ID_Personne;";
+
+            resultat = database.run_Statement_READ(queryETUDIANT);
+
+            while ( resultat.next() )
+            {
+                if(Objects.equals( inputID, resultat.getString("personne.ID") )
+                        && Objects.equals( inputMDP, resultat.getString("etudiant.Password") ))
+                {
+                    GUI_Etudiant prof = new GUI_Etudiant(database, inputID);
+                    dispose();
+                }
+            }
+
+
+
+            // REQUÊTE POUR PROFESSEUR
+            String queryPROF =
+                "SELECT * " +
+                "FROM personne " +
+                "INNER JOIN professeur " +
+                "ON personne.ID = professeur.ID_Personne;";
+
+            resultat = database.run_Statement_READ(queryPROF);
+
+            while ( resultat.next() )
+            {
+                if(Objects.equals( inputID, resultat.getString("personne.ID") )
+                    && Objects.equals( inputMDP, resultat.getString("professeur.Password") ))
+                {
+                    GUI_Professeur prof = new GUI_Professeur(database, inputID);
+                    dispose();
+                }
+            }
         }
-        else
+        catch (SQLException e1)
         {
-            message = "Dommage : mauvais inputs..";
-            labelIncorrect.setVisible(true);
+            e1.printStackTrace();
         }
 
-        JOptionPane.showMessageDialog(this, message);
+        labelIncorrect.setVisible(true);
     }
 }
