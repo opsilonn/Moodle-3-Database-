@@ -1,6 +1,6 @@
 package GUI;
 
-import GUI_Components.ButtonEditor;
+import GUI_Components.ButtonEditorAdresse;
 import GUI_Components.ButtonRenderer;
 import GUI_Components.CustomJFrame;
 import GUI_Components.CustomJTextField;
@@ -46,6 +46,9 @@ public class GUI_chercherPersonne extends CustomJFrame {
     private JButton addAddress;
     private JTextField textPays;
     private JScrollPane panelAddress;
+    private JComboBox comboBoxGroupe;
+    private JPanel panelGroupe;
+    private JLabel labelNoGroup;
 
     private int ID_personne;
 
@@ -56,14 +59,19 @@ public class GUI_chercherPersonne extends CustomJFrame {
         ID_personne = -1;
 
 
-        /**/
+        /*TODO : ENLEVER CA*/
         fieldID.setText("20160024");
 
         labelErreur.setVisible(false);
+        labelNoGroup.setVisible(false);
+
+        panelGroupe.setVisible(false);
         panelResultat.setVisible(false);
         panel_ID.setVisible(false);
-        buttonSave.setVisible(false);
         panelAddress.setVisible(false);
+
+        buttonSave.setVisible(false);
+
         buttonChercher.addActionListener(e -> chercherPersonne());
         buttonSave.addActionListener(e -> savePersonne());
         addAddress.addActionListener(e -> addAddress());
@@ -122,6 +130,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
                 /*TROUVER L'IDENTITE SI ETUDIANT*/
                 if (table.equals("etudiant")) {
+                    displayGroup();
                     displayID();
                 }
 
@@ -141,7 +150,6 @@ public class GUI_chercherPersonne extends CustomJFrame {
                 Integer matriculeData = data.getInt("Matricule");
                 if (matriculeData.equals(matricule)) {
                     int ID_result = data.getInt("ID_Personne");
-                    System.out.println("PERSON FOUND");
                     database.Database_Deconnection();
                     return ID_result;
                 }
@@ -175,7 +183,6 @@ public class GUI_chercherPersonne extends CustomJFrame {
                     adresses[index][3] = data.getString("Phone");
                     adresses[index][4] = data.getString("Email");
 
-                    JButton delete = new JButton("Supprimer");
                     int id = data.getInt("Adresse_ID");
                     adresses[index][5] = id;
                     index++;
@@ -185,7 +192,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
                 tableAdresses.setModel(model);
 
                 tableAdresses.getColumn(" X ").setCellRenderer(new ButtonRenderer());
-                tableAdresses.getColumn(" X ").setCellEditor(new ButtonEditor(new JCheckBox(), this));
+                tableAdresses.getColumn(" X ").setCellEditor(new ButtonEditorAdresse(new JCheckBox(), this));
 
                 panelAddress.setVisible(true);
             }
@@ -214,26 +221,10 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
-    private void savePersonne() {
-
-        Database_Connection database = new Database_Connection();
-
-        if (textNom.getText().length() == 0 || textPrenom.getText().length() == 0) {
-            System.out.println("ERROR IDENTITE");
-
-        } else {
-            String sql = "UPDATE personne SET Nom = '" + textNom.getText() +
-                    "', Prenom = '" + textPrenom.getText() +
-                    "' WHERE ID = " + ID_personne;
-            database.run_Statement_WRITE(sql);
-        }
-        database.Database_Deconnection();
-
-        if (table.equals("etudiant")) {
-            saveID();
-        }
-
-        saveAddress();
+    private void addID() {
+        GUI_addID add = new GUI_addID(ID_personne, this);
+        System.out.println("Enregistré");
+        displayAddress();
     }
 
     private void saveID() {
@@ -253,13 +244,13 @@ public class GUI_chercherPersonne extends CustomJFrame {
         Database_Connection database = new Database_Connection();
 
         for (int i = 0; i < tableAdresses.getRowCount(); i++) {
-            String sql = "UPDATE adresse SET Street = '" + tableAdresses.getValueAt(i,0).toString() +
-                    "', City = '" + tableAdresses.getValueAt(i,1).toString() +
-                    "', ZIP_code = '" + tableAdresses.getValueAt(i,2).toString() +
-                    "', Phone = " + tableAdresses.getValueAt(i,3).toString() +
-                    ", Email = '" + tableAdresses.getValueAt(i,4).toString() +
+            String sql = "UPDATE adresse SET Street = '" + tableAdresses.getValueAt(i, 0).toString() +
+                    "', City = '" + tableAdresses.getValueAt(i, 1).toString() +
+                    "', ZIP_code = '" + tableAdresses.getValueAt(i, 2).toString() +
+                    "', Phone = " + tableAdresses.getValueAt(i, 3).toString() +
+                    ", Email = '" + tableAdresses.getValueAt(i, 4).toString() +
                     "' WHERE ID_Personne = " + ID_personne +
-                    " AND Adresse_ID = " + tableAdresses.getValueAt(i,5).toString();
+                    " AND Adresse_ID = " + tableAdresses.getValueAt(i, 5).toString();
             database.run_Statement_WRITE(sql);
         }
 
@@ -272,12 +263,6 @@ public class GUI_chercherPersonne extends CustomJFrame {
         displayAddress();
     }
 
-    private void addID() {
-        GUI_addID add = new GUI_addID(ID_personne, this);
-        System.out.println("Enregistré");
-        displayAddress();
-    }
-
     public void deleteAddress(int ID) {
         Database_Connection database = new Database_Connection();
         String sql = "DELETE FROM adresse WHERE Adresse_ID = " + ID;
@@ -285,6 +270,72 @@ public class GUI_chercherPersonne extends CustomJFrame {
         database.Database_Deconnection();
         displayAddress();
         System.out.println("Enlevé");
+    }
+
+    private void savePersonne() {
+
+        Database_Connection database = new Database_Connection();
+
+        if (textNom.getText().length() == 0 || textPrenom.getText().length() == 0) {
+            System.out.println("ERROR IDENTITE");
+
+        } else {
+            String sql = "UPDATE personne SET Nom = '" + textNom.getText() +
+                    "', Prenom = '" + textPrenom.getText() +
+                    "' WHERE ID = " + ID_personne;
+            database.run_Statement_WRITE(sql);
+        }
+        database.Database_Deconnection();
+
+        if (table.equals("etudiant")) {
+            saveGroup();
+            saveID();
+        }
+
+        saveAddress();
+
+        JOptionPane.showMessageDialog(this, "Bien enregistré");
+    }
+
+    private void displayGroup() {
+        String sql = "SELECT * from groupe";
+        Database_Connection database = new Database_Connection();
+        ResultSet groupNames = database.run_Statement_READ(sql);
+        try {
+            while (groupNames.next()) {
+                comboBoxGroupe.addItem(groupNames.getString("Nom"));
+                /*int id = groupNames.getInt("Groupe_ID")
+                comboBoxGroupe.addItemListener(e->changeGroup(id));*/
+            }
+
+            sql = "SELECT groupe.Nom from etudiant INNER JOIN groupe WHERE ID_Personne = " + ID_personne;
+            ResultSet currentGroup = database.run_Statement_READ(sql);
+            if (currentGroup.next()) {
+                comboBoxGroupe.setSelectedItem(currentGroup.getString("Nom"));
+            }
+            panelGroupe.setVisible(true);
+        } catch (SQLException e) {
+            labelNoGroup.setVisible(true);
+        }
+    }
+
+    private void changeGroup(int ID_Group) {
+//TODO
+    }
+
+    private void saveGroup() {
+        String sql = "SELECT Groupe_ID from groupe WHERE Nom = " + comboBoxGroupe.getSelectedItem();
+        Database_Connection database = new Database_Connection();
+        ResultSet groupID = database.run_Statement_READ(sql);
+        try {
+            if (groupID.next()) {
+                sql = "UPDATE etudiant SET Groupe_ID = " + groupID.getInt("Groupe_ID")
+                        + " WHERE Personne_ID = " + ID_personne;
+                database.run_Statement_WRITE(sql);
+            }
+        } catch (SQLException ignore) {
+        }
+
     }
 }
 

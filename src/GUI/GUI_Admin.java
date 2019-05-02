@@ -28,6 +28,7 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         etudiantButton.addActionListener(e-> action("etudiant"));
         professeurButton.addActionListener(e-> action("professeur"));
         responsableButton.addActionListener(e-> action("responsable"));
+        coursButton.addActionListener(e-> cours());
 
         add(panel);
         pack();
@@ -42,6 +43,11 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
 
     private void action(String table){
         new GUI_chercherPersonne(table);
+        dispose();
+    }
+
+    private void cours(){
+        new GUI_Cours();
         dispose();
     }
 }

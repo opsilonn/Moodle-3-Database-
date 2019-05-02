@@ -47,6 +47,10 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
         imageIcon = new ImageIcon(newimg);  // transform it back
         labelLogo.setIcon(imageIcon);
 
+        /*TODO ENLEVER CA*/
+        fieldMatricule.setText("0");
+        fieldPassword.setText("admin");
+
 
         labelIncorrect.setVisible(false);
         buttonLogin.addActionListener(e -> loginVerifier());

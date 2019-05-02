@@ -7,17 +7,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonEditor extends DefaultCellEditor {
-
-    private GUI_chercherPersonne gui;
+public abstract class ButtonEditor extends DefaultCellEditor {
 
     protected JButton button;
-    private String label;
-    private boolean isPushed;
+    protected String label;
+    protected boolean isPushed;
 
-    public ButtonEditor(JCheckBox checkBox, GUI_chercherPersonne gui) {
+    public ButtonEditor(JCheckBox checkBox) {
         super(checkBox);
-        this.gui = gui;
         button = new JButton();
         button.setOpaque(true);
         button.addActionListener(new ActionListener() {
@@ -48,7 +45,6 @@ public class ButtonEditor extends DefaultCellEditor {
     public Object getCellEditorValue() {
         if (isPushed) {
             JOptionPane.showMessageDialog(button, "L'adresse à été supprimé.");
-            gui.deleteAddress(Integer.parseInt(label));
         }
         isPushed = false;
         return label;
