@@ -3,7 +3,6 @@ package GUI;
 
 import GUI_Components.CustomJTextField;
 import Gestion_admin.Database_Connection;
-
 import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
@@ -17,7 +16,8 @@ import java.sql.SQLException;
  *
  * @author Hugues
  */
-public class GUI_Login extends GUI_Components.CustomJFrame {
+public class GUI_Login extends GUI_Components.CustomJFrame
+{
     private static final int DIM_X = 500;
     private static final int DIM_Y = 500;
 
