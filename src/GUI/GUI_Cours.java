@@ -1,13 +1,14 @@
 package GUI;
 
 import GUI_Components.*;
+import GUI_Components.ButtonEditor.ButtonEditorGroupe;
+import GUI_Components.ButtonEditor.ButtonEditorProf;
 import Gestion_admin.Database_Connection;
 import Gestion_admin.Display_ResultSet;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.xml.crypto.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -41,7 +42,7 @@ public class GUI_Cours extends CustomJFrame {
 
     private int codeCours;
 
-    public GUI_Cours() {
+    public GUI_Cours(int newCours) {
         super("Chercher Cours", true, DIM_X, DIM_Y);
 
         codeCours = -1;
@@ -51,7 +52,6 @@ public class GUI_Cours extends CustomJFrame {
         panelResultat.setVisible(false);
         labelErreur.setVisible(false);
         buttonSave.setVisible(false);
-
 
         buttonChercher.addActionListener(e -> searchCours());
         buttonAddProf.addActionListener(e -> addProf());
@@ -63,6 +63,11 @@ public class GUI_Cours extends CustomJFrame {
         pack();
         revalidate();
         setVisible(true);
+
+        if(newCours != -1){
+            fieldID.setText(String.valueOf(newCours));
+            searchCours();
+        }
     }
 
     private void createUIComponents() {
@@ -128,15 +133,15 @@ public class GUI_Cours extends CustomJFrame {
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Professeur", " X "};
-                Object[][] adresses = new Object[totalRows][columns.length];
+                Object[][] profs = new Object[totalRows][columns.length];
 
                 int index = 0;
                 while (data.next()) {
-                    adresses[index][0] = data.getString("Matricule_Prof");
-                    adresses[index][1] = data.getString("Matricule_Prof");
+                    profs[index][0] = data.getString("Matricule_Prof");
+                    profs[index][1] = data.getString("Matricule_Prof");
                 }
 
-                tableProf.setModel(createModel(adresses, columns));
+                tableProf.setModel(createModel(profs, columns));
 
                 tableProf.getColumn(" X ").setCellRenderer(new ButtonRenderer());
                 tableProf.getColumn(" X ").setCellEditor(new ButtonEditorProf(new JCheckBox(), this));
@@ -162,15 +167,16 @@ public class GUI_Cours extends CustomJFrame {
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Groupe", " X "};
-                Object[][] adresses = new Object[totalRows][columns.length];
+                Object[][] groupes = new Object[totalRows][columns.length];
 
                 int index = 0;
                 while (data.next()) {
-                    adresses[index][0] = data.getString("Nom");
-                    adresses[index][1] = data.getInt("Groupe_ID");
+                    groupes [index][0] = data.getString("Nom");
+                    groupes [index][1] = data.getInt("Groupe_ID");
+                    index ++;
                 }
 
-                tableGroupe.setModel(createModel(adresses, columns));
+                tableGroupe.setModel(createModel(groupes , columns));
 
                 tableGroupe.getColumn(" X ").setCellRenderer(new ButtonRenderer());
                 tableGroupe.getColumn(" X ").setCellEditor(new ButtonEditorGroupe(new JCheckBox(), this));
@@ -226,8 +232,8 @@ public class GUI_Cours extends CustomJFrame {
         JOptionPane.showMessageDialog(this,"Bien enregistré");
     }
 
-    private TableModel createModel(Object[][] adresses, String[] columns) {
-        return new DefaultTableModel(adresses, columns) {
+    public static TableModel createModel(Object[][] objects, String[] columns) {
+        return new DefaultTableModel(objects, columns) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 if (column == 1) {

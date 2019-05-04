@@ -1,9 +1,8 @@
 package GUI;
 
-import GUI_Components.ButtonEditorAdresse;
-import GUI_Components.ButtonRenderer;
-import GUI_Components.CustomJFrame;
-import GUI_Components.CustomJTextField;
+import GUI_Components.*;
+import GUI_Components.ButtonEditor.ButtonEditorAdresse;
+import GUI_Components.ButtonEditor.ButtonEditorCours;
 import Gestion_admin.Database_Connection;
 import Gestion_admin.Display_ResultSet;
 
@@ -49,18 +48,25 @@ public class GUI_chercherPersonne extends CustomJFrame {
     private JComboBox comboBoxGroupe;
     private JPanel panelGroupe;
     private JLabel labelNoGroup;
+    private JTable tableCours;
+    private JPanel panelProf;
+    private JLabel labelNoCours;
+    private JButton add_Cours;
+    private JLabel labelErrorID;
+    private JLabel labelErrorAdresse;
 
     private int ID_personne;
+    private int IDinput;
 
-    public GUI_chercherPersonne(String table) {
+    public GUI_chercherPersonne(String table, int newPersonne) {
         super("Chercher Personne", true, DIMX, DIMY);
         this.table = table;
 
         ID_personne = -1;
 
-
         /*TODO : ENLEVER CA*/
-        fieldID.setText("20160024");
+        fieldID.setText("20160124");
+
 
         labelErreur.setVisible(false);
         labelNoGroup.setVisible(false);
@@ -69,6 +75,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
         panelResultat.setVisible(false);
         panel_ID.setVisible(false);
         panelAddress.setVisible(false);
+        panelProf.setVisible(false);
 
         buttonSave.setVisible(false);
 
@@ -76,11 +83,17 @@ public class GUI_chercherPersonne extends CustomJFrame {
         buttonSave.addActionListener(e -> savePersonne());
         addAddress.addActionListener(e -> addAddress());
         add_ID.addActionListener(e -> addID());
+        add_Cours.addActionListener(e -> addCours());
 
         add(panel);
         pack();
         revalidate();
         setVisible(true);
+
+        if (newPersonne != -1) {
+            fieldID.setText(String.valueOf(newPersonne));
+            chercherPersonne();
+        }
     }
 
     private void createUIComponents() {
@@ -95,12 +108,12 @@ public class GUI_chercherPersonne extends CustomJFrame {
      * d'erreur
      */
     private void chercherPersonne() {
-
+        System.out.println("EXECUTED");
         if (fieldID.getText().length() == 0) {
             labelErreur.setVisible(true);
             panelResultat.setVisible(false);
         } else {
-            int IDinput = Integer.parseInt(fieldID.getText());
+            IDinput = Integer.parseInt(fieldID.getText());
             int ID_result = find_Matricule(IDinput, table);
 
             if (ID_result == -1) {
@@ -132,6 +145,10 @@ public class GUI_chercherPersonne extends CustomJFrame {
                 if (table.equals("etudiant")) {
                     displayGroup();
                     displayID();
+                }
+
+                if (table.equals("professeur")) {
+                    displayCours();
                 }
 
                 /*AFFICHER LES ADDRESSES DE LA PERSONNE S'IL Y A*/
@@ -195,26 +212,36 @@ public class GUI_chercherPersonne extends CustomJFrame {
                 tableAdresses.getColumn(" X ").setCellEditor(new ButtonEditorAdresse(new JCheckBox(), this));
 
                 panelAddress.setVisible(true);
+                labelErrorAdresse.setVisible(false);
+            } else {
+                labelErrorAdresse.setVisible(true);
+                panelAddress.setVisible(false);
             }
             database.Database_Deconnection();
         } catch (SQLException ignore) {
         }
     }
 
-    private void displayID() {
+    public void displayID() {
         Database_Connection database = new Database_Connection();
         String sql = "SELECT * FROM identite WHERE ID_Personne = " + ID_personne;
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (data.next()) {
-                add_ID.setVisible(false);
-                textCity.setText(String.valueOf(data.getString("Ville_naissance")));
-                textDate.setText(data.getString("Date_naissance"));
-                textSexe.setText(data.getString("Sexe"));
-                textPays.setText(data.getString("Pays_naissance"));
+            if (Display_ResultSet.getRows(data) > 0) {
+                data.next();
                 panel_ID.setVisible(true);
+                add_ID.setVisible(false);
+                labelErrorID.setVisible(false);
+
+                textCity.setText(data.getString("ville_naissance"));
+                textDate.setText(data.getString("date_naissance"));
+                textSexe.setText(data.getString("sexe"));
+                textPays.setText(data.getString("pays_naissance"));
+
             } else {
                 add_ID.setVisible(true);
+                labelErrorID.setVisible(true);
+                panel_ID.setVisible(false);
             }
             database.Database_Deconnection();
         } catch (SQLException ignore) {
@@ -223,8 +250,6 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
     private void addID() {
         GUI_addID add = new GUI_addID(ID_personne, this);
-        System.out.println("Enregistré");
-        displayAddress();
     }
 
     private void saveID() {
@@ -258,9 +283,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
     }
 
     private void addAddress() {
-        GUI_addAddress add = new GUI_addAddress(ID_personne, this);
-        System.out.println("Enregistré");
-        displayAddress();
+        new GUI_addAddress(ID_personne, this);
     }
 
     public void deleteAddress(int ID) {
@@ -301,11 +324,10 @@ public class GUI_chercherPersonne extends CustomJFrame {
         String sql = "SELECT * from groupe";
         Database_Connection database = new Database_Connection();
         ResultSet groupNames = database.run_Statement_READ(sql);
+
         try {
             while (groupNames.next()) {
                 comboBoxGroupe.addItem(groupNames.getString("Nom"));
-                /*int id = groupNames.getInt("Groupe_ID")
-                comboBoxGroupe.addItemListener(e->changeGroup(id));*/
             }
 
             sql = "SELECT groupe.Nom from etudiant INNER JOIN groupe WHERE ID_Personne = " + ID_personne;
@@ -314,6 +336,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
                 comboBoxGroupe.setSelectedItem(currentGroup.getString("Nom"));
             }
             panelGroupe.setVisible(true);
+            labelNoCours.setVisible(false);
         } catch (SQLException e) {
             labelNoGroup.setVisible(true);
         }
@@ -335,7 +358,57 @@ public class GUI_chercherPersonne extends CustomJFrame {
             }
         } catch (SQLException ignore) {
         }
-
+        database.Database_Deconnection();
     }
+
+    public void displayCours() {
+        panelProf.setVisible(true);
+        labelNoCours.setVisible(false);
+
+        String sql = "SELECT Nom, cours.Code FROM cours INNER JOIN enseigner on cours.Code = enseigner.Code" +
+                " WHERE enseigner.Matricule_Prof = " + IDinput;
+        Database_Connection database = new Database_Connection();
+        ResultSet cours = database.run_Statement_READ(sql);
+        int totalRows = Display_ResultSet.getRows(cours);
+        try {
+            if (totalRows > 0) {
+                String[] columns = new String[]{"Nom", " X "};
+                Object[][] courses = new Object[totalRows][columns.length];
+
+                int index = 0;
+                while (cours.next()) {
+                    courses[index][0] = cours.getString("Nom");
+                    courses[index][1] = cours.getInt("Code");
+                    index++;
+                }
+
+                tableCours.setModel(GUI_Cours.createModel(courses, columns));
+                tableCours.getColumn(" X ").setCellRenderer(new ButtonRenderer());
+                tableCours.getColumn(" X ").setCellEditor(new ButtonEditorCours(new JCheckBox(), this));
+                tableCours.setVisible(true);
+                labelNoCours.setVisible(false);
+            } else {
+                tableCours.setVisible(false);
+                labelNoCours.setVisible(true);
+            }
+        } catch (SQLException ignore) {
+        }
+    }
+
+    public void deleteCours(int code) {
+        Database_Connection database = new Database_Connection();
+        String sql = "DELETE FROM enseigner WHERE Matricule_Prof = " + IDinput
+                + " AND Code = " + code;
+        database.run_Statement_WRITE(sql);
+        database.Database_Deconnection();
+        displayCours();
+        System.out.println("Enlevé");
+    }
+
+    private void addCours() {
+        new GUI_addCours(IDinput, this, null);
+    }
+
+
 }
 

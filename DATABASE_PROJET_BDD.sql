@@ -54,13 +54,14 @@ CREATE TABLE Adresse(
 #------------------------------------------------------------
 
 CREATE TABLE Identite(
-        Identite_ID     Int NOT NULL ,
-        date_naissance  Date NOT NULL ,
-        ville_naissance Varchar (50) NOT NULL ,
-        pays_naissance  Varchar (50) NOT NULL ,
-        sexe            Char (5) NOT NULL ,
-        photo           Text NOT NULL ,
-        ID_Personne              Int NOT NULL
+        Identite_ID     Int Auto_increment NOT NULL,
+        date_naissance  Date NOT NULL,
+        ville_naissance Varchar (50) NOT NULL,
+        pays_naissance  Varchar (50) NOT NULL,
+        sexe            Char (5) NOT NULL,
+        photo           Text,
+        ID_Personne     Int NOT NULL,
+        UNIQUE (ID_Personne)
 	,CONSTRAINT Identite_PK PRIMARY KEY (Identite_ID)
 	,CONSTRAINT Identite_Personne_FK FOREIGN KEY (ID_Personne) REFERENCES Personne(ID)
 )ENGINE=InnoDB;
@@ -72,7 +73,8 @@ CREATE TABLE Identite(
 
 CREATE TABLE Groupe(
         Groupe_ID Int  Auto_increment  NOT NULL ,
-        Nom       Varchar (50) NOT NULL
+        Nom       Varchar (50) NOT NULL,
+        UNIQUE (Nom)
 	,CONSTRAINT Groupe_PK PRIMARY KEY (Groupe_ID)
 )ENGINE=InnoDB;
 
@@ -84,7 +86,8 @@ CREATE TABLE Groupe(
 CREATE TABLE Professeur(
 		ID_Personne  Int NOT NULL,
         Matricule 	Int  NOT NULL,
-        Password Varchar (50) NOT NULL
+        Password Varchar (50) NOT NULL,
+        UNIQUE (ID_Personne)
 	,CONSTRAINT Professeur_PK PRIMARY KEY (Matricule)
 	,CONSTRAINT Professeur_Personne_FK FOREIGN KEY (ID_Personne) REFERENCES Personne(ID)
 )ENGINE=InnoDB;
@@ -98,7 +101,8 @@ CREATE TABLE Etudiant(
         Matricule Int NOT NULL,
         Groupe_ID Int,
         ID_Personne Int NOT NULL,
-        Password Varchar (50) NOT NULL
+        Password Varchar (50) NOT NULL,
+        UNIQUE (ID_Personne)
 	,CONSTRAINT Etudiant_PK PRIMARY KEY (Matricule)
 	,CONSTRAINT Etudiant_Personne_FK FOREIGN KEY (ID_Personne) REFERENCES Personne(ID)
 	,CONSTRAINT Etudiant_Groupe_FK FOREIGN KEY (Groupe_ID) REFERENCES Groupe(Groupe_ID)
@@ -111,7 +115,8 @@ CREATE TABLE Etudiant(
 
 CREATE TABLE Responsable(
 		ID_Personne  Int NOT NULL,
-        Numero	  Int  Auto_increment  NOT NULL
+        Numero	  Int  Auto_increment  NOT NULL,
+        UNIQUE (ID_Personne)
 	,CONSTRAINT Responsable_PK PRIMARY KEY (Numero)
 	,CONSTRAINT Responsable_Personne_FK FOREIGN KEY (ID_Personne) REFERENCES Personne(ID)
 )ENGINE=InnoDB;
@@ -124,7 +129,8 @@ CREATE TABLE Responsable(
 CREATE TABLE Administration(
 		ID_Personne        Int NOT NULL,
         Matricule Int NOT NULL,
-        Password Varchar (50) NOT NULL
+        Password Varchar (50) NOT NULL,
+        UNIQUE (ID_Personne)
 	,CONSTRAINT Administration_PK PRIMARY KEY (Matricule)
 	,CONSTRAINT Administration_Personne_FK FOREIGN KEY (ID_Personne) REFERENCES Personne(ID)
 )ENGINE=InnoDB;
