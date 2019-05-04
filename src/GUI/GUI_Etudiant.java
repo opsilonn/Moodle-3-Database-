@@ -52,12 +52,13 @@ class GUI_Etudiant extends CustomJFrame
 
         try
         {
+            // ON AFFICHE LE NOM/PRENOM ET MATRICULE
             String query =
                     "SELECT * " +
-                    "FROM personne, etudiant, groupe " +
+                    "FROM personne, etudiant " +
                     "WHERE personne.ID = etudiant.ID_Personne " +
-                    "AND Matricule = " + matricule +  " " +
-                    "AND groupe.Groupe_ID = etudiant.Groupe_ID ;";
+                    "AND Matricule = " + matricule +  " ;";
+
 
             ResultSet resultat = database.run_Statement_READ(query);
 
@@ -65,8 +66,21 @@ class GUI_Etudiant extends CustomJFrame
             {
                 labelNom.setText( resultat.getString("Prenom") + " " + resultat.getString("Nom").toUpperCase() );
                 labelMatricule.setText( matricule );
-                labelGroupe.setText( resultat.getString( "Groupe_ID") + " - " + resultat.getString( "groupe.Nom"));
             }
+
+            // ON AFFICHE LE GROUPE (si aucun trouvé, on affiche "aucun groupe")
+            query =
+                    "SELECT * " +
+                    "FROM etudiant, groupe " +
+                    "WHERE Matricule = " + matricule +  " " +
+                    "AND groupe.Groupe_ID = etudiant.Groupe_ID ;";
+
+            resultat = database.run_Statement_READ(query);
+
+            if ( resultat.next() )
+                labelGroupe.setText( resultat.getString( "Groupe_ID") + " - " + resultat.getString( "groupe.Nom"));
+            else
+                labelGroupe.setText("N'appartient à aucun Groupe");
         }
         catch (SQLException e1)
         {
