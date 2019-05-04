@@ -47,8 +47,7 @@ class GUI_Etudiant extends CustomJFrame
      */
     public GUI_Etudiant(Database_Connection database, String matricule)
     {
-        super("Etudiant", true, DIM_X, DIM_Y);
-        this.database = database;
+        super("Etudiant", true, database, DIM_X, DIM_Y);
         this.matricule = matricule;
 
         try
@@ -67,7 +66,6 @@ class GUI_Etudiant extends CustomJFrame
                 labelNom.setText( resultat.getString("Prenom") + " " + resultat.getString("Nom").toUpperCase() );
                 labelMatricule.setText( matricule );
                 labelGroupe.setText( resultat.getString( "Groupe_ID") + " - " + resultat.getString( "groupe.Nom"));
-                // labelMatiere.setText( "I DONT KNOW");
             }
         }
         catch (SQLException e1)

@@ -36,9 +36,9 @@ public class GUI_Login extends GUI_Components.CustomJFrame
      *
      * @param database liaison à la base de données SQL
      */
-    public GUI_Login(Database_Connection database) {
-        super("Login", true, DIM_X, DIM_Y);
-        this.database = database;
+    public GUI_Login(Database_Connection database)
+    {
+        super("Login", true, database, DIM_X, DIM_Y);
 
         // Adds the logo image
         ImageIcon imageIcon = new ImageIcon(PATH_LOGO_FULL); // load the image to a imageIcon
@@ -99,7 +99,8 @@ public class GUI_Login extends GUI_Components.CustomJFrame
      * @param table Nom de la table SQL à vérifier
      * @return Retourne true si les valeurs correspondent, sinon retourne false
      */
-    private boolean loginTest(String table) {
+    private boolean loginTest(String table)
+    {
         String inputM = fieldMatricule.getText();
         String inputMDP = String.valueOf(fieldPassword.getPassword());
 
