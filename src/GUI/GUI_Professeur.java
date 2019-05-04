@@ -37,8 +37,7 @@ class GUI_Professeur extends CustomJFrame
      */
     public GUI_Professeur(Database_Connection database, String matricule)
     {
-        super("Professeur", true, DIM_X, DIM_Y);
-        this.database = database;
+        super("Professeur", true, database, DIM_X, DIM_Y);
         this.matricule = matricule;
 
 

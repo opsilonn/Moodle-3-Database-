@@ -3,7 +3,6 @@ package GUI;
 
 import GUI_Components.CustomJTextField;
 import Gestion_admin.Database_Connection;
-
 import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
@@ -17,7 +16,8 @@ import java.sql.SQLException;
  *
  * @author Hugues
  */
-public class GUI_Login extends GUI_Components.CustomJFrame {
+public class GUI_Login extends GUI_Components.CustomJFrame
+{
     private static final int DIM_X = 500;
     private static final int DIM_Y = 500;
 
@@ -36,9 +36,9 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
      *
      * @param database liaison à la base de données SQL
      */
-    public GUI_Login(Database_Connection database) {
-        super("Login", true, DIM_X, DIM_Y);
-        this.database = database;
+    public GUI_Login(Database_Connection database)
+    {
+        super("Login", true, database, DIM_X, DIM_Y);
 
         // Adds the logo image
         ImageIcon imageIcon = new ImageIcon(PATH_LOGO_FULL); // load the image to a imageIcon
@@ -46,10 +46,6 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
         Image newimg = image.getScaledInstance((int) (DIM_X * 0.6), DIM_Y / 3, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         imageIcon = new ImageIcon(newimg);  // transform it back
         labelLogo.setIcon(imageIcon);
-
-        /*TODO ENLEVER CA*/
-        fieldMatricule.setText("0");
-        fieldPassword.setText("admin");
 
 
         labelIncorrect.setVisible(false);
@@ -99,7 +95,8 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
      * @param table Nom de la table SQL à vérifier
      * @return Retourne true si les valeurs correspondent, sinon retourne false
      */
-    private boolean loginTest(String table) {
+    private boolean loginTest(String table)
+    {
         String inputM = fieldMatricule.getText();
         String inputMDP = String.valueOf(fieldPassword.getPassword());
 

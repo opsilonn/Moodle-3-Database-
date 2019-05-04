@@ -8,7 +8,9 @@ public class Database_Connection {
    
     private static final String user = "root";
     private static final String password = "";
-    Connection connexion;
+    private Connection connexion;
+
+    public Connection getConnexion() { return connexion; }
 
     public Database_Connection() {
         try {

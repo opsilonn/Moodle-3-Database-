@@ -47,18 +47,18 @@ class GUI_Etudiant extends CustomJFrame
      */
     public GUI_Etudiant(Database_Connection database, String matricule)
     {
-        super("Etudiant", true, DIM_X, DIM_Y);
-        this.database = database;
+        super("Etudiant", true, database, DIM_X, DIM_Y);
         this.matricule = matricule;
 
         try
         {
+            // ON AFFICHE LE NOM/PRENOM ET MATRICULE
             String query =
                     "SELECT * " +
-                    "FROM personne, etudiant, groupe " +
+                    "FROM personne, etudiant " +
                     "WHERE personne.ID = etudiant.ID_Personne " +
-                    "AND Matricule = " + matricule +  " " +
-                    "AND groupe.Groupe_ID = etudiant.Groupe_ID ;";
+                    "AND Matricule = " + matricule +  " ;";
+
 
             ResultSet resultat = database.run_Statement_READ(query);
 
@@ -66,9 +66,21 @@ class GUI_Etudiant extends CustomJFrame
             {
                 labelNom.setText( resultat.getString("Prenom") + " " + resultat.getString("Nom").toUpperCase() );
                 labelMatricule.setText( matricule );
-                labelGroupe.setText( resultat.getString( "Groupe_ID") + " - " + resultat.getString( "groupe.Nom"));
-                // labelMatiere.setText( "I DONT KNOW");
             }
+
+            // ON AFFICHE LE GROUPE (si aucun trouvé, on affiche "aucun groupe")
+            query =
+                    "SELECT * " +
+                    "FROM etudiant, groupe " +
+                    "WHERE Matricule = " + matricule +  " " +
+                    "AND groupe.Groupe_ID = etudiant.Groupe_ID ;";
+
+            resultat = database.run_Statement_READ(query);
+
+            if ( resultat.next() )
+                labelGroupe.setText( resultat.getString( "Groupe_ID") + " - " + resultat.getString( "groupe.Nom"));
+            else
+                labelGroupe.setText("N'appartient à aucun Groupe");
         }
         catch (SQLException e1)
         {
