@@ -14,11 +14,12 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
     private JFormattedTextField textDate;
     private JFormattedTextField textSexe;
     private JButton buttonSave;
+    private JTextField textCountry;
 
     private GUI_chercherPersonne gui;
 
     public GUI_addID(int ID_personne, GUI_chercherPersonne gui) {
-        super("Ajouter une adresse", false, DIM_X, DIM_Y);
+        super("Ajouter une identité", false, DIM_X, DIM_Y);
         this.gui = gui;
         buttonSave.addActionListener(e -> saveID(ID_personne));
 
@@ -38,15 +39,17 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
         } else {
             if (ID_personne != -1) {
                 String sql = "INSERT INTO identite (date_naissance, ville_naissance, pays_naissance, sexe, ID_Personne) VALUES (" +
-                        "'" + textCity.getText() + "','" +
-                        textDate.getText() + "','" +
+                        "'" + textDate.getText() + "','" +
+                        textCity.getText() + "','" +
+                        textCountry.getText() + "','" +
                         textSexe.getText() + "'," +
                         ID_personne + ")";
+                System.out.println(sql);
                 database.run_Statement_WRITE(sql);
                 database.Database_Deconnection();
 
                 setVisible(false);
-                gui.displayAddress();
+                gui.displayID();
                 dispose(); //Destroy the Frame object
             }
         }

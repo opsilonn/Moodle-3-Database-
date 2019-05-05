@@ -7,26 +7,26 @@ import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
+public class GUI_addCours extends GUI_Components.CustomJFrame {
 
     private static final int DIM_X = 400;
     private static final int DIM_Y = 300;
 
+    private JPanel panel;
     private JComboBox comboBoxItem;
     private JButton buttonSave;
     private JLabel labelThingtoadd;
-    private JPanel panel;
     private JLabel labelError;
 
-    private GUI_Cours gui;
-    private boolean mode; /*SI TRUE : add prof --- SI FALSE : add group */
+    private GUI_chercherPersonne gui;
+    private GUI_Groupe guiGroupe;
 
-    public GUI_addProfGroupe_toCours(int code, GUI_Cours gui, boolean mode) {
+    public GUI_addCours(int matricule, GUI_chercherPersonne gui, GUI_Groupe guiGroupe) {
         super("Ajouter au Cours", false, DIM_X, DIM_Y);
         this.gui = gui;
-        this.mode = mode;
+        this.guiGroupe = guiGroupe;
 
-        buttonSave.addActionListener(e -> saveAddtoCours(code));
+        buttonSave.addActionListener(e -> saveAddtoGroupe(matricule));
         putTheData();
 
         labelError.setVisible(false);
@@ -39,12 +39,7 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
 
     private void putTheData() {
         Database_Connection database = new Database_Connection();
-        String sql = "";
-        if (mode) {
-            sql = "SELECT Matricule FROM professeur";
-        } else {
-            sql = "SELECT Nom, Groupe_ID FROM groupe";
-        }
+        String sql = "SELECT * FROM cours";
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
@@ -57,11 +52,7 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
                 labelError.setVisible(false);
                 labelThingtoadd.setVisible(true);
                 while (data.next()) {
-                    if (mode) {
-                        comboBoxItem.addItem(data.getInt("Matricule"));
-                    } else {
-                        comboBoxItem.addItem(data.getInt("Groupe_ID") + ": " + data.getString("Nom"));
-                    }
+                    comboBoxItem.addItem(data.getString("Code") + ": " + data.getString("Nom"));
                 }
 
                 comboBoxItem.setVisible(true);
@@ -71,31 +62,30 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
         }
     }
 
-    private void saveAddtoCours(int code) {
+    private void saveAddtoGroupe(int matricule) {
         String sql = "";
         String elementToAdd = comboBoxItem.getSelectedItem().toString();
+        String[] result = elementToAdd.split(": ");
 
-        if (mode) {
+
+        if (gui != null) {
             sql = "INSERT INTO enseigner (Code, Matricule_Prof) VALUES (" +
-                    code + ", " + Integer.parseInt(elementToAdd) + ")";
+                    Integer.parseInt(result[0]) + ", " + matricule + ")";
         } else {
-            String[] result = elementToAdd.split(": ");
-
             sql = "INSERT INTO suivre (Code, Groupe_ID) VALUES (" +
-                    code + ", " + Integer.parseInt(result[0]) + ")";
+                    Integer.parseInt(result[0]) + ", " + matricule + ")";
         }
-
         Database_Connection database = new Database_Connection();
-        database.run_Statement_WRITE(sql);
 
-        if (mode) {
-            gui.displayProf();
+        database.run_Statement_WRITE(sql);
+        database.Database_Deconnection();
+
+        if (gui != null) {
+            gui.displayCours();
         } else {
-            gui.displayGroup();
+            guiGroupe.displayCours();
         }
 
         dispose();
     }
-
-
 }

@@ -27,9 +27,7 @@ public class Database_Connection {
             Statement statement = connexion.createStatement();
             ResultSet resultat = statement.executeQuery(query);
             return resultat;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }  catch (SQLException e) {
             return null;
         }
     }
