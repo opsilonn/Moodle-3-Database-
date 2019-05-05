@@ -5,6 +5,8 @@ import Gestion_admin.Database_Connection;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -79,5 +81,25 @@ public abstract class CustomJFrame extends JFrame
         setAlwaysOnTop(false);
         if(closeOnExit) setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+    }
+
+
+    /**
+     * Centre les valeurs d'une JTable passée en argument
+     * <p>
+     * @param table JTable à centrer
+     * */
+    protected void centrerJTable(JTable table)
+    {
+        DefaultTableCellRenderer custom = new DefaultTableCellRenderer();
+
+        // centre les données de ton tableau
+        custom.setHorizontalAlignment(JLabel.CENTER);
+
+        // centre chaque cellule de ton tableau
+        for (int i=0 ; i < table.getColumnCount() ; i++)
+            table.getColumnModel().getColumn(i).setCellRenderer(custom);
+
+        ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
     }
 }
