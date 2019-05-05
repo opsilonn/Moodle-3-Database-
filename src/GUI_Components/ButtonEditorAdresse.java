@@ -1,6 +1,8 @@
 package GUI_Components;
 
 import GUI.GUI_chercherPersonne;
+import GUI_Components.ButtonEditor.ButtonEditor;
+
 import javax.swing.*;
 
 public class ButtonEditorAdresse extends ButtonEditor {

@@ -1,6 +1,7 @@
 package GUI_Components;
 
 import GUI.GUI_Cours;
+import GUI_Components.ButtonEditor.ButtonEditor;
 
 import javax.swing.*;
 

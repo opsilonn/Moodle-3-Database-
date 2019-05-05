@@ -1,21 +1,18 @@
 package recherche;
 
-import Gestion_admin.Database_Connection;
 
+import Gestion_admin.Database_Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class rechercheEtudiant
+/**
+ * Classe permettant de faciliter les requêtes SQL relatives à un Etudiant
+ **
+ * @author Hugues
+ */
+public class rechercheEtudiant extends recherche
 {
-    private Database_Connection database;
-    private String query;
-    private ResultSet resultat;
-
-
-    public rechercheEtudiant(Database_Connection database)
-    {
-        this.database = database;
-    }
+    public rechercheEtudiant(Database_Connection database) { super(database); }
 
 
     /* PERSONNE */
@@ -255,30 +252,5 @@ public class rechercheEtudiant
             e1.printStackTrace();
             return -1;
         }
-    }
-
-
-    /* BONUS */
-
-
-
-    /**
-     * Permet de récupérer une valeur précise dans un ResultSet donné
-     * @param resultat Resultat de la requête SQL
-     * @param valeur Rang recherché dans la requête
-     * @return la valeur recherchée, retourne null si non trouvée
-     */
-    private String RETOURNER_RESULTAT(ResultSet resultat, String valeur)
-    {
-        try
-        {
-            if(resultat.next() )
-                return resultat.getString( valeur );
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

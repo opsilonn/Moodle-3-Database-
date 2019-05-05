@@ -3,6 +3,7 @@ package GUI;
 
 import GUI_Components.CustomJFrame;
 import Gestion_admin.Database_Connection;
+import recherche.rechercheProfesseur;
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,8 @@ class GUI_Professeur extends CustomJFrame
 {
     private static final int DIM_X = 500;
     private static final int DIM_Y = 500;
+
+    private rechercheProfesseur PROFESSEUR;
 
     private String matricule;
 
@@ -39,32 +42,28 @@ class GUI_Professeur extends CustomJFrame
     {
         super("Professeur", true, database, DIM_X, DIM_Y);
         this.matricule = matricule;
+        PROFESSEUR = new rechercheProfesseur(database);
 
 
-        try
-        {
-            String query =
-                    "SELECT * " +
-                    "FROM personne, professeur " +
-                    "WHERE personne.ID = professeur.ID_Personne AND Matricule = " + matricule +  " ;";
+        remplirInformations();
 
-            ResultSet resultat = database.run_Statement_READ(query);
-
-            while ( resultat.next() )
-            {
-                labelNom.setText( resultat.getString("Prenom") + " " + resultat.getString("Nom").toUpperCase() );
-                labelMatricule.setText(matricule);
-                labelMatiere.setText( "I DONT KNOW");
-            }
-        }
-        catch (SQLException e1)
-        {
-            e1.printStackTrace();
-        }
 
         add(panel);
         pack();
         revalidate();
         setVisible(true);
+    }
+
+
+    /**
+     * Remplissage des champs sur l'information du professeur connecté
+     */
+    private void remplirInformations()
+    {
+        labelNom.setText(
+                PROFESSEUR.getPersonne(matricule, "Prenom") + " " +
+                PROFESSEUR.getPersonne(matricule, "Nom").toUpperCase() );
+        labelMatricule.setText( matricule );
+        labelMatiere.setText( "I DONT KNOW");
     }
 }

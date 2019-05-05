@@ -106,10 +106,10 @@ class GUI_Etudiant extends CustomJFrame
 
 
 
-    private String[] columns = new String[]{"Matière", "Code - Matière", "Type", "Note", "Coefficient", "ID-Note"};
+    private String[] columns = new String[]{"Matière", "Code - Matière","Moyenne", "Type", "Note", "Coefficient", "ID-Note"};
     private Object[][] DATA;
     private int CURSOR;
-    private final static int SIZE_OCCUPIED_BY_COURSE = 5;
+    private final static int SIZE_OCCUPIED_BY_COURSE = 4;
 
 
     /**
@@ -150,13 +150,14 @@ class GUI_Etudiant extends CustomJFrame
                 {
                     String coursCode = resultat.getString("cours.Code");
                     String coursNom = resultat.getString("cours.Nom");
+                    String coursCoef = resultat.getString("cours.Coefficient");
 
                     Map<String, String> coefficients = new HashMap<>();
                     coefficients.put("TP", resultat.getString("cours.TP_Pourcentage"));
                     coefficients.put("DE", resultat.getString("cours.DE_Pourcentage"));
                     coefficients.put("PROJET", resultat.getString("cours.Projet_Pourcentage"));
 
-                    remplirNotesCours(coursCode, coursNom, coefficients);
+                    remplirNotesCours(coursCode, coursNom, coursCoef, coefficients);
                 }
 
                 DefaultTableModel model = new DefaultTableModel(DATA, columns);
@@ -178,7 +179,7 @@ class GUI_Etudiant extends CustomJFrame
      * @param coursNom Code du cours en question
      * @param coefficients Tableau des coefficients des notes du cours en question
      */
-    private void remplirNotesCours(String coursCode, String coursNom, Map<String, String> coefficients)
+    private void remplirNotesCours(String coursCode, String coursNom, String coursCoef, Map<String, String> coefficients)
     {
         String TP_note = "Pas de note";
         String DE_note = "Pas de note";
@@ -228,34 +229,33 @@ class GUI_Etudiant extends CustomJFrame
             }
 
 
-            for(int i = 0; i < 3; i++)
-            {
-                DATA[CURSOR + i][0] = coursNom;
-                DATA[CURSOR + i][1] = coursCode;
-            }
 
-            DATA[CURSOR + 0][2] = "TP";
-            DATA[CURSOR + 1][2] = "DE";
-            DATA[CURSOR + 2][2] = "Projet";
-
-            DATA[CURSOR + 0][3] = TP_note;
-            DATA[CURSOR + 1][3] = DE_note;
-            DATA[CURSOR + 2][3] = PROJET_note;
-
-            DATA[CURSOR + 0][4] = coefficients.get("TP");
-            DATA[CURSOR + 1][4] = coefficients.get("DE");
-            DATA[CURSOR + 2][4] = coefficients.get("PROJET");
-
-            DATA[CURSOR + 0][5] = TP_ID;
-            DATA[CURSOR + 1][5] = DE_ID;
-            DATA[CURSOR + 2][5] = PROJET_ID;
-
-            DATA[CURSOR + 3][0] = "Moyenne";
+            DATA[CURSOR + 1][0] = coursNom;
+            DATA[CURSOR + 1][1] = coursCode;
             float moyenne = ETUDIANT.moyenne(matricule, coursCode);
             if( moyenne == -1 )
-                DATA[CURSOR + 3][3] = "indéfinie";
+                DATA[CURSOR + 1][2] = "indéfinie";
             else
-                DATA[CURSOR + 3][3] = moyenne;
+                DATA[CURSOR + 1][2] = moyenne;
+
+            DATA[CURSOR + 2][0] = "coef : " + coursCoef;
+
+
+            DATA[CURSOR + 0][3] = "TP";
+            DATA[CURSOR + 1][3] = "DE";
+            DATA[CURSOR + 2][3] = "Projet";
+
+            DATA[CURSOR + 0][4] = TP_note;
+            DATA[CURSOR + 1][4] = DE_note;
+            DATA[CURSOR + 2][4] = PROJET_note;
+
+            DATA[CURSOR + 0][5] = coefficients.get("TP");
+            DATA[CURSOR + 1][5] = coefficients.get("DE");
+            DATA[CURSOR + 2][5] = coefficients.get("PROJET");
+
+            DATA[CURSOR + 0][6] = TP_ID;
+            DATA[CURSOR + 1][6] = DE_ID;
+            DATA[CURSOR + 2][6] = PROJET_ID;
 
             CURSOR += SIZE_OCCUPIED_BY_COURSE;
         }
