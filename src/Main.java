@@ -21,6 +21,8 @@ public class Main
         if( database.getConnexion() == null )
             frame = new GUI_noConnexion();
         else
-            frame = new GUI_Login(database);
+            frame = new GUI_Login();
+
+        database.Database_Deconnection();
     }
 }

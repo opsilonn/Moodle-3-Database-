@@ -33,12 +33,10 @@ public class GUI_Login extends GUI_Components.CustomJFrame
 
     /**
      * Création de l'interface de login
-     *
-     * @param database liaison à la base de données SQL
      */
-    public GUI_Login(Database_Connection database)
+    public GUI_Login()
     {
-        super("Login", true, database, DIM_X, DIM_Y);
+        super("Login", true, DIM_X, DIM_Y);
 
         // Adds the logo image
         ImageIcon imageIcon = new ImageIcon(PATH_LOGO_FULL); // load the image to a imageIcon
@@ -59,7 +57,8 @@ public class GUI_Login extends GUI_Components.CustomJFrame
     }
 
 
-    private void createUIComponents() {
+    private void createUIComponents()
+    {
         fieldMatricule = new CustomJTextField("NUMERIC", false, 8);
         fieldPassword = new CustomJTextField("ALL", true, 20);
     }
@@ -68,16 +67,17 @@ public class GUI_Login extends GUI_Components.CustomJFrame
     /**
      * Lance les vérification du login en testant successivement les tables "etudiant" et "professeur"
      */
-    private void loginVerifier() {
+    private void loginVerifier()
+    {
         GUI_Components.CustomJFrame frame;
         boolean etudiant = loginTest("etudiant");
         boolean professeur = loginTest("professeur");
         boolean admin = loginTest("administration");
 
         if (etudiant)
-            frame = new GUI_Etudiant(database, fieldMatricule.getText());
+            frame = new GUI_Etudiant(fieldMatricule.getText());
         else if (professeur)
-            frame = new GUI_Professeur(database, fieldMatricule.getText());
+            frame = new GUI_Professeur(fieldMatricule.getText());
         else if (admin)
             frame = new GUI_Admin();
 
@@ -97,27 +97,35 @@ public class GUI_Login extends GUI_Components.CustomJFrame
      */
     private boolean loginTest(String table)
     {
+        boolean result = false;
         String inputM = fieldMatricule.getText();
         String inputMDP = String.valueOf(fieldPassword.getPassword());
 
-        if (inputM.length() != 0) {
-            try {
+        if (inputM.length() != 0)
+        {
+            try
+            {
+                Database_Connection database = new Database_Connection();
+
                 String query =
                         "SELECT Matricule, Password " +
-                                "FROM " + table + " " +
-                                "WHERE Matricule = " + inputM + " " +
-                                "AND Password = '" + inputMDP + "' ;";
+                        "FROM " + table + " " +
+                        "WHERE Matricule = " + inputM + " " +
+                        "AND Password = '" + inputMDP + "' ;";
 
                 ResultSet resultat = database.run_Statement_READ(query);
 
                 if (resultat.next())
-                    return true;
+                    result = true;
 
-            } catch (SQLException e1) {
+                database.Database_Deconnection();
+            }
+            catch (SQLException e1)
+            {
                 e1.printStackTrace();
             }
         }
 
-        return false;
+        return result;
     }
 }

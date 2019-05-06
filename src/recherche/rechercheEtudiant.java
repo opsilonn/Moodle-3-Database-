@@ -2,6 +2,7 @@ package recherche;
 
 
 import Gestion_admin.Database_Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,9 +13,6 @@ import java.sql.SQLException;
  */
 public class rechercheEtudiant extends recherche
 {
-    public rechercheEtudiant(Database_Connection database) { super(database); }
-
-
     /* PERSONNE */
 
 
@@ -26,6 +24,8 @@ public class rechercheEtudiant extends recherche
      */
     public String getPersonne(String matricule, String valeur)
     {
+        database = new Database_Connection();
+
         query =
                 "SELECT * " +
                 "FROM personne, etudiant " +
@@ -48,6 +48,9 @@ public class rechercheEtudiant extends recherche
      */
     public boolean possedeGroupe(String matricule)
     {
+        boolean result = false;
+        database = new Database_Connection();
+
         query =
                 "SELECT * " +
                         "FROM etudiant, groupe " +
@@ -58,13 +61,15 @@ public class rechercheEtudiant extends recherche
 
         try
         {
-            return resultat.next();
+            result = resultat.next();
         }
         catch (SQLException e)
         {
             e.printStackTrace();
         }
-        return false;
+
+        database.Database_Deconnection();
+        return result;
     }
 
 
@@ -76,6 +81,7 @@ public class rechercheEtudiant extends recherche
      */
     public String getGroupe(String matricule, String valeur)
     {
+        database = new Database_Connection();
         query =
                 "SELECT * " +
                 "FROM etudiant, groupe " +
@@ -98,8 +104,7 @@ public class rechercheEtudiant extends recherche
      */
     public int nombreCours(String matricule)
     {
-        int cpt = 0;
-
+        database = new Database_Connection();
         query =
                 "SELECT * " +
                 "FROM etudiant, groupe, cours, suivre " +
@@ -110,17 +115,7 @@ public class rechercheEtudiant extends recherche
 
         resultat = database.run_Statement_READ(query);
 
-        try
-        {
-            while( resultat.next() )
-                cpt++;
-        }
-        catch (SQLException e1)
-        {
-            e1.printStackTrace();
-        }
-
-        return cpt;
+        return RETOURNER_COMPTEUR(resultat);
     }
 
 
@@ -133,6 +128,7 @@ public class rechercheEtudiant extends recherche
      */
     public String getCours(String coursCode, String valeur)
     {
+        database = new Database_Connection();
         query =
                 "SELECT * " +
                 "FROM cours " +
@@ -154,6 +150,8 @@ public class rechercheEtudiant extends recherche
      */
     public float moyenne(String matricule, String coursCode)
     {
+        float MOYENNE = -1;
+
         float TP_note = -1;
         float DE_note = -1;
         float PROJET_note = -1;
@@ -162,6 +160,7 @@ public class rechercheEtudiant extends recherche
         float DE_coef = Float.parseFloat(getCours(coursCode, "DE_pourcentage"));
         float PROJET_coef = Float.parseFloat(getCours(coursCode, "Projet_pourcentage"));
 
+        database = new Database_Connection();
         String query =
                 "SELECT * " +
                 "FROM cours, note " +
@@ -198,14 +197,15 @@ public class rechercheEtudiant extends recherche
             }
 
             if(TP_note != -1 && DE_note != -1 && PROJET_note != -1)
-                return TP_note * TP_coef + DE_note * DE_coef + PROJET_note * PROJET_coef;
+                MOYENNE = TP_note * TP_coef + DE_note * DE_coef + PROJET_note * PROJET_coef;
         }
         catch (SQLException e1)
         {
             e1.printStackTrace();
         }
 
-        return -1;
+        database.Database_Deconnection();
+        return MOYENNE;
     }
 
 
@@ -216,9 +216,12 @@ public class rechercheEtudiant extends recherche
      */
     public float moyenneGenerale(String matricule)
     {
+        float MOYENNE_GENERALE = -1;
+
         float moyenneGenerale = 0;
         float coefficientGeneral = 0;
 
+        database = new Database_Connection();
         query =
                 "SELECT * " +
                 "FROM etudiant, groupe, cours, suivre " +
@@ -245,12 +248,14 @@ public class rechercheEtudiant extends recherche
                 }
             }
 
-            return moyenneGenerale / coefficientGeneral;
+            MOYENNE_GENERALE = moyenneGenerale / coefficientGeneral;
         }
         catch (SQLException e1)
         {
             e1.printStackTrace();
-            return -1;
         }
+
+        database.Database_Deconnection();
+        return MOYENNE_GENERALE;
     }
 }

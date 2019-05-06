@@ -46,14 +46,13 @@ class GUI_Etudiant extends CustomJFrame
     /**
      * Création de l'interface pour un Eleve
      *
-     * @param  database liaison à la base de données SQL
      * @param matricule - Matricule de l'élève connecté
      */
-    public GUI_Etudiant(Database_Connection database, String matricule)
+    public GUI_Etudiant(String matricule)
     {
-        super("Etudiant", true, database, DIM_X, DIM_Y);
+        super("Etudiant", true, DIM_X, DIM_Y);
         this.matricule = matricule;
-        ETUDIANT = new rechercheEtudiant(database);
+        ETUDIANT = new rechercheEtudiant();
 
 
         remplirInformations();
@@ -133,6 +132,7 @@ class GUI_Etudiant extends CustomJFrame
             labelErreur.setVisible(false);
             DATA = new Object[nombreCours * SIZE_OCCUPIED_BY_COURSE][columns.length];
 
+            Database_Connection database = new Database_Connection();
             query =
                 "SELECT * " +
                 "FROM etudiant, groupe, cours, suivre " +
@@ -169,6 +169,7 @@ class GUI_Etudiant extends CustomJFrame
                 e1.printStackTrace();
             }
 
+            database.Database_Deconnection();
         }
     }
 
@@ -189,6 +190,7 @@ class GUI_Etudiant extends CustomJFrame
         String DE_ID = "";
         String PROJET_ID = "";
 
+        Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
                 "FROM cours, note " +
@@ -263,5 +265,7 @@ class GUI_Etudiant extends CustomJFrame
         {
             e1.printStackTrace();
         }
+
+        database.Database_Deconnection();
     }
 }
