@@ -74,6 +74,7 @@ CREATE TABLE Identite(
 CREATE TABLE Groupe(
         Groupe_ID Int  Auto_increment  NOT NULL ,
         Nom       Varchar (50) NOT NULL,
+        Bulletin  Boolean NOT NULL
         UNIQUE (Nom)
 	,CONSTRAINT Groupe_PK PRIMARY KEY (Groupe_ID)
 )ENGINE=InnoDB;

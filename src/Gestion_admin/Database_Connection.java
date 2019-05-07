@@ -12,7 +12,8 @@ public class Database_Connection {
 
     public Connection getConnexion() { return connexion; }
 
-    public Database_Connection() {
+    public Database_Connection()
+    {
         try {
             connexion = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {

@@ -2,10 +2,8 @@ package recherche;
 
 
 import Gestion_admin.Database_Connection;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+
 
 /**
  * Classe permettant de faciliter les requêtes SQL relatives à un Professeur

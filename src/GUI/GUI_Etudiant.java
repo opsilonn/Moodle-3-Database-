@@ -7,10 +7,13 @@ import recherche.rechercheEtudiant;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -57,6 +60,9 @@ class GUI_Etudiant extends CustomJFrame
 
         remplirInformations();
         remplirNotes();
+
+
+        buttonBulletin.addActionListener(e -> bulletin());
 
 
         add(panel);
@@ -267,5 +273,17 @@ class GUI_Etudiant extends CustomJFrame
         }
 
         database.Database_Deconnection();
+    }
+
+
+    /**
+     * Affichage du bulletin officiel du Bulletin de l'élève
+     */
+    private void bulletin()
+    {
+        if( Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1") )
+            JOptionPane.showMessageDialog(this, "Votre Bulletin est fini !");
+        else
+            JOptionPane.showMessageDialog(this, "Votre Bulletin n'est pas encore fini !");
     }
 }

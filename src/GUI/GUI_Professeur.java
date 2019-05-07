@@ -6,9 +6,12 @@ import Gestion_admin.Database_Connection;
 import recherche.rechercheProfesseur;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -23,18 +26,21 @@ class GUI_Professeur extends CustomJFrame
     private static final int DIM_X = 500;
     private static final int DIM_Y = 500;
 
-    private rechercheProfesseur PROFESSEUR;
-
+    private rechercheProfesseur PROFESSEUR = new rechercheProfesseur();
     private String matricule;
 
+
     private JPanel panel;
-    private JButton buttonChercherEleve;
+
     private JLabel labelNom;
     private JLabel labelMatricule;
     private JLabel labelMatiere;
+
+    private JButton buttonChercherEleve;
     private JButton buttonModifier;
-    private JTable coursTable;
+
     private JLabel labelErreur;
+    private JTable coursTable;
     private JScrollPane coursPane;
 
     /**
@@ -46,11 +52,13 @@ class GUI_Professeur extends CustomJFrame
     {
         super("Professeur", true, DIM_X, DIM_Y);
         this.matricule = matricule;
-        PROFESSEUR = new rechercheProfesseur();
 
 
         remplirInformations();
         remplirCours();
+
+
+        buttonModifier.addActionListener(e -> { GUI_modifierNote frame = new GUI_modifierNote(matricule); });
 
 
         add(panel);
@@ -58,6 +66,8 @@ class GUI_Professeur extends CustomJFrame
         revalidate();
         setVisible(true);
     }
+
+
 
 
     /**
@@ -71,6 +81,7 @@ class GUI_Professeur extends CustomJFrame
         labelMatricule.setText( matricule );
         labelMatiere.setText( "I DONT KNOW");
     }
+
 
 
 
@@ -127,7 +138,7 @@ class GUI_Professeur extends CustomJFrame
     {
         String NOM = PROFESSEUR.getCours(coursCode, "Nom");
         String CODE = PROFESSEUR.getCours(coursCode, "Code");
-        String ANNEE = PROFESSEUR.getCours(coursCode, "Annee");
+        String ANNEE = PROFESSEUR.getCours(coursCode, "Annee").substring(0,4);
 
 
         Database_Connection database = new Database_Connection();

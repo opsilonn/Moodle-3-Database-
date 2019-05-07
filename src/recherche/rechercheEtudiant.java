@@ -2,9 +2,9 @@ package recherche;
 
 
 import Gestion_admin.Database_Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 /**
  * Classe permettant de faciliter les requêtes SQL relatives à un Etudiant
