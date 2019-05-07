@@ -4,10 +4,13 @@ package GUI;
 import GUI_Components.CustomJFrame;
 import GUI_Components.CustomJTextField;
 import Gestion_admin.Database_Connection;
-import recherche.rechercheProfesseur;
+
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -23,7 +26,6 @@ class GUI_modifierNote extends CustomJFrame
     private static final int DIM_Y = 400;
 
     private String matricule;
-    private rechercheProfesseur PROFESSEUR = new rechercheProfesseur();
 
 
     private JPanel panel;
@@ -109,8 +111,8 @@ class GUI_modifierNote extends CustomJFrame
 
 
     /**
-     * retourne la valeur sélectionnée dans le combobox comboboxMatricule
-     * @return la valeur sélectionnée dans le combobox comboboxMatricule
+     * retourne la valeur sélectionnée dans le combobox comboboxNote
+     * @return la valeur sélectionnée dans le combobox comboboxNote
      */
     private String ID_NOTE()
     {
@@ -339,11 +341,29 @@ class GUI_modifierNote extends CustomJFrame
             else
             {
                 Database_Connection database = new Database_Connection();
-                String query =
-                        "UPDATE note, etudiant " +
-                        "SET Valeur = " + inputNote + " " +
-                        "WHERE Type = '" + ID_NOTE() + "' " +
-                        "AND note.Matricule_Etudiant = " + ID_MATRICULE() + " ;";
+                String query;
+
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                Date date = new Date();
+
+                // Si la note est indéfinie, on en ajoute une
+                // Sinon, en modifie la note existante
+                if( String.valueOf( comboBoxNote.getSelectedItem() ).contains("indéfinie") )
+                    query =
+                            "INSERT INTO note (Valeur, Type, Date_Exam, Code, Matricule_Etudiant)" +
+                            "VALUES ('" +
+                                    inputNote + "', '" +
+                                    ID_NOTE() + "', '" +
+                                    dateFormat.format(date) + "', '" +
+                                    ID_COURS() + "', '" +
+                                    ID_MATRICULE() + "');";
+                else
+                    query =
+                            "UPDATE note, etudiant " +
+                            "SET Valeur = " + inputNote + " " +
+                            "WHERE Type = '" + ID_NOTE() + "' " +
+                            "AND note.Matricule_Etudiant = " + ID_MATRICULE() + " ;";
+
 
                 System.out.println(query);
                 database.run_Statement_WRITE(query);

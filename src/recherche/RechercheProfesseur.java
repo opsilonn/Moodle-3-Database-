@@ -10,7 +10,7 @@ import java.util.ArrayList;
  **
  * @author Hugues
  */
-public class rechercheProfesseur extends recherche
+public class RechercheProfesseur extends Recherche
 {
     /* PERSONNE */
 

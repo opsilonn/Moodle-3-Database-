@@ -11,7 +11,7 @@ import java.sql.SQLException;
  **
  * @author Hugues
  */
-public class rechercheEtudiant extends recherche
+public class RechercheEtudiant extends Recherche
 {
     /* PERSONNE */
 

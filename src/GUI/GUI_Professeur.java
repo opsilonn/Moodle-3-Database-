@@ -3,15 +3,12 @@ package GUI;
 
 import GUI_Components.CustomJFrame;
 import Gestion_admin.Database_Connection;
-import recherche.rechercheProfesseur;
+import recherche.RechercheProfesseur;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 /**
@@ -26,7 +23,7 @@ class GUI_Professeur extends CustomJFrame
     private static final int DIM_X = 500;
     private static final int DIM_Y = 500;
 
-    private rechercheProfesseur PROFESSEUR = new rechercheProfesseur();
+    private RechercheProfesseur PROFESSEUR = new RechercheProfesseur();
     private String matricule;
 
 
@@ -42,6 +39,7 @@ class GUI_Professeur extends CustomJFrame
     private JLabel labelErreur;
     private JTable coursTable;
     private JScrollPane coursPane;
+    private JButton buttonCours;
 
     /**
      * Création de l'interface pour un Eleve
@@ -58,6 +56,7 @@ class GUI_Professeur extends CustomJFrame
         remplirCours();
 
 
+        buttonCours.addActionListener(e -> { GUI_consulterCours frame = new GUI_consulterCours(); });
         buttonModifier.addActionListener(e -> { GUI_modifierNote frame = new GUI_modifierNote(matricule); });
 
 

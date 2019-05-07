@@ -3,12 +3,9 @@ package GUI;
 
 import GUI_Components.CustomJFrame;
 import Gestion_admin.Database_Connection;
-import recherche.rechercheEtudiant;
+import recherche.RechercheEtudiant;
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -28,7 +25,7 @@ class GUI_Etudiant extends CustomJFrame
     private static final int DIM_X = 800;
     private static final int DIM_Y = 500;
 
-    private rechercheEtudiant ETUDIANT;
+    private RechercheEtudiant ETUDIANT;
 
     private String matricule;
 
@@ -45,6 +42,7 @@ class GUI_Etudiant extends CustomJFrame
 
     private JScrollPane bulletin;
     private JTable bulletinValeurs;
+    private JButton buttonCours;
 
     /**
      * Création de l'interface pour un Eleve
@@ -55,13 +53,13 @@ class GUI_Etudiant extends CustomJFrame
     {
         super("Etudiant", true, DIM_X, DIM_Y);
         this.matricule = matricule;
-        ETUDIANT = new rechercheEtudiant();
+        ETUDIANT = new RechercheEtudiant();
 
 
         remplirInformations();
         remplirNotes();
 
-
+        buttonCours.addActionListener(e -> { GUI_consulterCours frame = new GUI_consulterCours(); });
         buttonBulletin.addActionListener(e -> bulletin());
 
 

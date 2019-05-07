@@ -12,7 +12,7 @@ import java.util.ArrayList;
  **
  * @author Hugues
  */
-public abstract class recherche
+public class Recherche
 {
     protected Database_Connection database;
     protected String query;
@@ -91,4 +91,25 @@ public abstract class recherche
         database.Database_Deconnection();
         return liste;
     }
+
+
+    /**
+     * Permet de récupérer le nombre de ligne compris dans une table
+     * @param table Rang recherché dans la requête
+     * @return la taille de la table recherchée
+     */
+    public int TAILLE_TABLE(String table)
+    {
+        database = new Database_Connection();
+
+        query =
+                "SELECT * " +
+                "FROM " + table + " ;";
+
+        resultat = database.run_Statement_READ(query);
+
+
+        return RETOURNER_COMPTEUR(resultat);
+    }
 }
+
