@@ -35,7 +35,7 @@ public class GUI_chercherEtudiant extends CustomJFrame
     private JLabel labelNom;
     private JLabel labelGroupe;
     private JLabel labelMatricule;
-    private JLabel labelCours;
+    private JTextArea labelCours;
 
 
     /**
@@ -51,6 +51,7 @@ public class GUI_chercherEtudiant extends CustomJFrame
 
         labelErreur.setVisible(false);
         panelResult.setVisible(false);
+        labelCours.setEnabled(false);
         buttonRechercher.addActionListener(e -> chercherEtudiant() );
 
 
@@ -136,7 +137,7 @@ public class GUI_chercherEtudiant extends CustomJFrame
                     while( resultSet2.next() )
                         COURS.add(
                                 resultSet2.getString("cours.Code") + " - " +
-                                resultSet2.getString("cours.Nom")  + "\n");
+                                resultSet2.getString("cours.Nom") + "\n");
                 }
                 catch (SQLException e)
                 {
@@ -171,7 +172,13 @@ public class GUI_chercherEtudiant extends CustomJFrame
             if(COURS.size() == 0)
                 labelCours.setText("Aucun cours avec vous... CE QUI NE DEVRAIT PAS ARRIVER");
             else
-                labelCours.setText( COURS.toString() );
+            {
+                StringBuilder cours = new StringBuilder();
+                for (String s : COURS)
+                    cours.append(s);
+
+                labelCours.setText(cours.toString());
+            }
         }
     }
 }

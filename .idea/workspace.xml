@@ -7,14 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5649d6a6-8244-44c3-a737-425e665ac77a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Professeur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Professeur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_consulterCours.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_consulterCours.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Professeur.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Professeur.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="137" column="4" selection-start-line="137" selection-start-column="4" selection-end-line="137" selection-end-column="4" />
+            <state relative-caret-position="359">
+              <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#remplirInformations#0;class#GUI_Professeur#0" />
@@ -65,18 +63,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.form">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Etudiant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#GUI_Etudiant#0;class#GUI_Etudiant#0" />
+                <element signature="method#remplirInformations#0;class#GUI_Etudiant#0" />
+                <element signature="method#remplirNotes#0;class#GUI_Etudiant#0" />
+                <element signature="method#remplirNotesCours#0;class#GUI_Etudiant#0" />
+                <element signature="method#bulletin#0;class#GUI_Etudiant#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Etudiant.form">
           <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="138" column="60" selection-start-line="138" selection-start-column="60" selection-end-line="138" selection-end-column="60" />
+            <state relative-caret-position="236">
+              <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#GUI_chercherEtudiant#0;class#GUI_chercherEtudiant#0" />
                 <element signature="method#getInput#0;class#GUI_chercherEtudiant#0" />
               </folding>
             </state>
@@ -145,12 +159,12 @@
         <option value="$PROJECT_DIR$/src/recherche/RechercheProfesseur.java" />
         <option value="$PROJECT_DIR$/src/recherche/Recherche.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_consulterCours.form" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_Etudiant.form" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_consulterCours.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.form" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_Professeur.form" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_Etudiant.form" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java" />
       </list>
@@ -192,6 +206,13 @@
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
               <item name="GUI_Etudiant" type="e9f4de52:FormNode" />
             </path>
+            <path>
+              <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI_Professeur" type="e9f4de52:FormNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -204,7 +225,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557241541148" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557256186596" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -285,12 +306,12 @@
       <workItem from="1556976135601" duration="22991000" />
       <workItem from="1557074802047" duration="36276000" />
       <workItem from="1557176389328" duration="1872000" />
-      <workItem from="1557224437912" duration="16440000" />
+      <workItem from="1557224437912" duration="18249000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117765000" />
+    <option name="totallyTimeSpent" value="119574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -570,10 +591,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_addEleve.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#remplirInformations#0;class#GUI_Professeur#0" />
+            <element signature="method#remplirCours#0;class#GUI_Professeur#0" />
+            <element signature="method#remplirCoursGroupes#0;class#GUI_Professeur#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Etudiant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="12" selection-end-column="25" />
+        <state relative-caret-position="210">
+          <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#GUI_Etudiant#0;class#GUI_Etudiant#0" />
@@ -585,28 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="137" column="4" selection-start-line="137" selection-start-column="4" selection-end-line="137" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#remplirInformations#0;class#GUI_Professeur#0" />
-            <element signature="method#remplirCours#0;class#GUI_Professeur#0" />
-            <element signature="method#remplirCoursGroupes#0;class#GUI_Professeur#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_addEleve.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Etudiant.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
@@ -615,11 +636,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="138" column="60" selection-start-line="138" selection-start-column="60" selection-end-line="138" selection-end-column="60" />
+        <state relative-caret-position="236">
+          <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GUI_chercherEtudiant#0;class#GUI_chercherEtudiant#0" />
             <element signature="method#getInput#0;class#GUI_chercherEtudiant#0" />
           </folding>
         </state>

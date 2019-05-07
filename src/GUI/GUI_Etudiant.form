@@ -169,7 +169,9 @@
       </vspacer>
       <vspacer id="a4fc1">
         <constraints>
-          <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="25" height="25"/>
+          </grid>
         </constraints>
       </vspacer>
       <component id="3eee8" class="javax.swing.JButton" binding="buttonCours">

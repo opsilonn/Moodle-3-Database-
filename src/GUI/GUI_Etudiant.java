@@ -23,7 +23,7 @@ import java.util.Objects;
 class GUI_Etudiant extends CustomJFrame
 {
     private static final int DIM_X = 800;
-    private static final int DIM_Y = 500;
+    private static final int DIM_Y = 600;
 
     private RechercheEtudiant ETUDIANT;
 

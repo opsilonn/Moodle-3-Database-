@@ -20,8 +20,8 @@ import java.util.ArrayList;
  */
 class GUI_Professeur extends CustomJFrame
 {
-    private static final int DIM_X = 500;
-    private static final int DIM_Y = 500;
+    private static final int DIM_X = 600;
+    private static final int DIM_Y = 650;
 
     private RechercheProfesseur PROFESSEUR = new RechercheProfesseur();
     private String matricule;
