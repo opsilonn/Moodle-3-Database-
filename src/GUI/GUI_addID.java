@@ -1,8 +1,13 @@
 package GUI;
 
+import GUI_Components.CustomJTextField;
+import GUI_Components.DateFunctions;
 import Gestion_admin.Database_Connection;
+import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.Month;
 
 public class GUI_addID extends GUI_Components.CustomJFrame {
 
@@ -10,9 +15,9 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
     private static final int DIM_Y = 300;
 
     private JPanel panel_ID;
-    private JFormattedTextField textCity;
-    private JFormattedTextField textDate;
-    private JFormattedTextField textSexe;
+    private JTextField textCity;
+    private DatePicker textDate;
+    private JTextField textSexe;
     private JButton buttonSave;
     private JTextField textCountry;
 
@@ -23,10 +28,20 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
         this.gui = gui;
         buttonSave.addActionListener(e -> saveID(ID_personne));
 
+        textDate.setSettings(DateFunctions.customDates());
+        LocalDate date = LocalDate.of(2000, Month.JANUARY, 1);
+        textDate.setDate(date);
+
         add(panel_ID);
         pack();
         revalidate();
         setVisible(true);
+    }
+
+    private void createUIComponents() {
+        textDate = new DatePicker();
+        textCity = new CustomJTextField("ALPHABET", false, 20);
+        textSexe = new CustomJTextField("SEXE", false, 1);
     }
 
 
@@ -39,7 +54,7 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
         } else {
             if (ID_personne != -1) {
                 String sql = "INSERT INTO identite (date_naissance, ville_naissance, pays_naissance, sexe, ID_Personne) VALUES (" +
-                        "'" + textDate.getText() + "','" +
+                        "'" + textDate.getDate().toString() + "','" +
                         textCity.getText() + "','" +
                         textCountry.getText() + "','" +
                         textSexe.getText() + "'," +

@@ -1,15 +1,18 @@
 package GUI;
 
+import GUI_Components.CustomJTextField;
 import Gestion_admin.Database_Connection;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+import java.text.ParseException;
 
 public class GUI_addAddress extends GUI_Components.CustomJFrame {
     private JTextField street;
     private JTextField city;
     private JTextField codePostal;
     private JFormattedTextField phone;
-    private JFormattedTextField email;
+    private JTextField email;
     private JButton buttonSave;
     private JPanel panel;
 
@@ -17,6 +20,21 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
     private static final int DIMY = 200;
 
     private GUI_chercherPersonne gui;
+
+    private void createUIComponents() {
+        street = new CustomJTextField("ALL", false, 30);
+        city = new CustomJTextField("ALPHABET", false, 20);
+        codePostal = new CustomJTextField("NUMERIC", false, 20);
+        //phone = new CustomJTextField("NUMERIC", false, 10);
+        email = new CustomJTextField("ALL", false, 20);
+
+
+        try {
+            phone = new JFormattedTextField(new MaskFormatter("##.##.##.##.##"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public GUI_addAddress(int ID_personne, GUI_chercherPersonne gui) {

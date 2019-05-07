@@ -16,7 +16,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="e6b05" class="javax.swing.JFormattedTextField" binding="textCity">
+          <component id="e6b05" class="javax.swing.JFormattedTextField" binding="textCity" custom-create="true">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -54,17 +54,7 @@
               <text value="Date de naissance"/>
             </properties>
           </component>
-          <component id="19f85" class="javax.swing.JFormattedTextField" binding="textDate">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="00/00/0000"/>
-            </properties>
-          </component>
-          <component id="21877" class="javax.swing.JFormattedTextField" binding="textSexe">
+          <component id="21877" class="javax.swing.JFormattedTextField" binding="textSexe" custom-create="true">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -100,6 +90,12 @@
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="e6df1" class="com.github.lgooddatepicker.components.DatePicker" binding="textDate">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>

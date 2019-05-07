@@ -22,7 +22,7 @@ public class GUI_Groupe extends CustomJFrame {
     private JButton buttonChercher;
     private JPanel panelResultat;
     private JLabel labelID;
-    private JFormattedTextField textNom;
+    private JTextField textNom;
     private JScrollPane scrollEleve;
     private JTable tableEleve;
     private JButton buttonAddEleve;
@@ -70,6 +70,7 @@ public class GUI_Groupe extends CustomJFrame {
     private void createUIComponents() {
 
         fieldID = new CustomJTextField("NUMERIC", false, 8);
+        textNom = new CustomJTextField("ALPHABET", false, 20);
     }
 
     private void searchGroupe() {

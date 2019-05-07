@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="9" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="850"/>
+      <xy x="20" y="20" width="500" height="810"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -152,7 +152,7 @@
                   <text value="Prénom :"/>
                 </properties>
               </component>
-              <component id="d7a53" class="javax.swing.JFormattedTextField" binding="textPrenom">
+              <component id="d7a53" class="javax.swing.JFormattedTextField" binding="textPrenom" custom-create="true">
                 <constraints>
                   <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -162,7 +162,7 @@
                   <text value="John"/>
                 </properties>
               </component>
-              <component id="778a0" class="javax.swing.JFormattedTextField" binding="textNom">
+              <component id="778a0" class="javax.swing.JFormattedTextField" binding="textNom" custom-create="true">
                 <constraints>
                   <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -207,7 +207,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="39f22" class="javax.swing.JFormattedTextField" binding="textCity">
+              <component id="39f22" class="javax.swing.JFormattedTextField" binding="textCity" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -236,26 +236,7 @@
                   <text value="Ville de Naissance"/>
                 </properties>
               </component>
-              <component id="e9a48" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <labelFor value="e5756"/>
-                  <text value="Date de naissance"/>
-                </properties>
-              </component>
-              <component id="e5756" class="javax.swing.JFormattedTextField" binding="textDate">
-                <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <text value="00/00/2000"/>
-                </properties>
-              </component>
-              <component id="2d320" class="javax.swing.JFormattedTextField" binding="textSexe">
+              <component id="2d320" class="javax.swing.JFormattedTextField" binding="textSexe" custom-create="true">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -278,7 +259,7 @@
                   <text value="Pays de Naissance"/>
                 </properties>
               </component>
-              <component id="9435d" class="javax.swing.JTextField" binding="textPays">
+              <component id="9435d" class="javax.swing.JTextField" binding="textPays" custom-create="true">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -286,6 +267,20 @@
                 </constraints>
                 <properties>
                   <text value="France"/>
+                </properties>
+              </component>
+              <component id="4b820" class="com.github.lgooddatepicker.components.DatePicker" binding="textDate">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="e9a48" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Date de naissance"/>
                 </properties>
               </component>
             </children>

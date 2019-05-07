@@ -23,8 +23,8 @@ public class GUI_Cours extends CustomJFrame {
     private JLabel labelErreur;
     private JButton buttonChercher;
     private JLabel labelID;
-    private JFormattedTextField textAnnee;
-    private JFormattedTextField textNom;
+    private JTextField textAnnee;
+    private JTextField textNom;
     private JButton buttonSave;
     private JTextArea textDescription;
     private JTextField textDE;
@@ -64,7 +64,7 @@ public class GUI_Cours extends CustomJFrame {
         revalidate();
         setVisible(true);
 
-        if(newCours != -1){
+        if (newCours != -1) {
             fieldID.setText(String.valueOf(newCours));
             searchCours();
         }
@@ -73,6 +73,13 @@ public class GUI_Cours extends CustomJFrame {
     private void createUIComponents() {
 
         fieldID = new CustomJTextField("NUMERIC", false, 8);
+        textNom = new CustomJTextField("ALPHABET", false, 20);
+        textAnnee = new CustomJTextField("NUMERIC", false, 4);
+        textDE = new CustomJTextField("DECIMAL", false, 5);
+        textTP = new CustomJTextField("DECIMAL", false, 5);
+        textProjet = new CustomJTextField("DECIMAL", false, 5);
+        textCoeff = new CustomJTextField("DECIMAL", false, 5);
+
     }
 
 
@@ -171,12 +178,12 @@ public class GUI_Cours extends CustomJFrame {
 
                 int index = 0;
                 while (data.next()) {
-                    groupes [index][0] = data.getString("Nom");
-                    groupes [index][1] = data.getInt("Groupe_ID");
-                    index ++;
+                    groupes[index][0] = data.getString("Nom");
+                    groupes[index][1] = data.getInt("Groupe_ID");
+                    index++;
                 }
 
-                tableGroupe.setModel(createModel(groupes , columns));
+                tableGroupe.setModel(createModel(groupes, columns));
 
                 tableGroupe.getColumn(" X ").setCellRenderer(new ButtonRenderer());
                 tableGroupe.getColumn(" X ").setCellEditor(new ButtonEditorGroupe(new JCheckBox(), this));
@@ -229,7 +236,7 @@ public class GUI_Cours extends CustomJFrame {
 
         Database_Connection database = new Database_Connection();
         database.run_Statement_WRITE(sql);
-        JOptionPane.showMessageDialog(this,"Bien enregistré");
+        JOptionPane.showMessageDialog(this, "Bien enregistré");
     }
 
     public static TableModel createModel(Object[][] objects, String[] columns) {

@@ -5,11 +5,18 @@ import GUI_Components.ButtonEditor.ButtonEditorAdresse;
 import GUI_Components.ButtonEditor.ButtonEditorCours;
 import Gestion_admin.Database_Connection;
 import Gestion_admin.Display_ResultSet;
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.DatePickerSettings;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DateFormatter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Fenêtre dédiée à la fonction de recherche d'une Personne
@@ -39,7 +46,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
     private JTextField textNom;
     private JTextField textPrenom;
     private JTextField textCity;
-    private JTextField textDate;
+    private DatePicker textDate;
     private JTextField textSexe;
     private JButton add_ID;
     private JButton addAddress;
@@ -58,6 +65,17 @@ public class GUI_chercherPersonne extends CustomJFrame {
     private int ID_personne;
     private int IDinput;
 
+    private void createUIComponents() {
+        fieldID = new CustomJTextField("NUMERIC", false, 8);
+        textNom = new CustomJTextField("NUMERIC", false, 20);
+        textPrenom = new CustomJTextField("ALPHABET", false, 20);
+        textDate = new DatePicker();
+        textCity = new CustomJTextField("ALPHABET", false, 20);
+        textSexe = new CustomJTextField("SEXE", false, 1);
+        textPays = new CustomJTextField("ALPHABET", false, 20);
+    }
+
+
     public GUI_chercherPersonne(String table, int newPersonne) {
         super("Chercher Personne", true, DIMX, DIMY);
         this.table = table;
@@ -67,6 +85,9 @@ public class GUI_chercherPersonne extends CustomJFrame {
         /*TODO : ENLEVER CA*/
         fieldID.setText("20160124");
 
+        textDate.setSettings(DateFunctions.customDates());
+        LocalDate date = LocalDate.of(2000, Month.JANUARY, 1);
+        textDate.setDate(date);
 
         labelErreur.setVisible(false);
         labelNoGroup.setVisible(false);
@@ -96,11 +117,6 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
-    private void createUIComponents() {
-
-        fieldID = new CustomJTextField("NUMERIC", false, 8);
-        textSexe = new CustomJTextField("UPPER_ALPHABET", false, 1);
-    }
 
     /**
      * Quand activée, affiche les résultats en conséquence : si la personne
@@ -234,7 +250,8 @@ public class GUI_chercherPersonne extends CustomJFrame {
                 labelErrorID.setVisible(false);
 
                 textCity.setText(data.getString("ville_naissance"));
-                textDate.setText(data.getString("date_naissance"));
+                textDate.setDate(DateFunctions.convertDate(data.getString("date_naissance")));
+
                 textSexe.setText(data.getString("sexe"));
                 textPays.setText(data.getString("pays_naissance"));
 
@@ -254,7 +271,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
     private void saveID() {
         Database_Connection database = new Database_Connection();
-        String sql = "UPDATE identite SET date_naissance = '" + textDate.getText() +
+        String sql = "UPDATE identite SET date_naissance = '" + textDate.getDate().toString() +
                 "', ville_naissance = '" + textCity.getText() +
                 "', pays_naissance = '" + textPays.getText() +
                 "', sexe = '" + textSexe.getText() +
