@@ -33,7 +33,7 @@ class GUI_Professeur extends CustomJFrame
     private JLabel labelMatricule;
     private JLabel labelMatiere;
 
-    private JButton buttonChercherEleve;
+    private JButton buttonEtudiant;
     private JButton buttonModifier;
 
     private JLabel labelErreur;
@@ -56,6 +56,7 @@ class GUI_Professeur extends CustomJFrame
         remplirCours();
 
 
+        buttonEtudiant.addActionListener(e -> { GUI_chercherEtudiant frame = new GUI_chercherEtudiant(matricule); });
         buttonCours.addActionListener(e -> { GUI_consulterCours frame = new GUI_consulterCours(); });
         buttonModifier.addActionListener(e -> { GUI_modifierNote frame = new GUI_modifierNote(matricule); });
 
