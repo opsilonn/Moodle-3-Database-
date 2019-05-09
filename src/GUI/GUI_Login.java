@@ -34,11 +34,10 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
     /**
      * Création de l'interface de login
      *
-     * @param database liaison à la base de données SQL
      */
-    public GUI_Login(Database_Connection database) {
+    public GUI_Login() {
         super("Login", true, DIM_X, DIM_Y);
-        this.database = database;
+
 
         // Adds the logo image
         ImageIcon imageIcon = new ImageIcon(PATH_LOGO_FULL); // load the image to a imageIcon
@@ -48,8 +47,8 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
         labelLogo.setIcon(imageIcon);
 
         /*TODO ENLEVER CA*/
-        fieldMatricule.setText("0");
-        fieldPassword.setText("admin");
+        fieldMatricule.setText("20090002");
+        fieldPassword.setText("prof");
 
 
         labelIncorrect.setVisible(false);
@@ -78,10 +77,11 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
         boolean professeur = loginTest("professeur");
         boolean admin = loginTest("administration");
 
+
         if (etudiant)
-            frame = new GUI_Etudiant(database, fieldMatricule.getText());
+            frame = new GUI_Etudiant(fieldMatricule.getText());
         else if (professeur)
-            frame = new GUI_Professeur(database, fieldMatricule.getText());
+            frame = new GUI_Professeur(fieldMatricule.getText());
         else if (admin)
             frame = new GUI_Admin();
 
@@ -102,6 +102,7 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
     private boolean loginTest(String table) {
         String inputM = fieldMatricule.getText();
         String inputMDP = String.valueOf(fieldPassword.getPassword());
+        Database_Connection database = new Database_Connection();
 
         if (inputM.length() != 0) {
             try {
@@ -111,16 +112,19 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
                                 "WHERE Matricule = " + inputM + " " +
                                 "AND Password = '" + inputMDP + "' ;";
 
+
                 ResultSet resultat = database.run_Statement_READ(query);
 
-                if (resultat.next())
+                if (resultat.next()) {
+                    database.Database_Deconnection();
                     return true;
+                }
 
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
         }
-
+        database.Database_Deconnection();
         return false;
     }
 }

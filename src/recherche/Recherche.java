@@ -45,30 +45,6 @@ public class Recherche
 
 
     /**
-     * Permet d'obtenir la taille d'une requête SQL
-     * @param resultat Resultat de la requête SQL
-     * @return la taille de la requête SQL
-     */
-    protected int RETOURNER_COMPTEUR(ResultSet resultat)
-    {
-        int cpt = 0;
-
-        try
-        {
-            while (resultat.next() )
-                cpt++;
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-        database.Database_Deconnection();
-        return cpt;
-    }
-
-
-    /**
      * Permet de récupérer la liste d'un élément précis sur une requête donnée
      * @param resultat Resultat de la requête SQL
      * @param valeur Rang recherché dans la requête
@@ -108,8 +84,7 @@ public class Recherche
 
         resultat = database.run_Statement_READ(query);
 
-
-        return RETOURNER_COMPTEUR(resultat);
+        return Database_Connection.getRows(resultat);
     }
 }
 

@@ -3,17 +3,18 @@ package Gestion_admin;
 import java.sql.*;
 
 public class Database_Connection {
-   // private static final String url = "jdbc:mysql://localhost:3306/projet_database";
-    private static final String url = "jdbc:mysql://localhost:3306/moodle3?autoReconnect=true&useSSL=false";
-   
+    private static final String url = "jdbc:mysql://localhost:3306/projet_database";
+    // private static final String url = "jdbc:mysql://localhost:3306/moodle3?autoReconnect=true&useSSL=false";
+
     private static final String user = "root";
     private static final String password = "";
     private Connection connexion;
 
-    public Connection getConnexion() { return connexion; }
+    public Connection getConnexion() {
+        return connexion;
+    }
 
-    public Database_Connection()
-    {
+    public Database_Connection() {
         try {
             connexion = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
@@ -28,7 +29,7 @@ public class Database_Connection {
             Statement statement = connexion.createStatement();
             ResultSet resultat = statement.executeQuery(query);
             return resultat;
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             return null;
         }
     }
@@ -54,6 +55,18 @@ public class Database_Connection {
             } catch (SQLException ignore) {
                 //Si une erreur survient lors de la fermeture, il suffit de l'ignorer.
             }
+    }
+
+    public static int getRows(ResultSet res) {
+        int totalRows = 0;
+        try {
+            res.last();
+            totalRows = res.getRow();
+            res.beforeFirst();
+        } catch (Exception ex) {
+            return 0;
+        }
+        return totalRows;
     }
 
 }

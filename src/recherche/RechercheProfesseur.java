@@ -49,14 +49,13 @@ public class RechercheProfesseur extends Recherche
         database = new Database_Connection();
         query =
                 "SELECT * " +
-                "FROM professeur, enseigner, cours " +
+                "FROM professeur, enseigner" +
                 "WHERE professeur.Matricule = " + matricule + " " +
-                "AND professeur.Matricule = enseigner.Matricule_Prof " +
-                "AND enseigner.Code = cours.Code;";
+                "AND professeur.Matricule = enseigner.Matricule_Prof;";
 
         resultat = database.run_Statement_READ(query);
 
-        return RETOURNER_COMPTEUR(resultat);
+        return Database_Connection.getRows(resultat);
     }
 
     /**
@@ -117,6 +116,6 @@ public class RechercheProfesseur extends Recherche
 
         resultat = database.run_Statement_READ(query);
 
-        return RETOURNER_COMPTEUR(resultat);
+        return Database_Connection.getRows(resultat);
     }
 }

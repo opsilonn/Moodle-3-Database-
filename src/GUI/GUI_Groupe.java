@@ -4,7 +4,6 @@ import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorCours4Groupe;
 import GUI_Components.ButtonEditor.ButtonEditorEleve;
 import Gestion_admin.Database_Connection;
-import Gestion_admin.Display_ResultSet;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -88,7 +87,7 @@ public class GUI_Groupe extends CustomJFrame {
             ResultSet data = database.run_Statement_READ("SELECT * FROM cours WHERE Code = " + codeGroupe);
 
 
-            if (Display_ResultSet.getRows(data) == 0) {
+            if (Database_Connection.getRows(data) == 0) {
                 /*Groupe non trouvé*/
                 labelErreur.setVisible(true);
                 panelResultat.setVisible(false);
@@ -118,7 +117,7 @@ public class GUI_Groupe extends CustomJFrame {
         try {
             String sql = "SELECT cours.Code, Nom FROM suivre INNER JOIN cours on cours.Code = suivre.Code WHERE Groupe_ID = " + codeGroupe;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = Display_ResultSet.getRows(data);
+            int totalRows = Database_Connection.getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Cours", " X "};
@@ -168,7 +167,7 @@ public class GUI_Groupe extends CustomJFrame {
         try {
             String sql = "SELECT Groupe_ID, Matricule FROM etudiant WHERE Groupe_ID = " + codeGroupe;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = Display_ResultSet.getRows(data);
+            int totalRows = Database_Connection.getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Eleves", " X "};

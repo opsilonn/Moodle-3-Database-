@@ -1,7 +1,6 @@
 package GUI;
 
 import Gestion_admin.Database_Connection;
-import Gestion_admin.Display_ResultSet;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -41,7 +40,7 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (Display_ResultSet.getRows(data) == 0) {
+            if (Database_Connection.getRows(data) == 0) {
                 labelError.setVisible(true);
                 comboBoxItem.setVisible(false);
                 buttonSave.setVisible(false);

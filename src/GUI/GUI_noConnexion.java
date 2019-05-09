@@ -8,7 +8,7 @@ import javax.swing.*;
 /**
  * Fenêtre affichant un message d'erreur lorsque l'on est pas connecté la BDD
  * <p>
- * Cette classe hérite de {@link GUI_Components.CustomJFrame}
+ * Cette classe hérite de {@link CustomJFrame}
  *
  * @author Hugues
  */

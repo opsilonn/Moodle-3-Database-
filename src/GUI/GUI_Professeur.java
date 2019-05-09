@@ -4,6 +4,7 @@ package GUI;
 import GUI_Components.CustomJFrame;
 import Gestion_admin.Database_Connection;
 import recherche.RechercheProfesseur;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
@@ -13,13 +14,12 @@ import java.util.ArrayList;
 
 /**
  * Fenêtre dédiée à l'utilisation du logiciel par un Professeur
- *
+ * <p>
  * Cette classe hérite de {@link CustomJFrame}
  *
  * @author Hugues
  */
-class GUI_Professeur extends CustomJFrame
-{
+class GUI_Professeur extends CustomJFrame {
     private static final int DIM_X = 600;
     private static final int DIM_Y = 650;
 
@@ -31,7 +31,6 @@ class GUI_Professeur extends CustomJFrame
 
     private JLabel labelNom;
     private JLabel labelMatricule;
-    private JLabel labelMatiere;
 
     private JButton buttonEtudiant;
     private JButton buttonModifier;
@@ -44,10 +43,9 @@ class GUI_Professeur extends CustomJFrame
     /**
      * Création de l'interface pour un Eleve
      *
-     * @param matricule - Matricule de l'élève connecté
+     * @param matricule - Matricule du professeur connecté
      */
-    public GUI_Professeur(String matricule)
-    {
+    public GUI_Professeur(String matricule) {
         super("Professeur", true, DIM_X, DIM_Y);
         this.matricule = matricule;
 
@@ -56,9 +54,15 @@ class GUI_Professeur extends CustomJFrame
         remplirCours();
 
 
-        buttonEtudiant.addActionListener(e -> { GUI_chercherEtudiant frame = new GUI_chercherEtudiant(matricule); });
-        buttonCours.addActionListener(e -> { GUI_consulterCours frame = new GUI_consulterCours(); });
-        buttonModifier.addActionListener(e -> { GUI_modifierNote frame = new GUI_modifierNote(matricule); });
+        buttonEtudiant.addActionListener(e -> {
+            new GUI_chercherEtudiant(matricule);
+        });
+        buttonCours.addActionListener(e -> {
+            new GUI_consulterCours();
+        });
+        buttonModifier.addActionListener(e -> {
+            new GUI_modifierNote(matricule);
+        });
 
 
         add(panel);
@@ -68,43 +72,33 @@ class GUI_Professeur extends CustomJFrame
     }
 
 
-
-
     /**
      * Remplissage des champs sur l'information du professeur connecté
      */
-    private void remplirInformations()
-    {
+    private void remplirInformations() {
         labelNom.setText(
                 PROFESSEUR.getPersonne(matricule, "Prenom") + " " +
-                PROFESSEUR.getPersonne(matricule, "Nom").toUpperCase() );
-        labelMatricule.setText( matricule );
-        labelMatiere.setText( "I DONT KNOW");
+                        PROFESSEUR.getPersonne(matricule, "Nom").toUpperCase());
+        labelMatricule.setText(matricule);
     }
 
 
-
-
-    private String[] columns = new String[]{ "Cours", "Code", "Groupe - ID","Groupe - Nom", "année" };
+    private String[] columns = new String[]{"Cours", "Code", "Groupe - ID", "Groupe - Nom", "année"};
     private Object[][] DATA;
     private int CURSOR;
 
     /**
      * Remplissage des champs sur les cours dispensés du professeur connecté
      */
-    private void remplirCours()
-    {
+    private void remplirCours() {
         int nombreCours = PROFESSEUR.nombreCours(matricule);
 
 
-        if(nombreCours == 0)
-        {
+        if (nombreCours == 0) {
             labelErreur.setVisible(true);
             coursTable.setVisible(false);
             coursPane.setVisible(false);
-        }
-        else
-        {
+        } else {
             labelErreur.setVisible(false);
             coursTable.setVisible(true);
             coursPane.setVisible(true);
@@ -132,13 +126,13 @@ class GUI_Professeur extends CustomJFrame
 
     /**
      * Remplissage des champs sur groupes suivant un cours dispensé par le professeur connecté
+     *
      * @param coursCode Code du cours en question
      */
-    private void remplirCoursGroupes(String coursCode)
-    {
+    private void remplirCoursGroupes(String coursCode) {
         String NOM = PROFESSEUR.getCours(coursCode, "Nom");
         String CODE = PROFESSEUR.getCours(coursCode, "Code");
-        String ANNEE = PROFESSEUR.getCours(coursCode, "Annee").substring(0,4);
+        String ANNEE = PROFESSEUR.getCours(coursCode, "Annee").substring(0, 4);
 
 
         Database_Connection database = new Database_Connection();
@@ -150,23 +144,20 @@ class GUI_Professeur extends CustomJFrame
                 "AND cours.Code = suivre.Code " +
                 "AND suivre.Groupe_ID = groupe.Groupe_ID;";
 
+
         ResultSet resultat = database.run_Statement_READ(query);
 
-        try
-        {
-            while ( resultat.next() )
-            {
+        try {
+            while (resultat.next()) {
                 DATA[CURSOR][0] = NOM;
                 DATA[CURSOR][1] = CODE;
                 DATA[CURSOR][2] = resultat.getString("groupe.Groupe_ID");
-                DATA[CURSOR][3] = resultat.getString("groupe.Nom");;
+                DATA[CURSOR][3] = resultat.getString("groupe.Nom");
                 DATA[CURSOR][4] = ANNEE;
-                CURSOR ++;
+                CURSOR++;
             }
             CURSOR++;
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

@@ -107,15 +107,13 @@ public class RechercheEtudiant extends Recherche
         database = new Database_Connection();
         query =
                 "SELECT * " +
-                "FROM etudiant, groupe, cours, suivre " +
-                "WHERE etudiant.Matricule = " + matricule + " " +
-                "AND etudiant.Groupe_ID = groupe.Groupe_ID " +
-                "AND groupe.Groupe_ID = suivre.Groupe_ID " +
-                "AND suivre.Code = cours.Code;";
+                        "FROM etudiant, suivre " +
+                        "WHERE etudiant.Matricule = " + matricule + " " +
+                        "AND etudiant.Groupe_ID = suivre.Groupe_ID;";
 
         resultat = database.run_Statement_READ(query);
 
-        return RETOURNER_COMPTEUR(resultat);
+        return Database_Connection.getRows(resultat);
     }
 
 

@@ -180,7 +180,7 @@ class GUI_modifierNote extends CustomJFrame
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                "FROM suivre, Groupe " +
+                "FROM suivre, groupe " +
                 "WHERE suivre.Code = " +  ID_COURS() + " " +
                 "AND suivre.Groupe_ID = groupe.Groupe_ID;";
 

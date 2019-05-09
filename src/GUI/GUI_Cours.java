@@ -4,7 +4,6 @@ import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorGroupe;
 import GUI_Components.ButtonEditor.ButtonEditorProf;
 import Gestion_admin.Database_Connection;
-import Gestion_admin.Display_ResultSet;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -98,7 +97,7 @@ public class GUI_Cours extends CustomJFrame {
             ResultSet data = database.run_Statement_READ("SELECT * FROM cours WHERE Code = " + codeCours);
 
 
-            if (Display_ResultSet.getRows(data) == 0) {
+            if (Database_Connection.getRows(data) == 0) {
                 /*Cours non trouvé*/
                 labelErreur.setVisible(true);
                 panelResultat.setVisible(false);
@@ -136,7 +135,7 @@ public class GUI_Cours extends CustomJFrame {
         try {
             String sql = "SELECT Matricule_Prof FROM enseigner WHERE Code = " + codeCours;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = Display_ResultSet.getRows(data);
+            int totalRows = Database_Connection.getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Professeur", " X "};
@@ -170,7 +169,7 @@ public class GUI_Cours extends CustomJFrame {
         try {
             String sql = "SELECT * FROM suivre INNER JOIN groupe on suivre.Groupe_ID = groupe.Groupe_ID WHERE Code = " + codeCours;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = Display_ResultSet.getRows(data);
+            int totalRows = Database_Connection.getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Groupe", " X "};
@@ -226,17 +225,32 @@ public class GUI_Cours extends CustomJFrame {
 
     private void saveChanges() {
         /*TODO : CONSTRAINT */
-        String sql = "UPDATE cours SET Nom ='" + textNom.getText() +
-                "', Description = '" + textDescription.getText() +
-                "', Annee = " + textAnnee.getText() +
-                ", Coefficient = " + textCoeff.getText() +
-                ", DE_pourcentage = " + textDE.getText() +
-                ", TP_pourcentage = " + textTP.getText() +
-                ", Projet_pourcentage = " + textProjet.getText();
+        /*
+         *Retrieve the infos ds des chiffres
+         * si Dep+TP+PR != 100%
+         * each can't be under 0%
+         * */
+        float DE = Float.parseFloat(textDE.getText());
+        float Prj = Float.parseFloat(textProjet.getText());
+        float TP = Float.parseFloat(textTP.getText());
 
-        Database_Connection database = new Database_Connection();
-        database.run_Statement_WRITE(sql);
-        JOptionPane.showMessageDialog(this, "Bien enregistré");
+        if (DE + Prj + TP != 100 || DE < 0 || Prj < 0 || TP < 0) {
+            JOptionPane.showMessageDialog(panel, "Les valeurs entrées pour les pourcentages ne sont pas correctes",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String sql = "UPDATE cours SET Nom ='" + textNom.getText() +
+                    "', Description = '" + textDescription.getText() +
+                    "', Annee = " + textAnnee.getText() +
+                    ", Coefficient = " + textCoeff.getText() +
+                    ", DE_pourcentage = " + textDE.getText() +
+                    ", TP_pourcentage = " + textTP.getText() +
+                    ", Projet_pourcentage = " + textProjet.getText();
+
+            Database_Connection database = new Database_Connection();
+            database.run_Statement_WRITE(sql);
+            JOptionPane.showMessageDialog(this, "Bien enregistré.");
+        }
+
     }
 
     public static TableModel createModel(Object[][] objects, String[] columns) {

@@ -4,19 +4,14 @@ import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorAdresse;
 import GUI_Components.ButtonEditor.ButtonEditorCours;
 import Gestion_admin.Database_Connection;
-import Gestion_admin.Display_ResultSet;
 import com.github.lgooddatepicker.components.DatePicker;
-import com.github.lgooddatepicker.components.DatePickerSettings;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.DateFormatter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Fenêtre dédiée à la fonction de recherche d'une Personne
@@ -201,7 +196,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
         String sql = "SELECT * FROM adresse WHERE ID_Personne = " + ID_personne;
         ResultSet data = database.run_Statement_READ(sql);
-        int totalRows = Display_ResultSet.getRows(data);
+        int totalRows = Database_Connection.getRows(data);
 
         try {
             if (totalRows > 0) {
@@ -243,7 +238,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
         String sql = "SELECT * FROM identite WHERE ID_Personne = " + ID_personne;
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (Display_ResultSet.getRows(data) > 0) {
+            if (Database_Connection.getRows(data) > 0) {
                 data.next();
                 panel_ID.setVisible(true);
                 add_ID.setVisible(false);
@@ -309,7 +304,8 @@ public class GUI_chercherPersonne extends CustomJFrame {
         database.run_Statement_WRITE(sql);
         database.Database_Deconnection();
         displayAddress();
-        System.out.println("Enlevé");
+        JOptionPane.showMessageDialog(this, "Adresse supprimée.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+
     }
 
     private void savePersonne() {
@@ -317,7 +313,8 @@ public class GUI_chercherPersonne extends CustomJFrame {
         Database_Connection database = new Database_Connection();
 
         if (textNom.getText().length() == 0 || textPrenom.getText().length() == 0) {
-            System.out.println("ERROR IDENTITE");
+
+            JOptionPane.showMessageDialog(this, "Le nom ou prénom entré n'est pas valide.", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else {
             String sql = "UPDATE personne SET Nom = '" + textNom.getText() +
@@ -334,7 +331,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
         saveAddress();
 
-        JOptionPane.showMessageDialog(this, "Bien enregistré");
+        JOptionPane.showMessageDialog(this, "Bien enregistré", "Saved", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void displayGroup() {
@@ -359,18 +356,14 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
-    private void changeGroup(int ID_Group) {
-//TODO
-    }
-
     private void saveGroup() {
-        String sql = "SELECT Groupe_ID from groupe WHERE Nom = " + comboBoxGroupe.getSelectedItem();
+        String sql = "SELECT Groupe_ID from groupe WHERE Nom = '" + comboBoxGroupe.getSelectedItem()+ "'";
         Database_Connection database = new Database_Connection();
         ResultSet groupID = database.run_Statement_READ(sql);
         try {
             if (groupID.next()) {
                 sql = "UPDATE etudiant SET Groupe_ID = " + groupID.getInt("Groupe_ID")
-                        + " WHERE Personne_ID = " + ID_personne;
+                        + " WHERE ID_Personne = " + ID_personne;
                 database.run_Statement_WRITE(sql);
             }
         } catch (SQLException ignore) {
@@ -386,7 +379,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
                 " WHERE enseigner.Matricule_Prof = " + IDinput;
         Database_Connection database = new Database_Connection();
         ResultSet cours = database.run_Statement_READ(sql);
-        int totalRows = Display_ResultSet.getRows(cours);
+        int totalRows = Database_Connection.getRows(cours);
         try {
             if (totalRows > 0) {
                 String[] columns = new String[]{"Nom", " X "};
@@ -419,7 +412,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
         database.run_Statement_WRITE(sql);
         database.Database_Deconnection();
         displayCours();
-        System.out.println("Enlevé");
+        JOptionPane.showMessageDialog(this, "Cours enlevé.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void addCours() {
