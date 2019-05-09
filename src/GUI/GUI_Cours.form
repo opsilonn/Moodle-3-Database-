@@ -158,7 +158,7 @@
                       <text value="Année :"/>
                     </properties>
                   </component>
-                  <component id="a79fd" class="javax.swing.JFormattedTextField" binding="textAnnee">
+                  <component id="a79fd" class="javax.swing.JFormattedTextField" binding="textAnnee" custom-create="true">
                     <constraints>
                       <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -168,7 +168,7 @@
                       <text value="2019"/>
                     </properties>
                   </component>
-                  <component id="c09e" class="javax.swing.JFormattedTextField" binding="textNom">
+                  <component id="c09e" class="javax.swing.JFormattedTextField" binding="textNom" custom-create="true">
                     <constraints>
                       <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -235,7 +235,7 @@
                       <text value="Projet (%)"/>
                     </properties>
                   </component>
-                  <component id="7aaf2" class="javax.swing.JTextField" binding="textDE">
+                  <component id="7aaf2" class="javax.swing.JTextField" binding="textDE" custom-create="true">
                     <constraints>
                       <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -243,7 +243,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="7f049" class="javax.swing.JTextField" binding="textTP">
+                  <component id="7f049" class="javax.swing.JTextField" binding="textTP" custom-create="true">
                     <constraints>
                       <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -251,7 +251,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="227fb" class="javax.swing.JTextField" binding="textProjet">
+                  <component id="227fb" class="javax.swing.JTextField" binding="textProjet" custom-create="true">
                     <constraints>
                       <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -259,7 +259,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="48105" class="javax.swing.JTextField" binding="textCoeff">
+                  <component id="48105" class="javax.swing.JTextField" binding="textCoeff" custom-create="true">
                     <constraints>
                       <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>

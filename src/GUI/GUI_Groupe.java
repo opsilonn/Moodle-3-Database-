@@ -36,7 +36,11 @@ public class GUI_Groupe extends CustomJFrame {
 
     private int codeGroupe;
 
-
+    /**
+     * Constructeur de l'interface d'affichage d'un groupe
+     *
+     * @param newGroupe Code du groupe si celui-ci créer sinon contient -1.
+     */
     public GUI_Groupe(int newGroupe) {
         super("Chercher Cours", true, DIM_X, DIM_Y);
 
@@ -66,12 +70,18 @@ public class GUI_Groupe extends CustomJFrame {
         }
     }
 
+    /**
+     * Création des contraintes pour les fields de l'interface
+     */
     private void createUIComponents() {
 
         fieldID = new CustomJTextField("NUMERIC", false, 8);
         textNom = new CustomJTextField("ALPHABET", false, 20);
     }
 
+    /**
+     * Chercher le groupe possédant le code renseigné
+     */
     private void searchGroupe() {
         if (fieldID.getText().length() == 0) {
             labelErreur.setVisible(true);
@@ -111,6 +121,10 @@ public class GUI_Groupe extends CustomJFrame {
         }
     }
 
+
+    /**
+     * Affichage des cours suivis par le groupe
+     */
     public void displayCours() {
         /*TROUVER LES COURS SUIVIS*/
         Database_Connection database = new Database_Connection();
@@ -145,6 +159,11 @@ public class GUI_Groupe extends CustomJFrame {
         database.Database_Deconnection();
     }
 
+    /**
+     * Suppression d'un cours suivi
+     *
+     * @param code code du cours à supprimer
+     */
     public void deleteCours(int code) {
         Database_Connection database = new Database_Connection();
         String sql = "DELETE FROM suivre WHERE Groupe_ID = " + codeGroupe + " AND Code = " + code;
@@ -153,14 +172,23 @@ public class GUI_Groupe extends CustomJFrame {
         displayCours();
     }
 
+    /**
+     * Lancement de l'interface pour l'ajout d'un cours
+     */
     public void addCours() {
         new GUI_addCours(codeGroupe, null, this);
     }
 
+    /**
+     * Lancement de l'interface pour l'ajout d'un élève dans le groupe
+     */
     public void addEleve() {
         new GUI_addEleve(codeGroupe, this);
     }
 
+    /**
+     * Afficher les étudiants appartenant au groupe
+     */
     public void displayEleves() {
         /*TROUVER LES ELEVES QUI FONT PARTIS DU GROUPE*/
         Database_Connection database = new Database_Connection();
@@ -195,6 +223,11 @@ public class GUI_Groupe extends CustomJFrame {
         database.Database_Deconnection();
     }
 
+    /**
+     * Enlever un étudiant du groupe
+     *
+     * @param matricule matricule de l'étudiant à enlever
+     */
     public void deleteEleves(int matricule) {
         Database_Connection database = new Database_Connection();
         String sql = "UPDATE etudiant SET Groupe_ID = NULL WHERE Matricule = " + matricule;
@@ -203,6 +236,9 @@ public class GUI_Groupe extends CustomJFrame {
         displayEleves();
     }
 
+    /**
+     * Sauvegarde des changements effectués sur le groupe.
+     */
     private void saveChanges() {
         Database_Connection database = new Database_Connection();
         String sql = "UPDATE groupe SET Nom = '" + textNom.getText() + "'WHERE Groupe_ID = " + codeGroupe;

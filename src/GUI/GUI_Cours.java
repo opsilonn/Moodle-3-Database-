@@ -3,7 +3,10 @@ package GUI;
 import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorGroupe;
 import GUI_Components.ButtonEditor.ButtonEditorProf;
-import UsefulFunctions.CountRows_TableCell;
+
+import static UsefulFunctions.CountRows_TableCell.getRows;
+import static UsefulFunctions.CountRows_TableCell.createModel;
+
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
@@ -40,6 +43,11 @@ public class GUI_Cours extends CustomJFrame {
 
     private int codeCours;
 
+    /**
+     * Constructeur de l'interface de consultation d'un cours
+     *
+     * @param newCours Code du cours si celui-ci vient d'être créer
+     */
     public GUI_Cours(int newCours) {
         super("Chercher Cours", true, DIM_X, DIM_Y);
 
@@ -68,6 +76,9 @@ public class GUI_Cours extends CustomJFrame {
         }
     }
 
+    /**
+     * Définition des contraintes pour les fields de l'interface
+     */
     private void createUIComponents() {
 
         fieldID = new CustomJTextField("NUMERIC", false, 8);
@@ -77,10 +88,11 @@ public class GUI_Cours extends CustomJFrame {
         textTP = new CustomJTextField("DECIMAL", false, 5);
         textProjet = new CustomJTextField("DECIMAL", false, 5);
         textCoeff = new CustomJTextField("DECIMAL", false, 5);
-
     }
 
-
+    /**
+     * Recherche du cours avec le code rentré par l'utilisateur
+     */
     private void searchCours() {
         if (fieldID.getText().length() == 0) {
             labelErreur.setVisible(true);
@@ -96,7 +108,7 @@ public class GUI_Cours extends CustomJFrame {
             ResultSet data = database.run_Statement_READ("SELECT * FROM cours WHERE Code = " + codeCours);
 
 
-            if (CountRows_TableCell.getRows(data) == 0) {
+            if (getRows(data) == 0) {
                 /*Cours non trouvé*/
                 labelErreur.setVisible(true);
                 panelResultat.setVisible(false);
@@ -128,13 +140,16 @@ public class GUI_Cours extends CustomJFrame {
         }
     }
 
+    /**
+     * Affichage des professeurs enseignant le cours
+     */
     public void displayProf() {
         /*TROUVER LES PROFESSEURS QUI ENSEIGNENT*/
         Database_Connection database = new Database_Connection();
         try {
             String sql = "SELECT Matricule_Prof FROM enseigner WHERE Code = " + codeCours;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = CountRows_TableCell.getRows(data);
+            int totalRows = getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Professeur", " X "};
@@ -146,7 +161,7 @@ public class GUI_Cours extends CustomJFrame {
                     profs[index][1] = data.getString("Matricule_Prof");
                 }
 
-                tableProf.setModel(CountRows_TableCell.createModel(profs, columns));
+                tableProf.setModel(createModel(profs, columns));
 
                 tableProf.getColumn(" X ").setCellRenderer(new ButtonRenderer());
                 tableProf.getColumn(" X ").setCellEditor(new ButtonEditorProf(new JCheckBox(), this));
@@ -162,13 +177,16 @@ public class GUI_Cours extends CustomJFrame {
         database.Database_Deconnection();
     }
 
+    /**
+     * Affichage des Groupes suivant ce cours
+     */
     public void displayGroup() {
         /*TROUVER LES GROUPES QUI SUIVENT*/
         Database_Connection database = new Database_Connection();
         try {
             String sql = "SELECT * FROM suivre INNER JOIN groupe on suivre.Groupe_ID = groupe.Groupe_ID WHERE Code = " + codeCours;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = CountRows_TableCell.getRows(data);
+            int totalRows = getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Groupe", " X "};
@@ -181,7 +199,7 @@ public class GUI_Cours extends CustomJFrame {
                     index++;
                 }
 
-                tableGroupe.setModel(CountRows_TableCell.createModel(groupes, columns));
+                tableGroupe.setModel(createModel(groupes, columns));
 
                 tableGroupe.getColumn(" X ").setCellRenderer(new ButtonRenderer());
                 tableGroupe.getColumn(" X ").setCellEditor(new ButtonEditorGroupe(new JCheckBox(), this));
@@ -198,14 +216,25 @@ public class GUI_Cours extends CustomJFrame {
 
     }
 
+    /**
+     * Ajouter un professeur enseignant ce cours
+     */
     private void addProf() {
         new GUI_addProfGroupe_toCours(codeCours, this, true);
     }
 
+    /**
+     * Ajouter un groupe suivant ce cours
+     */
     private void addGroupe() {
         new GUI_addProfGroupe_toCours(codeCours, this, false);
     }
 
+    /**
+     * Enlever un groupe suivant ce cours
+     *
+     * @param Groupe_ID ID du groupe à enlever
+     */
     public void deleteGroupe(int Groupe_ID) {
         Database_Connection database = new Database_Connection();
         String sql = "DELETE FROM suivre WHERE Code = " + codeCours + " AND Groupe_ID = " + Groupe_ID;
@@ -214,6 +243,12 @@ public class GUI_Cours extends CustomJFrame {
         displayGroup();
     }
 
+
+    /**
+     * Enlever un professeur enseignant ce cours
+     *
+     * @param Mat_Prof Matricule du professeur à enlever
+     */
     public void deleteProf(int Mat_Prof) {
         Database_Connection database = new Database_Connection();
         String sql = "DELETE FROM enseigner WHERE Code = " + codeCours + " AND Matricule_Prof = " + Mat_Prof;
@@ -222,6 +257,9 @@ public class GUI_Cours extends CustomJFrame {
         displayProf();
     }
 
+    /**
+     * Sauvegarder les changements effectués sur le cours
+     */
     private void saveChanges() {
         /*TODO : CONSTRAINT */
         /*

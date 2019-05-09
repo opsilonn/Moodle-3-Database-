@@ -16,7 +16,6 @@ import java.time.Month;
 
 /**
  * Fenêtre dédiée à la fonction de recherche d'une Personne
- * <p>
  * Cette classe hérite de {@link CustomJFrame}
  */
 public class GUI_chercherPersonne extends CustomJFrame {
@@ -61,6 +60,9 @@ public class GUI_chercherPersonne extends CustomJFrame {
     private int ID_personne;
     private int IDinput;
 
+    /**
+     * Création des contraintes pour les fields de l'interface
+     */
     private void createUIComponents() {
         fieldID = new CustomJTextField("NUMERIC", false, 8);
         textNom = new CustomJTextField("NUMERIC", false, 20);
@@ -71,7 +73,15 @@ public class GUI_chercherPersonne extends CustomJFrame {
         textPays = new CustomJTextField("ALPHABET", false, 20);
     }
 
-
+    /**
+     * Constructeur de l'Interface d'affichage d'une personne
+     *
+     * @param table       table concernée par la recherche de personne :
+     *                    etudiant
+     *                    professeur
+     *                    responsable
+     * @param newPersonne ID de la personne si cette personne est nouvelle. -1 sinon
+     */
     public GUI_chercherPersonne(String table, int newPersonne) {
         super("Chercher Personne", true, DIMX, DIMY);
         this.table = table;
@@ -115,9 +125,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
 
     /**
-     * Quand activée, affiche les résultats en conséquence : si la personne
-     * est trouvé, on l'affiche ses informations sinon, on affiche un message
-     * d'erreur
+     * Recherche de la personne à l'aide de son matricule
      */
     private void chercherPersonne() {
         System.out.println("EXECUTED");
@@ -169,6 +177,13 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
+    /**
+     * Chercher le matricule entré dans une table précise
+     *
+     * @param matricule matricule de la personne
+     * @param table     nom de la table dans laquelle recherchée
+     * @return retourne l'ID de la personne auquel le matricule correspond ou -1 si celui-ci n'est pas trouvé.
+     */
     private int find_Matricule(int matricule, String table) {
 
         Database_Connection database = new Database_Connection();
@@ -191,6 +206,9 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
+    /**
+     * Affiche la ou les adresses de la personne
+     */
     public void displayAddress() {
 
         Database_Connection database = new Database_Connection();
@@ -234,6 +252,9 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
+    /**
+     * Affiche l'identité de l'étudiant
+     */
     public void displayID() {
         Database_Connection database = new Database_Connection();
         String sql = "SELECT * FROM identite WHERE ID_Personne = " + ID_personne;
@@ -261,10 +282,16 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
+    /**
+     * Ajout d'un identité si il s'agit d'un étudiant.
+     */
     private void addID() {
         GUI_addID add = new GUI_addID(ID_personne, this);
     }
 
+    /**
+     * Sauvegarde de l'identité de l'étudiant
+     */
     private void saveID() {
         Database_Connection database = new Database_Connection();
         String sql = "UPDATE identite SET date_naissance = '" + textDate.getDate().toString() +
@@ -278,6 +305,9 @@ public class GUI_chercherPersonne extends CustomJFrame {
         database.Database_Deconnection();
     }
 
+    /**
+     * Sauvegarde des Adresses
+     */
     private void saveAddress() {
         Database_Connection database = new Database_Connection();
 
@@ -295,10 +325,18 @@ public class GUI_chercherPersonne extends CustomJFrame {
         database.Database_Deconnection();
     }
 
+    /**
+     * Ajouter une adresse pour la personne
+     */
     private void addAddress() {
         new GUI_addAddress(ID_personne, this);
     }
 
+    /**
+     * Suppression d'une adresse pour la personne
+     *
+     * @param ID
+     */
     public void deleteAddress(int ID) {
         Database_Connection database = new Database_Connection();
         String sql = "DELETE FROM adresse WHERE Adresse_ID = " + ID;
@@ -309,6 +347,9 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
     }
 
+    /**
+     * Sauvegarde de la personne
+     */
     private void savePersonne() {
 
         Database_Connection database = new Database_Connection();
@@ -335,6 +376,10 @@ public class GUI_chercherPersonne extends CustomJFrame {
         JOptionPane.showMessageDialog(this, "Bien enregistré", "Saved", JOptionPane.INFORMATION_MESSAGE);
     }
 
+
+    /**
+     * Affichage du groupe d'appartenance de l'étudiant
+     */
     private void displayGroup() {
         String sql = "SELECT * from groupe";
         Database_Connection database = new Database_Connection();
@@ -357,8 +402,11 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
+    /**
+     * Sauvegarde du groupe de l'étudiant
+     */
     private void saveGroup() {
-        String sql = "SELECT Groupe_ID from groupe WHERE Nom = '" + comboBoxGroupe.getSelectedItem()+ "'";
+        String sql = "SELECT Groupe_ID from groupe WHERE Nom = '" + comboBoxGroupe.getSelectedItem() + "'";
         Database_Connection database = new Database_Connection();
         ResultSet groupID = database.run_Statement_READ(sql);
         try {
@@ -372,6 +420,9 @@ public class GUI_chercherPersonne extends CustomJFrame {
         database.Database_Deconnection();
     }
 
+    /**
+     * Affichage du ou des cours enseignés par le professeur
+     */
     public void displayCours() {
         panelProf.setVisible(true);
         labelNoCours.setVisible(false);
@@ -406,6 +457,11 @@ public class GUI_chercherPersonne extends CustomJFrame {
         }
     }
 
+    /**
+     * Suppression d'un cours enseigné par le professeur
+     *
+     * @param code code du cours à supprimer
+     */
     public void deleteCours(int code) {
         Database_Connection database = new Database_Connection();
         String sql = "DELETE FROM enseigner WHERE Matricule_Prof = " + IDinput
@@ -416,6 +472,10 @@ public class GUI_chercherPersonne extends CustomJFrame {
         JOptionPane.showMessageDialog(this, "Cours enlevé.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
     }
 
+
+    /**
+     * Ajouter un cours pour le professeur
+     */
     private void addCours() {
         new GUI_addCours(IDinput, this, null);
     }

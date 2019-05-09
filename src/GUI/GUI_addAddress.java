@@ -28,6 +28,7 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
         street = new CustomJTextField("ALL", false, 30);
         city = new CustomJTextField("ALPHABET", false, 20);
         codePostal = new CustomJTextField("NUMERIC", false, 20);
+        //TODO: contrainte TELEPHONE
         //phone = new CustomJTextField("NUMERIC", false, 10);
         email = new CustomJTextField("ALL", false, 20);
 
