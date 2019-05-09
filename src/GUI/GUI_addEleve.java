@@ -1,6 +1,6 @@
 package GUI;
 
-import UsefulFunctions.CountRows_TableCell;
+import static UsefulFunctions.CountRows_TableCell.getRows;
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
@@ -17,7 +17,6 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
     private JButton buttonSave;
     private JLabel labelThingtoadd;
     private JLabel labelError;
-    private JButton buttonCancel;
 
     private GUI_Groupe gui;
 
@@ -52,7 +51,7 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (CountRows_TableCell.getRows(data) == 0) {
+            if (getRows(data) == 0) {
                 labelError.setVisible(true);
                 comboBoxItem.setVisible(false);
                 buttonSave.setVisible(false);

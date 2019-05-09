@@ -1,7 +1,7 @@
 package recherche;
 
 
-import UsefulFunctions.CountRows_TableCell;
+import static UsefulFunctions.CountRows_TableCell.getRows;
 import UsefulFunctions.Database_Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -114,7 +114,7 @@ public class RechercheEtudiant extends Recherche
 
         resultat = database.run_Statement_READ(query);
 
-        return CountRows_TableCell.getRows(resultat);
+        return getRows(resultat);
     }
 
 

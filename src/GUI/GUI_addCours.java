@@ -1,6 +1,7 @@
 package GUI;
 
-import UsefulFunctions.CountRows_TableCell;
+import static UsefulFunctions.CountRows_TableCell.getRows;
+
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
@@ -24,8 +25,9 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
 
     /**
      * Constructeur de l'interface
-     * @param code Matricule du professeur ou code du groupe concerné
-     * @param gui Interface chercherPersonne
+     *
+     * @param code      Matricule du professeur ou code du groupe concerné
+     * @param gui       Interface chercherPersonne
      * @param guiGroupe Interface d'un groupe
      */
     public GUI_addCours(int code, GUI_chercherPersonne gui, GUI_Groupe guiGroupe) {
@@ -53,7 +55,7 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (CountRows_TableCell.getRows(data) == 0) {
+            if (getRows(data) == 0) {
                 labelError.setVisible(true);
                 comboBoxItem.setVisible(false);
                 buttonSave.setVisible(false);
@@ -77,6 +79,7 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
 
     /**
      * Sauvegarde de l'ajout du cours au professeur ou au groupe dans la table enseigner ou suivre.
+     *
      * @param code Matricule du professeur ou Code du groupe.
      */
     private void saveAddtoGroupe(int code) {

@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
 import static UsefulFunctions.CountRows_TableCell.createModel;
 
 /**
@@ -107,8 +108,6 @@ class GUI_Etudiant extends CustomJFrame {
         else
             labelMoyenne.setText(String.valueOf(moyenneGenerale));
     }
-
-
 
 
     /**

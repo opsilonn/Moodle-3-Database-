@@ -26,6 +26,9 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
 
     private boolean search;
 
+    /**
+     * Création de l'interface pour une personne de l'administration
+     */
     public GUI_Admin() {
         super("Bienvenue", true, DIM_X, DIM_Y);
 
@@ -45,12 +48,27 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         setVisible(true);
     }
 
+    /**
+     * Sauvegarde le choix de la personne pour définir le mode d'éxecution
+     *
+     * @param mode si mode = true on effectue une simple recherche avec possibilités de modifications
+     *             si false on effectue un ajout d'un élément
+     */
     private void action(boolean mode) {
         search = mode;
         panelAdmin.setVisible(false);
         panelChoice.setVisible(true);
     }
 
+    /**
+     * Fonction de lancer des interfaces en fonction du choix de l'utilisateur
+     *
+     * @param table  Instance choisi par l'utilisateur :
+     *               ETUDIANT
+     *               PROF
+     *               RESPONSABLE
+     * @param choice code du choix pour la table
+     */
     private void action(String table, int choice) {
         if (!search) {
             int res = createInstance(choice);
@@ -61,9 +79,13 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         dispose();
     }
 
+    /**
+     * Lancement de l'interface d'un cours
+     */
     private void cours() {
         if (!search) {
             int res = createInstance(4);
+            //TODO Gérer le -1 dans toute la classe//
             new GUI_Cours(res);
         } else {
             new GUI_Cours(-1);
@@ -71,16 +93,30 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         dispose();
     }
 
+    /**
+     * Lancement de l'interface d'un groupe
+     */
     private void groupe() {
         if (!search) {
             int res = createInstance(5);
             new GUI_Groupe(res);
-        }else{
+        } else {
             new GUI_Groupe(-1);
         }
         dispose();
     }
 
+    /**
+     * Création de l'instance si l'utilisateur a décider d'ajouter quelqu'un ou quelque chose
+     *
+     * @param choice choix de la personne ou chose à ajouter :
+     *               1. Etudiant
+     *               2. Professeur
+     *               3. Responsable
+     *               4. Cours
+     *               5. Groupe
+     * @return l'ID de l'instance crée ou -1 si une erreur s'est produite
+     */
     private int createInstance(int choice) {
         Database_Connection database = new Database_Connection();
         String sql = "";
@@ -138,6 +174,11 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         }
     }
 
+    /**
+     * Création du matricule de l'étudiant ou du professeur.
+     *
+     * @return le matricule de la personne
+     */
     private int createMatricule() {
         int maximum = 0;
         int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -149,6 +190,14 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         return year * 10000 + maximum + 1;
     }
 
+    /**
+     * Trouve le nombre maximum présent sur un matricule pour une année précise
+     *
+     * @param table   table dans laquelle cherché le matricule maximum
+     * @param maximum maximum actuel pour le matricule
+     * @param year    année recherché du matricule
+     * @return retourne le maximum trouvé incluant celui donné en paramètre
+     */
     private int findMaximum(String table, int maximum, int year) {
 
         Database_Connection database = new Database_Connection();
@@ -169,6 +218,11 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         return maximum;
     }
 
+    /**
+     * Création d'une instance dans la table Personne
+     *
+     * @return l'ID de la nouvelle personne crée
+     */
     private int createPersonne() {
         Database_Connection database = new Database_Connection();
         String sql = "INSERT INTO personne (Nom, Prenom) VALUES ('','')";

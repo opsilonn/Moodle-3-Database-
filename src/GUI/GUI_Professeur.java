@@ -2,18 +2,15 @@ package GUI;
 
 
 import GUI_Components.CustomJFrame;
-import UsefulFunctions.CountRows_TableCell;
 import UsefulFunctions.Database_Connection;
 import recherche.RechercheProfesseur;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static UsefulFunctions.CountRows_TableCell.createModel;
-import static UsefulFunctions.CountRows_TableCell.getRows;
 
 
 /**

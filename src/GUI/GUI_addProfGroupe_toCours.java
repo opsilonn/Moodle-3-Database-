@@ -1,6 +1,7 @@
 package GUI;
 
-import UsefulFunctions.CountRows_TableCell;
+import static UsefulFunctions.CountRows_TableCell.getRows;
+
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
@@ -21,6 +22,15 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
     private GUI_Cours gui;
     private boolean mode; /*SI TRUE : add prof --- SI FALSE : add group */
 
+
+    /**
+     * Constructeur de l'interface d'ajout de professeur ou groupe au cours
+     *
+     * @param code Code du cours concerné
+     * @param gui  Interface d'affichage du cours
+     * @param mode si true = on ajoute un professeur
+     *             si fals = on ajoute un groupe
+     */
     public GUI_addProfGroupe_toCours(int code, GUI_Cours gui, boolean mode) {
         super("Ajouter au Cours", false, DIM_X, DIM_Y);
         this.gui = gui;
@@ -37,6 +47,10 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
         setVisible(true);
     }
 
+
+    /**
+     * Ajout des données des professeurs ou groupes dans la drop-down box
+     */
     private void putTheData() {
         Database_Connection database = new Database_Connection();
         String sql = "";
@@ -48,7 +62,7 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (CountRows_TableCell.getRows(data) == 0) {
+            if (getRows(data) == 0) {
                 labelError.setVisible(true);
                 comboBoxItem.setVisible(false);
                 buttonSave.setVisible(false);
@@ -71,6 +85,11 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
         }
     }
 
+    /**
+     * Sauvegarde des informations pour le cours
+     *
+     * @param code code du cours concerné
+     */
     private void saveAddtoCours(int code) {
         String sql = "";
         String elementToAdd = comboBoxItem.getSelectedItem().toString();

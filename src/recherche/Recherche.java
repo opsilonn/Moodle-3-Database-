@@ -1,8 +1,10 @@
 package recherche;
 
 
-import UsefulFunctions.CountRows_TableCell;
+import static UsefulFunctions.CountRows_TableCell.getRows;
+
 import UsefulFunctions.Database_Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,11 +12,11 @@ import java.util.ArrayList;
 
 /**
  * Classe permettant de faciliter les requêtes SQL relatives à un Professeur
- **
+ * *
+ *
  * @author Hugues
  */
-public class Recherche
-{
+public class Recherche {
     protected Database_Connection database;
     protected String query;
     protected ResultSet resultat;
@@ -22,21 +24,18 @@ public class Recherche
 
     /**
      * Permet de récupérer une valeur précise dans un ResultSet donné
+     *
      * @param resultat Resultat de la requête SQL
-     * @param valeur Rang recherché dans la requête
+     * @param valeur   Rang recherché dans la requête
      * @return la valeur recherchée, retourne null si non trouvée
      */
-    protected String RETOURNER_RESULTAT(ResultSet resultat, String valeur)
-    {
+    protected String RETOURNER_RESULTAT(ResultSet resultat, String valeur) {
         String result = null;
 
-        try
-        {
-            if(resultat.next() )
-                result = resultat.getString( valeur );
-        }
-        catch (SQLException e)
-        {
+        try {
+            if (resultat.next())
+                result = resultat.getString(valeur);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -47,21 +46,18 @@ public class Recherche
 
     /**
      * Permet de récupérer la liste d'un élément précis sur une requête donnée
+     *
      * @param resultat Resultat de la requête SQL
-     * @param valeur Rang recherché dans la requête
+     * @param valeur   Rang recherché dans la requête
      * @return la liste contenant toutes les valeurs cherchées dans la requête donnée
      */
-    protected ArrayList<String> RETOURNER_ARRAY(ResultSet resultat, String valeur)
-    {
+    protected ArrayList<String> RETOURNER_ARRAY(ResultSet resultat, String valeur) {
         ArrayList<String> liste = new ArrayList<>();
 
-        try
-        {
-            while (resultat.next() )
-                liste.add( resultat.getString( valeur ));
-        }
-        catch (SQLException e)
-        {
+        try {
+            while (resultat.next())
+                liste.add(resultat.getString(valeur));
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -72,20 +68,20 @@ public class Recherche
 
     /**
      * Permet de récupérer le nombre de ligne compris dans une table
+     *
      * @param table Rang recherché dans la requête
      * @return la taille de la table recherchée
      */
-    public int TAILLE_TABLE(String table)
-    {
+    public int TAILLE_TABLE(String table) {
         database = new Database_Connection();
 
         query =
                 "SELECT * " +
-                "FROM " + table + " ;";
+                        "FROM " + table + " ;";
 
         resultat = database.run_Statement_READ(query);
 
-        return CountRows_TableCell.getRows(resultat);
+        return getRows(resultat);
     }
 }
 

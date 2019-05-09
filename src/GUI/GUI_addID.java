@@ -23,6 +23,12 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
 
     private GUI_chercherPersonne gui;
 
+    /**
+     * Constructeur de l'interface
+     *
+     * @param ID_personne ID de la personne concernée
+     * @param gui         Interface de la personne
+     */
     public GUI_addID(int ID_personne, GUI_chercherPersonne gui) {
         super("Ajouter une identité", false, DIM_X, DIM_Y);
         this.gui = gui;
@@ -38,13 +44,20 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
         setVisible(true);
     }
 
+    /**
+     * Création des contraintes du form
+     */
     private void createUIComponents() {
         textDate = new DatePicker();
         textCity = new CustomJTextField("ALPHABET", false, 20);
         textSexe = new CustomJTextField("SEXE", false, 1);
     }
 
-
+    /**
+     * Sauvegarde de la nouvelle identité de la personne
+     *
+     * @param ID_personne ID de la personne concernée
+     */
     private void saveID(int ID_personne) {
         Database_Connection database = new Database_Connection();
 
