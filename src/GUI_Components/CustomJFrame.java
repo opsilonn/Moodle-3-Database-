@@ -1,12 +1,9 @@
 package GUI_Components;
 
 
-import Gestion_admin.Database_Connection;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;

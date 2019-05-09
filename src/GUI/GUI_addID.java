@@ -2,7 +2,7 @@ package GUI;
 
 import GUI_Components.CustomJTextField;
 import GUI_Components.DateFunctions;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;

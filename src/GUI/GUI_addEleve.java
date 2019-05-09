@@ -1,6 +1,7 @@
 package GUI;
 
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -16,14 +17,21 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
     private JButton buttonSave;
     private JLabel labelThingtoadd;
     private JLabel labelError;
+    private JButton buttonCancel;
 
     private GUI_Groupe gui;
 
-    public GUI_addEleve(int matricule, GUI_Groupe gui) {
+    /**
+     * Constructeur de l'interface
+     *
+     * @param code code du groupe concerné
+     * @param gui  GUI_Groupe sur lequel on travaille
+     */
+    public GUI_addEleve(int code, GUI_Groupe gui) {
         super("Ajouter au Groupe", false, DIM_X, DIM_Y);
         this.gui = gui;
 
-        buttonSave.addActionListener(e -> saveAddtoGroupe(matricule));
+        buttonSave.addActionListener(e -> saveAddtoGroupe(code));
         putTheData();
 
         labelError.setVisible(false);
@@ -34,13 +42,17 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
         setVisible(true);
     }
 
+
+    /**
+     * Mise des informations étudiantes dans la drop-down box.
+     */
     private void putTheData() {
         Database_Connection database = new Database_Connection();
         String sql = "SELECT Matricule FROM etudiant";
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (Database_Connection.getRows(data) == 0) {
+            if (CountRows_TableCell.getRows(data) == 0) {
                 labelError.setVisible(true);
                 comboBoxItem.setVisible(false);
                 buttonSave.setVisible(false);
@@ -59,12 +71,17 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
         }
     }
 
-    private void saveAddtoGroupe(int matricule) {
+    /**
+     * Ajout de l'étudiant dans le groupe associé
+     *
+     * @param code code du groupe concerné
+     */
+    private void saveAddtoGroupe(int code) {
         String sql = "";
         String elementToAdd = comboBoxItem.getSelectedItem().toString();
         String[] result = elementToAdd.split(": ");
 
-        sql = "UPDATE etudiant SET Groupe_ID = " + matricule;
+        sql = "UPDATE etudiant SET Groupe_ID = " + code;
 
         Database_Connection database = new Database_Connection();
         database.run_Statement_WRITE(sql);

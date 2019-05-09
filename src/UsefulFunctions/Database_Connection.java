@@ -1,4 +1,4 @@
-package Gestion_admin;
+package UsefulFunctions;
 
 import java.sql.*;
 
@@ -55,18 +55,6 @@ public class Database_Connection {
             } catch (SQLException ignore) {
                 //Si une erreur survient lors de la fermeture, il suffit de l'ignorer.
             }
-    }
-
-    public static int getRows(ResultSet res) {
-        int totalRows = 0;
-        try {
-            res.last();
-            totalRows = res.getRow();
-            res.beforeFirst();
-        } catch (Exception ex) {
-            return 0;
-        }
-        return totalRows;
     }
 
 }

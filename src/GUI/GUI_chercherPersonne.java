@@ -3,7 +3,8 @@ package GUI;
 import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorAdresse;
 import GUI_Components.ButtonEditor.ButtonEditorCours;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
@@ -196,7 +197,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
         String sql = "SELECT * FROM adresse WHERE ID_Personne = " + ID_personne;
         ResultSet data = database.run_Statement_READ(sql);
-        int totalRows = Database_Connection.getRows(data);
+        int totalRows = CountRows_TableCell.getRows(data);
 
         try {
             if (totalRows > 0) {
@@ -238,7 +239,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
         String sql = "SELECT * FROM identite WHERE ID_Personne = " + ID_personne;
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (Database_Connection.getRows(data) > 0) {
+            if (CountRows_TableCell.getRows(data) > 0) {
                 data.next();
                 panel_ID.setVisible(true);
                 add_ID.setVisible(false);
@@ -379,7 +380,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
                 " WHERE enseigner.Matricule_Prof = " + IDinput;
         Database_Connection database = new Database_Connection();
         ResultSet cours = database.run_Statement_READ(sql);
-        int totalRows = Database_Connection.getRows(cours);
+        int totalRows = CountRows_TableCell.getRows(cours);
         try {
             if (totalRows > 0) {
                 String[] columns = new String[]{"Nom", " X "};
@@ -392,7 +393,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
                     index++;
                 }
 
-                tableCours.setModel(GUI_Cours.createModel(courses, columns));
+                tableCours.setModel(CountRows_TableCell.createModel(courses, columns));
                 tableCours.getColumn(" X ").setCellRenderer(new ButtonRenderer());
                 tableCours.getColumn(" X ").setCellEditor(new ButtonEditorCours(new JCheckBox(), this));
                 tableCours.setVisible(true);

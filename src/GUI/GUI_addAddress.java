@@ -1,7 +1,7 @@
 package GUI;
 
 import GUI_Components.CustomJTextField;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
@@ -21,6 +21,9 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
 
     private GUI_chercherPersonne gui;
 
+    /**
+     * Création des contraintes pour les FIELDS de l'interface
+     */
     private void createUIComponents() {
         street = new CustomJTextField("ALL", false, 30);
         city = new CustomJTextField("ALPHABET", false, 20);
@@ -36,7 +39,12 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
         }
     }
 
-
+    /**
+     * Constructeur de l'interface
+     *
+     * @param ID_personne ID de la personne pour laquelle on entre la nouvelle adresse
+     * @param gui
+     */
     public GUI_addAddress(int ID_personne, GUI_chercherPersonne gui) {
         super("Ajouter une adresse", false, DIMX, DIMY);
         this.gui = gui;
@@ -48,6 +56,11 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
         setVisible(true);
     }
 
+    /**
+     * Sauvegarde la nouvelle adresse entrée
+     *
+     * @param ID_personne ID de la personne habitant à l'adresse donnée
+     */
     private void saveAddress(int ID_personne) {
         Database_Connection database = new Database_Connection();
 
@@ -66,7 +79,6 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
                         ID_personne + ")";
                 database.run_Statement_WRITE(sql);
                 database.Database_Deconnection();
-                System.out.println("Enregistré");
                 setVisible(false);
                 gui.displayAddress();
                 dispose(); //Destroy the Frame object
@@ -74,4 +86,5 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
         }
 
     }
+
 }

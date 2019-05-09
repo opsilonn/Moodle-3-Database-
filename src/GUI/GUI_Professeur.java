@@ -2,7 +2,8 @@ package GUI;
 
 
 import GUI_Components.CustomJFrame;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 import recherche.RechercheProfesseur;
 
 import javax.swing.*;
@@ -10,6 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import static UsefulFunctions.CountRows_TableCell.createModel;
+import static UsefulFunctions.CountRows_TableCell.getRows;
 
 
 /**
@@ -39,6 +43,10 @@ class GUI_Professeur extends CustomJFrame {
     private JTable coursTable;
     private JScrollPane coursPane;
     private JButton buttonCours;
+
+    private String[] columns = new String[]{"Cours", "Code", "Groupe - ID", "Groupe - Nom", "année"};
+    private Object[][] DATA;
+    private int CURSOR;
 
     /**
      * Création de l'interface pour un Eleve
@@ -83,10 +91,6 @@ class GUI_Professeur extends CustomJFrame {
     }
 
 
-    private String[] columns = new String[]{"Cours", "Code", "Groupe - ID", "Groupe - Nom", "année"};
-    private Object[][] DATA;
-    private int CURSOR;
-
     /**
      * Remplissage des champs sur les cours dispensés du professeur connecté
      */
@@ -111,14 +115,11 @@ class GUI_Professeur extends CustomJFrame {
 
             DATA = new Object[nombreCours][columns.length];
 
-
             CURSOR = 0;
             for (String cours : listeCours)
                 remplirCoursGroupes(cours);
 
-
-            DefaultTableModel model = new DefaultTableModel(DATA, columns);
-            coursTable.setModel(model);
+            coursTable.setModel(createModel(DATA, columns));
             centrerJTable(coursTable);
         }
     }

@@ -2,7 +2,7 @@ package GUI;
 
 
 import GUI_Components.CustomJTextField;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import java.awt.*;

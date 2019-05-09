@@ -22,7 +22,7 @@
           </grid>
         </constraints>
       </vspacer>
-      <scrollpane id="75454" binding="coursPane">
+      <scrollpane id="75454">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

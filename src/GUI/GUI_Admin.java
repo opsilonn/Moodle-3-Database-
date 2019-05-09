@@ -1,6 +1,6 @@
 package GUI;
 
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import java.sql.ResultSet;

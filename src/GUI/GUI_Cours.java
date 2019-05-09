@@ -3,11 +3,10 @@ package GUI;
 import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorGroupe;
 import GUI_Components.ButtonEditor.ButtonEditorProf;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -97,7 +96,7 @@ public class GUI_Cours extends CustomJFrame {
             ResultSet data = database.run_Statement_READ("SELECT * FROM cours WHERE Code = " + codeCours);
 
 
-            if (Database_Connection.getRows(data) == 0) {
+            if (CountRows_TableCell.getRows(data) == 0) {
                 /*Cours non trouvé*/
                 labelErreur.setVisible(true);
                 panelResultat.setVisible(false);
@@ -135,7 +134,7 @@ public class GUI_Cours extends CustomJFrame {
         try {
             String sql = "SELECT Matricule_Prof FROM enseigner WHERE Code = " + codeCours;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = Database_Connection.getRows(data);
+            int totalRows = CountRows_TableCell.getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Professeur", " X "};
@@ -147,7 +146,7 @@ public class GUI_Cours extends CustomJFrame {
                     profs[index][1] = data.getString("Matricule_Prof");
                 }
 
-                tableProf.setModel(createModel(profs, columns));
+                tableProf.setModel(CountRows_TableCell.createModel(profs, columns));
 
                 tableProf.getColumn(" X ").setCellRenderer(new ButtonRenderer());
                 tableProf.getColumn(" X ").setCellEditor(new ButtonEditorProf(new JCheckBox(), this));
@@ -169,7 +168,7 @@ public class GUI_Cours extends CustomJFrame {
         try {
             String sql = "SELECT * FROM suivre INNER JOIN groupe on suivre.Groupe_ID = groupe.Groupe_ID WHERE Code = " + codeCours;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = Database_Connection.getRows(data);
+            int totalRows = CountRows_TableCell.getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Groupe", " X "};
@@ -182,7 +181,7 @@ public class GUI_Cours extends CustomJFrame {
                     index++;
                 }
 
-                tableGroupe.setModel(createModel(groupes, columns));
+                tableGroupe.setModel(CountRows_TableCell.createModel(groupes, columns));
 
                 tableGroupe.getColumn(" X ").setCellRenderer(new ButtonRenderer());
                 tableGroupe.getColumn(" X ").setCellEditor(new ButtonEditorGroupe(new JCheckBox(), this));
@@ -253,15 +252,4 @@ public class GUI_Cours extends CustomJFrame {
 
     }
 
-    public static TableModel createModel(Object[][] objects, String[] columns) {
-        return new DefaultTableModel(objects, columns) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                if (column == 1) {
-                    return true;
-                }
-                return false;
-            }
-        };
-    }
 }

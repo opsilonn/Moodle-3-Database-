@@ -2,13 +2,15 @@ package GUI;
 
 
 import GUI_Components.CustomJFrame;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 import recherche.Recherche;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static UsefulFunctions.CountRows_TableCell.createModel;
+import static UsefulFunctions.CountRows_TableCell.getRows;
 
 
 /**
@@ -28,16 +30,13 @@ public class GUI_consulterCours extends CustomJFrame
 
     private JPanel panel;
     private JTable coursTable;
-    private JScrollPane coursPane;
 
 
     public GUI_consulterCours()
     {
         super("Liste des Cours", false, DIM_X, DIM_Y);
 
-
         setCours();
-
 
         add(panel);
         pack();
@@ -52,9 +51,6 @@ public class GUI_consulterCours extends CustomJFrame
     private void setCours()
     {
         String[] columns = new String[]{ "Code", "Cours", "Description" };
-        Object[][] DATA = new Object[recherche.TAILLE_TABLE("cours")][columns.length];
-
-
 
         Database_Connection database = new Database_Connection();
         String query =
@@ -63,6 +59,7 @@ public class GUI_consulterCours extends CustomJFrame
 
         ResultSet resultat = database.run_Statement_READ(query);
 
+        Object[][] DATA = new Object[getRows(resultat)][columns.length];
         try
         {
             int index = 0;
@@ -74,14 +71,11 @@ public class GUI_consulterCours extends CustomJFrame
                 index++;
             }
         }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
+        catch (SQLException ignore)
+        {}
         database.Database_Deconnection();
 
-        DefaultTableModel model = new DefaultTableModel(DATA, columns);
-        coursTable.setModel(model);
+        coursTable.setModel(createModel(DATA, columns));
         centrerJTable(coursTable);
     }
 }

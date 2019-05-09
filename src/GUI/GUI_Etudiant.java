@@ -2,26 +2,25 @@ package GUI;
 
 
 import GUI_Components.CustomJFrame;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 import recherche.RechercheEtudiant;
+
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
+import static UsefulFunctions.CountRows_TableCell.createModel;
 
 /**
  * Fenêtre dédiée à l'utilisation du logiciel par un Eleve
- *
+ * <p>
  * Cette classe hérite de {@link CustomJFrame}
  *
  * @author Hugues
  */
-class GUI_Etudiant extends CustomJFrame
-{
+class GUI_Etudiant extends CustomJFrame {
     private static final int DIM_X = 800;
     private static final int DIM_Y = 600;
 
@@ -44,13 +43,18 @@ class GUI_Etudiant extends CustomJFrame
     private JTable bulletinValeurs;
     private JButton buttonCours;
 
+
+    private String[] columns = new String[]{"Matière", "Code - Matière", "Moyenne", "Type", "Note", "Coefficient", "ID-Note"};
+    private Object[][] DATA;
+    private int CURSOR;
+    private final static int SIZE_OCCUPIED_BY_COURSE = 4;
+
     /**
      * Création de l'interface pour un Eleve
      *
      * @param matricule - Matricule de l'élève connecté
      */
-    public GUI_Etudiant(String matricule)
-    {
+    public GUI_Etudiant(String matricule) {
         super("Etudiant", true, DIM_X, DIM_Y);
         this.matricule = matricule;
         ETUDIANT = new RechercheEtudiant();
@@ -59,7 +63,9 @@ class GUI_Etudiant extends CustomJFrame
         remplirInformations();
         remplirNotes();
 
-        buttonCours.addActionListener(e -> { GUI_consulterCours frame = new GUI_consulterCours(); });
+        buttonCours.addActionListener(e -> {
+            GUI_consulterCours frame = new GUI_consulterCours();
+        });
         buttonBulletin.addActionListener(e -> bulletin());
 
 
@@ -73,34 +79,30 @@ class GUI_Etudiant extends CustomJFrame
     /**
      * Remplissage des champs sur l'information de l'étudiant connecté
      */
-    private void remplirInformations()
-    {
+    private void remplirInformations() {
         // ON AFFICHE LE PRENOM + NOM
         labelNom.setText(
                 ETUDIANT.getPersonne(matricule, "Prenom") + " " +
-                ETUDIANT.getPersonne(matricule, "Nom").toUpperCase());
+                        ETUDIANT.getPersonne(matricule, "Nom").toUpperCase());
 
 
         // ON AFFICHE LE MATRICULE
-        labelMatricule.setText( matricule );
+        labelMatricule.setText(matricule);
 
 
         // ON AFFICHE LE GROUPE (si aucun trouvé, on affiche "aucun groupe")
-        if( ETUDIANT.possedeGroupe(matricule) )
-        {
+        if (ETUDIANT.possedeGroupe(matricule)) {
             labelGroupe.setText(
-                    ETUDIANT.getGroupe(matricule, "Groupe_ID")+ " - " +
-                    ETUDIANT.getGroupe(matricule, "Nom"));
-        }
-        else
-        {
+                    ETUDIANT.getGroupe(matricule, "Groupe_ID") + " - " +
+                            ETUDIANT.getGroupe(matricule, "Nom"));
+        } else {
             labelGroupe.setText("N'appartient à aucun Groupe");
         }
 
 
         // ON AFFICHE LA MOYENNE (si aucun trouvé, on affiche "indéfinie")
         float moyenneGenerale = ETUDIANT.moyenneGenerale(matricule);
-        if( moyenneGenerale == -1 )
+        if (moyenneGenerale == -1)
             labelMoyenne.setText("indéfinie");
         else
             labelMoyenne.setText(String.valueOf(moyenneGenerale));
@@ -109,49 +111,37 @@ class GUI_Etudiant extends CustomJFrame
 
 
 
-    private String[] columns = new String[]{"Matière", "Code - Matière","Moyenne", "Type", "Note", "Coefficient", "ID-Note"};
-    private Object[][] DATA;
-    private int CURSOR;
-    private final static int SIZE_OCCUPIED_BY_COURSE = 4;
-
-
     /**
      * Remplissage des champs sur les notes de l'étudiant connecté
      */
-    private void remplirNotes()
-    {
+    private void remplirNotes() {
         String query;
         ResultSet resultat;
         CURSOR = 0;
 
         int nombreCours = ETUDIANT.nombreCours(matricule);
 
-        if(nombreCours == 0)
-        {
+        if (nombreCours == 0) {
             bulletin.setVisible(false);
             bulletinValeurs.setVisible(false);
-        }
-        else
-        {
+        } else {
             labelErreur.setVisible(false);
             DATA = new Object[nombreCours * SIZE_OCCUPIED_BY_COURSE][columns.length];
 
             Database_Connection database = new Database_Connection();
             query =
-                "SELECT * " +
-                "FROM etudiant, groupe, cours, suivre " +
-                "WHERE etudiant.Matricule = " + matricule + " " +
-                "AND etudiant.Groupe_ID = groupe.Groupe_ID " +
-                "AND groupe.Groupe_ID = suivre.Groupe_ID " +
-                "AND suivre.Code = cours.Code;";
+                    "SELECT * " +
+                            "FROM etudiant, groupe, cours, suivre " +
+                            "WHERE etudiant.Matricule = " + matricule + " " +
+                            "AND etudiant.Groupe_ID = groupe.Groupe_ID " +
+                            "AND groupe.Groupe_ID = suivre.Groupe_ID " +
+                            "AND suivre.Code = cours.Code;";
 
             resultat = database.run_Statement_READ(query);
 
 
-            try
-            {
-                while ( resultat.next() )
-                {
+            try {
+                while (resultat.next()) {
                     String coursCode = resultat.getString("cours.Code");
                     String coursNom = resultat.getString("cours.Nom");
                     String coursCoef = resultat.getString("cours.Coefficient");
@@ -164,12 +154,9 @@ class GUI_Etudiant extends CustomJFrame
                     remplirNotesCours(coursCode, coursNom, coursCoef, coefficients);
                 }
 
-                DefaultTableModel model = new DefaultTableModel(DATA, columns);
-                bulletinValeurs.setModel(model);
+                bulletinValeurs.setModel(createModel(DATA, columns));
                 centrerJTable(bulletinValeurs);
-            }
-            catch (SQLException e1)
-            {
+            } catch (SQLException e1) {
                 e1.printStackTrace();
             }
 
@@ -180,12 +167,12 @@ class GUI_Etudiant extends CustomJFrame
 
     /**
      * Remplissage des champs sur les notes de l'étudiant connecté sur une matière spécifique
-     * @param coursCode Code du cours en question
-     * @param coursNom Code du cours en question
+     *
+     * @param coursCode    Code du cours en question
+     * @param coursNom     Code du cours en question
      * @param coefficients Tableau des coefficients des notes du cours en question
      */
-    private void remplirNotesCours(String coursCode, String coursNom, String coursCoef, Map<String, String> coefficients)
-    {
+    private void remplirNotesCours(String coursCode, String coursNom, String coursCoef, Map<String, String> coefficients) {
         String TP_note = "Pas de note";
         String DE_note = "Pas de note";
         String PROJET_note = "Pas de note";
@@ -197,22 +184,19 @@ class GUI_Etudiant extends CustomJFrame
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                "FROM cours, note " +
-                "WHERE cours.Code = " + coursCode + " " +
-                "AND cours.Code = note.Code " +
-                "AND note.Matricule_Etudiant = " + matricule + " ;";
+                        "FROM cours, note " +
+                        "WHERE cours.Code = " + coursCode + " " +
+                        "AND cours.Code = note.Code " +
+                        "AND note.Matricule_Etudiant = " + matricule + " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
-        try
-        {
-            while( resultat.next() )
-            {
+        try {
+            while (resultat.next()) {
                 String note = resultat.getString("note.Valeur");
                 String noteID = resultat.getString("note.ID");
 
-                switch ( resultat.getString("note.Type") )
-                {
+                switch (resultat.getString("note.Type")) {
                     case "TP":
                         TP_note = note;
                         TP_ID = noteID;
@@ -235,11 +219,10 @@ class GUI_Etudiant extends CustomJFrame
             }
 
 
-
             DATA[CURSOR + 1][0] = coursNom;
             DATA[CURSOR + 1][1] = coursCode;
             float moyenne = ETUDIANT.moyenne(matricule, coursCode);
-            if( moyenne == -1 )
+            if (moyenne == -1)
                 DATA[CURSOR + 1][2] = "indéfinie";
             else
                 DATA[CURSOR + 1][2] = moyenne;
@@ -264,9 +247,7 @@ class GUI_Etudiant extends CustomJFrame
             DATA[CURSOR + 2][6] = PROJET_ID;
 
             CURSOR += SIZE_OCCUPIED_BY_COURSE;
-        }
-        catch (SQLException e1)
-        {
+        } catch (SQLException e1) {
             e1.printStackTrace();
         }
 
@@ -277,9 +258,8 @@ class GUI_Etudiant extends CustomJFrame
     /**
      * Affichage du bulletin officiel du Bulletin de l'élève
      */
-    private void bulletin()
-    {
-        if( Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1") )
+    private void bulletin() {
+        if (Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1"))
             JOptionPane.showMessageDialog(this, "Votre Bulletin est fini !");
         else
             JOptionPane.showMessageDialog(this, "Votre Bulletin n'est pas encore fini !");

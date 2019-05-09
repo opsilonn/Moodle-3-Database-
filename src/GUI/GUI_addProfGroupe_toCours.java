@@ -1,6 +1,7 @@
 package GUI;
 
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -47,7 +48,7 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (Database_Connection.getRows(data) == 0) {
+            if (CountRows_TableCell.getRows(data) == 0) {
                 labelError.setVisible(true);
                 comboBoxItem.setVisible(false);
                 buttonSave.setVisible(false);

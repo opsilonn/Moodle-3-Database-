@@ -107,7 +107,7 @@
             </constraints>
             <properties>
               <font size="12"/>
-              <text value="ID de la note"/>
+              <text value="Type de la note"/>
             </properties>
           </component>
           <hspacer id="b3eb6">

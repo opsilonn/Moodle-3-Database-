@@ -1,7 +1,8 @@
 package recherche;
 
 
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 import java.util.ArrayList;
 
 
@@ -55,7 +56,7 @@ public class RechercheProfesseur extends Recherche
 
         resultat = database.run_Statement_READ(query);
 
-        return Database_Connection.getRows(resultat);
+        return CountRows_TableCell.getRows(resultat);
     }
 
     /**
@@ -116,6 +117,6 @@ public class RechercheProfesseur extends Recherche
 
         resultat = database.run_Statement_READ(query);
 
-        return Database_Connection.getRows(resultat);
+        return CountRows_TableCell.getRows(resultat);
     }
 }

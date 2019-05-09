@@ -1,6 +1,7 @@
 package GUI;
 
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -20,12 +21,19 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
     private GUI_chercherPersonne gui;
     private GUI_Groupe guiGroupe;
 
-    public GUI_addCours(int matricule, GUI_chercherPersonne gui, GUI_Groupe guiGroupe) {
-        super("Ajouter au Cours", false, DIM_X, DIM_Y);
+
+    /**
+     * Constructeur de l'interface
+     * @param code Matricule du professeur ou code du groupe concerné
+     * @param gui Interface chercherPersonne
+     * @param guiGroupe Interface d'un groupe
+     */
+    public GUI_addCours(int code, GUI_chercherPersonne gui, GUI_Groupe guiGroupe) {
+        super("Ajouter un Cours", false, DIM_X, DIM_Y);
         this.gui = gui;
         this.guiGroupe = guiGroupe;
 
-        buttonSave.addActionListener(e -> saveAddtoGroupe(matricule));
+        buttonSave.addActionListener(e -> saveAddtoGroupe(code));
         putTheData();
 
         labelError.setVisible(false);
@@ -36,13 +44,16 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
         setVisible(true);
     }
 
+    /**
+     * Fonction de remplissage de la drop-down box
+     */
     private void putTheData() {
         Database_Connection database = new Database_Connection();
         String sql = "SELECT * FROM cours";
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
-            if (Database_Connection.getRows(data) == 0) {
+            if (CountRows_TableCell.getRows(data) == 0) {
                 labelError.setVisible(true);
                 comboBoxItem.setVisible(false);
                 buttonSave.setVisible(false);
@@ -51,6 +62,8 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
                 labelError.setVisible(false);
                 labelThingtoadd.setVisible(true);
                 while (data.next()) {
+
+                    //Met le code et le nom du Cours dans la drop-down Box
                     comboBoxItem.addItem(data.getString("Code") + ": " + data.getString("Nom"));
                 }
 
@@ -61,7 +74,12 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
         }
     }
 
-    private void saveAddtoGroupe(int matricule) {
+
+    /**
+     * Sauvegarde de l'ajout du cours au professeur ou au groupe dans la table enseigner ou suivre.
+     * @param code Matricule du professeur ou Code du groupe.
+     */
+    private void saveAddtoGroupe(int code) {
         String sql = "";
         String elementToAdd = comboBoxItem.getSelectedItem().toString();
         String[] result = elementToAdd.split(": ");
@@ -69,10 +87,10 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
 
         if (gui != null) {
             sql = "INSERT INTO enseigner (Code, Matricule_Prof) VALUES (" +
-                    Integer.parseInt(result[0]) + ", " + matricule + ")";
+                    Integer.parseInt(result[0]) + ", " + code + ")";
         } else {
             sql = "INSERT INTO suivre (Code, Groupe_ID) VALUES (" +
-                    Integer.parseInt(result[0]) + ", " + matricule + ")";
+                    Integer.parseInt(result[0]) + ", " + code + ")";
         }
         Database_Connection database = new Database_Connection();
 

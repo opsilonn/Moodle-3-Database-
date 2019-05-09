@@ -3,13 +3,14 @@ package GUI;
 import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorCours4Groupe;
 import GUI_Components.ButtonEditor.ButtonEditorEleve;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static GUI.GUI_Cours.createModel;
+import static UsefulFunctions.CountRows_TableCell.createModel;
 
 public class GUI_Groupe extends CustomJFrame {
 
@@ -52,15 +53,14 @@ public class GUI_Groupe extends CustomJFrame {
         buttonChercher.addActionListener(e -> searchGroupe());
         buttonAddEleve.addActionListener(e -> addEleve());
         buttonAddCours.addActionListener(e -> addCours());
-
-        //buttonSave.addActionListener(e -> saveChanges());
+        buttonSave.addActionListener(e -> saveChanges());
 
         add(panel);
         pack();
         revalidate();
         setVisible(true);
 
-        if(newGroupe != -1){
+        if (newGroupe != -1) {
             fieldID.setText(String.valueOf(newGroupe));
             searchGroupe();
         }
@@ -87,7 +87,7 @@ public class GUI_Groupe extends CustomJFrame {
             ResultSet data = database.run_Statement_READ("SELECT * FROM cours WHERE Code = " + codeGroupe);
 
 
-            if (Database_Connection.getRows(data) == 0) {
+            if (CountRows_TableCell.getRows(data) == 0) {
                 /*Groupe non trouvé*/
                 labelErreur.setVisible(true);
                 panelResultat.setVisible(false);
@@ -117,7 +117,7 @@ public class GUI_Groupe extends CustomJFrame {
         try {
             String sql = "SELECT cours.Code, Nom FROM suivre INNER JOIN cours on cours.Code = suivre.Code WHERE Groupe_ID = " + codeGroupe;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = Database_Connection.getRows(data);
+            int totalRows = CountRows_TableCell.getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Cours", " X "};
@@ -127,7 +127,7 @@ public class GUI_Groupe extends CustomJFrame {
                 while (data.next()) {
                     cours[index][0] = data.getString("Nom");
                     cours[index][1] = data.getString("Code");
-                    index ++;
+                    index++;
                 }
 
                 tableCours.setModel(createModel(cours, columns));
@@ -167,7 +167,7 @@ public class GUI_Groupe extends CustomJFrame {
         try {
             String sql = "SELECT Groupe_ID, Matricule FROM etudiant WHERE Groupe_ID = " + codeGroupe;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = Database_Connection.getRows(data);
+            int totalRows = CountRows_TableCell.getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Eleves", " X "};
@@ -177,7 +177,7 @@ public class GUI_Groupe extends CustomJFrame {
                 while (data.next()) {
                     eleves[index][0] = data.getString("Matricule");
                     eleves[index][1] = data.getString("Matricule");
-                    index ++;
+                    index++;
                 }
 
                 tableEleve.setModel(createModel(eleves, columns));
@@ -201,5 +201,12 @@ public class GUI_Groupe extends CustomJFrame {
         database.run_Statement_WRITE(sql);
         database.Database_Deconnection();
         displayEleves();
+    }
+
+    private void saveChanges() {
+        Database_Connection database = new Database_Connection();
+        String sql = "UPDATE groupe SET Nom = '" + textNom.getText() + "'WHERE Groupe_ID = " + codeGroupe;
+        database.run_Statement_WRITE(sql);
+        database.Database_Deconnection();
     }
 }

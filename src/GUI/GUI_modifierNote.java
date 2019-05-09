@@ -3,7 +3,7 @@ package GUI;
 
 import GUI_Components.CustomJFrame;
 import GUI_Components.CustomJTextField;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -135,13 +135,12 @@ class GUI_modifierNote extends CustomJFrame
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                "FROM professeur, enseigner, cours " +
+                "FROM enseigner, cours " +
                 "WHERE enseigner.Matricule_Prof = " +  matricule + " " +
                 "AND enseigner.Code = cours.Code " +
                 "ORDER BY cours.Nom;";
 
         ResultSet resultat = database.run_Statement_READ(query);
-
 
         // On remplit le dropdown contenant l'ID et le nom des Groupes
         try

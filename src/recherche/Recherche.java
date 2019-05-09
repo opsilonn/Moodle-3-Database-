@@ -1,7 +1,8 @@
 package recherche;
 
 
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.CountRows_TableCell;
+import UsefulFunctions.Database_Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class Recherche
 
         resultat = database.run_Statement_READ(query);
 
-        return Database_Connection.getRows(resultat);
+        return CountRows_TableCell.getRows(resultat);
     }
 }
 

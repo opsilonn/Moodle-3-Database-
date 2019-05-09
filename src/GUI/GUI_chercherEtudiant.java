@@ -3,7 +3,7 @@ package GUI;
 
 import GUI_Components.CustomJFrame;
 import GUI_Components.CustomJTextField;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 import recherche.RechercheEtudiant;
 
 import javax.swing.*;
@@ -147,7 +147,6 @@ public class GUI_chercherEtudiant extends CustomJFrame
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
         }
 
         afficherEtudiant();

@@ -1,6 +1,6 @@
 import GUI.GUI_Login;
 import GUI.GUI_noConnexion;
-import Gestion_admin.Database_Connection;
+import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 
