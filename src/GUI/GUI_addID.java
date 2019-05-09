@@ -61,8 +61,7 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
     private void saveID(int ID_personne) {
         Database_Connection database = new Database_Connection();
 
-        if (textCity.getText().length() == 0 || textDate.getText().length() == 0 ||
-                textSexe.getText().length() == 0) {
+        if (textCity.getText().length() == 0 || textSexe.getText().length() == 0) {
             System.out.println("ERROR");
         } else {
             if (ID_personne != -1) {
@@ -72,7 +71,7 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
                         textCountry.getText() + "','" +
                         textSexe.getText() + "'," +
                         ID_personne + ")";
-                System.out.println(sql);
+
                 database.run_Statement_WRITE(sql);
                 database.Database_Deconnection();
 

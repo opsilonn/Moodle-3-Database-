@@ -14,7 +14,7 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
 
     private JButton buttonSearch;
     private JButton buttonCreate;
-    private JButton button3;
+    private JButton buttonConsult;
     private JButton etudiantButton;
     private JButton professeurButton;
     private JButton responsableButton;
@@ -23,6 +23,7 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
     private JPanel panelChoice;
     private JButton groupeButton;
     private JPanel panel;
+    private JButton buttonModif;
 
     private boolean search;
 
@@ -33,12 +34,16 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         super("Bienvenue", true, DIM_X, DIM_Y);
 
         panelChoice.setVisible(false);
+
         buttonSearch.addActionListener(e -> action(true));
         buttonCreate.addActionListener(e -> action(false));
+        buttonConsult.addActionListener(e -> consult());
+        buttonModif.addActionListener(e -> new GUI_modifierNote("-1"));
 
         etudiantButton.addActionListener(e -> action("etudiant", 1));
         professeurButton.addActionListener(e -> action("professeur", 2));
         responsableButton.addActionListener(e -> action("responsable", 3));
+
         coursButton.addActionListener(e -> cours());
         groupeButton.addActionListener(e -> groupe());
 
@@ -58,6 +63,13 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
         search = mode;
         panelAdmin.setVisible(false);
         panelChoice.setVisible(true);
+    }
+
+    /**
+     * Lancement de l'interface de consultation des cours
+     */
+    private void consult() {
+        new GUI_consulterCours();
     }
 
     /**
