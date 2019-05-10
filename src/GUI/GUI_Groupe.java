@@ -33,6 +33,8 @@ public class GUI_Groupe extends CustomJFrame {
     private JLabel labelErrorCours;
     private JButton buttonSave;
     private JPanel panel;
+    private JButton buttonEditBulletin;
+    private JLabel labelBulletin;
 
     private int codeGroupe;
 
@@ -42,7 +44,7 @@ public class GUI_Groupe extends CustomJFrame {
      * @param newGroupe Code du groupe si celui-ci créer sinon contient -1.
      */
     public GUI_Groupe(int newGroupe) {
-        super("Chercher Cours", true, DIM_X, DIM_Y);
+        super("Chercher Groupe", true, DIM_X, DIM_Y);
 
         codeGroupe = -1;
 
@@ -58,6 +60,7 @@ public class GUI_Groupe extends CustomJFrame {
         buttonAddEleve.addActionListener(e -> addEleve());
         buttonAddCours.addActionListener(e -> addCours());
         buttonSave.addActionListener(e -> saveChanges());
+        buttonEditBulletin.addActionListener(e -> editBulletin());
 
         add(panel);
         pack();
@@ -92,9 +95,9 @@ public class GUI_Groupe extends CustomJFrame {
             labelID.setText(fieldID.getText());
 
 
-            /*CHERCHER LE COURS DANS LA BDD*/
+            /*CHERCHER LE GROUPE DANS LA BDD*/
             Database_Connection database = new Database_Connection();
-            ResultSet data = database.run_Statement_READ("SELECT * FROM cours WHERE Code = " + codeGroupe);
+            ResultSet data = database.run_Statement_READ("SELECT * FROM groupe WHERE Groupe_ID = " + codeGroupe);
 
 
             if (CountRows_TableCell.getRows(data) == 0) {
@@ -108,6 +111,10 @@ public class GUI_Groupe extends CustomJFrame {
                 try {
                     data.next();
                     textNom.setText(data.getString("Nom"));
+                    if (data.getBoolean("bulletin")) {
+                        labelBulletin.setText("Les bulletins ont été édités.");
+                        buttonEditBulletin.setVisible(false);
+                    }
                 } catch (SQLException e) {
                 }
 
@@ -183,7 +190,7 @@ public class GUI_Groupe extends CustomJFrame {
      * Lancement de l'interface pour l'ajout d'un élève dans le groupe
      */
     public void addEleve() {
-        new GUI_addEleve(codeGroupe, this);
+        new GUI_addEleve(codeGroupe, this, null);
     }
 
     /**
@@ -244,5 +251,20 @@ public class GUI_Groupe extends CustomJFrame {
         String sql = "UPDATE groupe SET Nom = '" + textNom.getText() + "'WHERE Groupe_ID = " + codeGroupe;
         database.run_Statement_WRITE(sql);
         database.Database_Deconnection();
+        JOptionPane.showMessageDialog(this, "Bien enregistré", "Saved", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+
+    /**
+     * Edition des bulletins pour les étudiants du groupe
+     */
+    private void editBulletin() {
+
+        String sql = "UPDATE groupe SET bulletin = 1 WHERE Groupe_ID = " + codeGroupe;
+        Database_Connection database = new Database_Connection();
+        database.run_Statement_WRITE(sql);
+        database.Database_Deconnection();
+        JOptionPane.showMessageDialog(this, "Les bulletins ont été édités.", "Saved", JOptionPane.INFORMATION_MESSAGE);
+        searchGroupe();
     }
 }

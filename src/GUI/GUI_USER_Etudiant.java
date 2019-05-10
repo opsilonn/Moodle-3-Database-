@@ -9,6 +9,7 @@ import com.lowagie.text.pdf.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -91,7 +92,7 @@ class GUI_USER_Etudiant extends CustomJFrame {
 
 
         // ON AFFICHE LE MATRICULE
-        labelMatricule.setText("" + matricule);
+        labelMatricule.setText(matricule + "");
 
 
         // ON AFFICHE LE GROUPE (si aucun trouvé, on affiche "aucun groupe")
@@ -295,38 +296,51 @@ class GUI_USER_Etudiant extends CustomJFrame {
             PDF.add(new Paragraph(labelNom.getText() + " - " + labelMatricule.getText()));
             PDF.add(new Paragraph("Année " + year + " - Groupe " + labelGroupe.getText()));
 
+            //PdfPTable table = new PdfPTable(8);
 
             Table tableau = new Table(4, 1);
-            tableau.addCell("Cours");
-            tableau.addCell("Moyenne");
-            tableau.addCell("Moyenne minimum");
-            tableau.addCell("Moyenne maximum");
+            tableau.setAlignment(Element.ALIGN_CENTER);
+            tableau.addCell(createCell("Cours", true));
+            tableau.addCell(createCell("Moyenne", true));
+            tableau.addCell(createCell("Moyenne minimum", true));
+            tableau.addCell(createCell("Moyenne maximum", true));
+            tableau.endHeaders();
 
             //Rechercher les cours suivis par le groupe auquel appartient l'étudiant
             ArrayList<Integer> cours = CoursfollowedByGroup(groupeID);
 
             for (int j = 0; j < cours.size(); j++) {
+                tableau.addCell(createCell(getCours(cours.get(j), "Nom"), false));
                 //Affichage de la moyenne de l'étudiant dans le cours.
-                tableau.addCell(formatMoy(moyenne(matricule, cours.get(j))));
+                tableau.addCell(createCell(formatMoy(moyenne(matricule, cours.get(j))), false));
                 //Affichage de la moyenne minimum des élèves dans le cours.
-                tableau.addCell(formatMoy(moyenneMinMax(groupeID, false, cours.get(j))));
+                tableau.addCell(createCell(formatMoy(moyenneMinMax(groupeID, false, cours.get(j))), false));
                 //Affichage de la moyenne maximum des élèves dans le cours.
-                tableau.addCell(formatMoy(moyenneMinMax(groupeID, true, cours.get(j))));
+                tableau.addCell(createCell(formatMoy(moyenneMinMax(groupeID, true, cours.get(j))), false));
             }
 
+
+            tableau.addCell(createCell("MOYENNE GENERALE ", false));
             //Affichage de la moyenne générale de l'étudiant.
-            tableau.addCell(formatMoy(moyenneGenerale(matricule)));
+            tableau.addCell(createCell(formatMoy(moyenneGenerale(matricule)), false));
             //Affichage de la moyenne minimum des élèves dans le cours.
-            tableau.addCell(formatMoy(moyenneGeneraleMinMax(groupeID, false)));
+            tableau.addCell(createCell(formatMoy(moyenneGeneraleMinMax(groupeID, false)), false));
             //Affichage de la moyenne maximum des élèves dans le cours.
-            tableau.addCell(formatMoy(moyenneGeneraleMinMax(groupeID, true)));
+            tableau.addCell(createCell(formatMoy(moyenneGeneraleMinMax(groupeID, true)), false));
+
 
             //Ajouter le tableau au PDF
             PDF.add(tableau);
 
+            Cell cell = new Cell(new Paragraph("Signature du Responsable"));
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            PDF.add(cell);
+
 
             PDF.close();
             PDFOutputStream.close();
+
+            Desktop.getDesktop().open(new File(name));
 
 
         } catch (DocumentException | IOException e) {
@@ -339,5 +353,15 @@ class GUI_USER_Etudiant extends CustomJFrame {
             return "NaN";
         }
         return "" + moy;
+    }
+
+    private Cell createCell(String text, boolean header) {
+        Cell cell = new Cell(text);
+        if (header) {
+            cell.setHeader(true);
+        }
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        return cell;
     }
 }

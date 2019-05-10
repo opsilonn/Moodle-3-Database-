@@ -16,8 +16,6 @@ public class ButtonEditorGroupe extends ButtonEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JOptionPane.showMessageDialog(button, "Le groupe ne suis plus ce cours.");
-            /*CHOISIR L'ACTION*/
             gui.deleteGroupe(Integer.parseInt(label));
         }
         isPushed = false;

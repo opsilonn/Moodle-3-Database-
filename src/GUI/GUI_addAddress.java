@@ -11,13 +11,13 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
     private JTextField street;
     private JTextField city;
     private JTextField codePostal;
-    private JFormattedTextField phone;
+    private JTextField phone;
     private JTextField email;
     private JButton buttonSave;
     private JPanel panel;
 
-    private static final int DIMX = 300;
-    private static final int DIMY = 200;
+    private static final int DIMX = 400;
+    private static final int DIMY = 300;
 
     private GUI_chercherPersonne gui;
 
@@ -28,16 +28,8 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
         street = new CustomJTextField("ALL", false, 30);
         city = new CustomJTextField("ALPHABET", false, 20);
         codePostal = new CustomJTextField("NUMERIC", false, 20);
-        //TODO: contrainte TELEPHONE
-        //phone = new CustomJTextField("NUMERIC", false, 10);
+        phone = new CustomJTextField("NUMERIC", false, 10);
         email = new CustomJTextField("ALL", false, 20);
-
-
-        try {
-            phone = new JFormattedTextField(new MaskFormatter("##.##.##.##.##"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

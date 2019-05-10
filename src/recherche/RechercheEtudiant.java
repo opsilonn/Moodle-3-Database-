@@ -138,16 +138,16 @@ public class RechercheEtudiant extends Recherche {
         String query =
                 "SELECT * " +
                         "FROM note " +
-                        "WHERE note.Code = " + coursCode + " " +
-                        "AND note.Matricule_Etudiant = " + matricule + " ;";
+                        "WHERE Code = " + coursCode + " " +
+                        "AND Matricule_Etudiant = " + matricule + " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
         try {
             while (resultat.next()) {
-                float note = Float.parseFloat(resultat.getString("note.Valeur"));
+                float note = Float.parseFloat(resultat.getString("Valeur"));
 
-                switch (resultat.getString("note.Type")) {
+                switch (resultat.getString("Type")) {
                     case "TP":
                         TP_note = note;
                         break;
@@ -173,7 +173,7 @@ public class RechercheEtudiant extends Recherche {
         }
 
         database.Database_Deconnection();
-        return MOYENNE;
+        return MOYENNE / 100;
     }
 
 
@@ -191,7 +191,7 @@ public class RechercheEtudiant extends Recherche {
 
         Database_Connection database = new Database_Connection();
         String query =
-                "SELECT * " +
+                "SELECT cours.Code, cours.Coefficient " +
                         "FROM etudiant, cours, suivre " +
                         "WHERE etudiant.Matricule = " + matricule + " " +
                         "AND etudiant.Groupe_ID = suivre.Groupe_ID " +
@@ -218,6 +218,7 @@ public class RechercheEtudiant extends Recherche {
         }
 
         database.Database_Deconnection();
+
         return MOYENNE_GENERALE;
     }
 
@@ -251,7 +252,6 @@ public class RechercheEtudiant extends Recherche {
         Database_Connection database = new Database_Connection();
         ResultSet resultat = database.run_Statement_READ(sql);
         if (getRows(resultat) == 0) {
-            System.out.println("NO COURS");
             return null;
         }
 
@@ -259,8 +259,6 @@ public class RechercheEtudiant extends Recherche {
         try {
             while (resultat.next()) {
                 codes.add(resultat.getInt("Code"));
-
-                System.out.println("COURS:" + resultat.getInt("Code"));
             }
         } catch (SQLException ignore) {
             ignore.printStackTrace();

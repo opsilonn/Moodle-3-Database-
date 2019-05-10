@@ -261,7 +261,6 @@ public class GUI_Cours extends CustomJFrame {
      * Sauvegarder les changements effectués sur le cours
      */
     private void saveChanges() {
-        /*TODO : CONSTRAINT */
         /*
          *Retrieve the infos ds des chiffres
          * si Dep+TP+PR != 100%
@@ -285,7 +284,8 @@ public class GUI_Cours extends CustomJFrame {
 
             Database_Connection database = new Database_Connection();
             database.run_Statement_WRITE(sql);
-            JOptionPane.showMessageDialog(this, "Bien enregistré.");
+            JOptionPane.showMessageDialog(this, "Bien enregistré", "Saved", JOptionPane.INFORMATION_MESSAGE);
+
         }
 
     }

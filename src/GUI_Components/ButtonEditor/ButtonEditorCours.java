@@ -16,8 +16,6 @@ public class ButtonEditorCours extends ButtonEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JOptionPane.showMessageDialog(button, "Le professeur n'enseigne plus ce cours.");
-            /*CHOISIR L'ACTION*/
             gui.deleteCours(Integer.parseInt(label));
         }
         isPushed = false;

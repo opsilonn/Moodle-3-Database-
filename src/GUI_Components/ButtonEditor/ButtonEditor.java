@@ -41,14 +41,6 @@ public abstract class ButtonEditor extends DefaultCellEditor {
         return button;
     }
 
-    @Override
-    public Object getCellEditorValue() {
-        if (isPushed) {
-            JOptionPane.showMessageDialog(button, "L'adresse à été supprimé.");
-        }
-        isPushed = false;
-        return label;
-    }
 
     @Override
     public boolean stopCellEditing() {

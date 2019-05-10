@@ -3,6 +3,7 @@ package GUI;
 import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorAdresse;
 import GUI_Components.ButtonEditor.ButtonEditorCours;
+import GUI_Components.ButtonEditor.ButtonEditorTuteur;
 import UsefulFunctions.CountRows_TableCell;
 import UsefulFunctions.Database_Connection;
 import com.github.lgooddatepicker.components.DatePicker;
@@ -101,13 +102,18 @@ public class GUI_chercherPersonne extends CustomJFrame {
         panelAddress.setVisible(false);
         panelProf.setVisible(false);
 
+        /*Cacher l'ajout d'ID si ce n'est pas un étudiant*/
+        if (!table.equals("etudiant")) {
+            add_ID.setVisible(false);
+            labelErrorID.setVisible(false);
+        }
+
         buttonSave.setVisible(false);
 
         buttonChercher.addActionListener(e -> chercherPersonne());
         buttonSave.addActionListener(e -> savePersonne());
         addAddress.addActionListener(e -> addAddress());
         add_ID.addActionListener(e -> addID());
-        add_Cours.addActionListener(e -> addCours());
 
         add(panel);
         pack();
@@ -118,6 +124,10 @@ public class GUI_chercherPersonne extends CustomJFrame {
             fieldID.setText(String.valueOf(newPersonne));
             chercherPersonne();
         }
+
+        if (!table.equals("responsable")) {
+            add_Cours.addActionListener(e -> addCours());
+        }
     }
 
 
@@ -125,7 +135,6 @@ public class GUI_chercherPersonne extends CustomJFrame {
      * Recherche de la personne à l'aide de son matricule
      */
     private void chercherPersonne() {
-        System.out.println("EXECUTED");
         if (fieldID.getText().length() == 0) {
             labelErreur.setVisible(true);
             panelResultat.setVisible(false);
@@ -168,6 +177,11 @@ public class GUI_chercherPersonne extends CustomJFrame {
                     displayCours();
                 }
 
+                if (table.equals("responsable")) {
+                    modify4responsable();
+                    displayEleves();
+                }
+
                 /*AFFICHER LES ADDRESSES DE LA PERSONNE S'IL Y A*/
                 displayAddress();
             }
@@ -185,16 +199,29 @@ public class GUI_chercherPersonne extends CustomJFrame {
 
         Database_Connection database = new Database_Connection();
         try {
-            ResultSet data = database.run_Statement_READ("SELECT Matricule, ID_Personne FROM " + table);
-
-            while (data.next()) {
-                Integer matriculeData = data.getInt("Matricule");
-                if (matriculeData.equals(matricule)) {
-                    int ID_result = data.getInt("ID_Personne");
-                    database.Database_Deconnection();
-                    return ID_result;
+            if (!table.equals("responsable")) {
+                ResultSet data = database.run_Statement_READ("SELECT Matricule, ID_Personne FROM " + table);
+                while (data.next()) {
+                    Integer matriculeData = data.getInt("Matricule");
+                    if (matriculeData.equals(matricule)) {
+                        int ID_result = data.getInt("ID_Personne");
+                        database.Database_Deconnection();
+                        return ID_result;
+                    }
+                }
+            } else {
+                ResultSet data = database.run_Statement_READ("SELECT Numero, ID_Personne FROM " + table);
+                while (data.next()) {
+                    Integer matriculeData = data.getInt("Numero");
+                    if (matriculeData.equals(matricule)) {
+                        int ID_result = data.getInt("ID_Personne");
+                        database.Database_Deconnection();
+                        return ID_result;
+                    }
                 }
             }
+
+
             database.Database_Deconnection();
             return -1;
         } catch (SQLException ignore) {
@@ -477,6 +504,57 @@ public class GUI_chercherPersonne extends CustomJFrame {
         new GUI_addCours(IDinput, this, null);
     }
 
+    public void modify4responsable() {
+        labelNoCours.setText("Responsable d'aucun étudiant.");
+        add_Cours.setText("Ajouter un étudiant");
+        add_Cours.addActionListener(e -> new GUI_addEleve(IDinput, null, this));
+    }
+
+    /**
+     * Affichage du ou des cours enseignés par le professeur
+     */
+    public void displayEleves() {
+        panelProf.setVisible(true);
+        labelNoCours.setVisible(false);
+
+        String sql = "SELECT Matricule_Etudiant FROM tuteur WHERE Numero = " + IDinput;
+        Database_Connection database = new Database_Connection();
+        ResultSet eleves = database.run_Statement_READ(sql);
+        int totalRows = CountRows_TableCell.getRows(eleves);
+        try {
+            if (totalRows > 0) {
+                String[] columns = new String[]{"Matricule", " X "};
+                Object[][] courses = new Object[totalRows][columns.length];
+
+                int index = 0;
+                while (eleves.next()) {
+                    courses[index][0] = eleves.getString("Matricule_Etudiant");
+                    courses[index][1] = eleves.getString("Matricule_Etudiant");
+                    index++;
+                }
+
+                tableCours.setModel(CountRows_TableCell.createModel(courses, columns));
+                tableCours.getColumn(" X ").setCellRenderer(new ButtonRenderer());
+                tableCours.getColumn(" X ").setCellEditor(new ButtonEditorTuteur(new JCheckBox(), this));
+                tableCours.setVisible(true);
+                labelNoCours.setVisible(false);
+            } else {
+                tableCours.setVisible(false);
+                labelNoCours.setVisible(true);
+            }
+        } catch (SQLException ignore) {
+        }
+    }
+
+    public void deleteEleve(int matricule) {
+        Database_Connection database = new Database_Connection();
+        String sql = "DELETE FROM tuteur WHERE Matricule_Etudiant = " + matricule
+                + " AND Numero = " + IDinput;
+        database.run_Statement_WRITE(sql);
+        database.Database_Deconnection();
+        displayCours();
+        JOptionPane.showMessageDialog(this, "Etudiant enlevé.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+    }
 
 }
 

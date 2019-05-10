@@ -169,6 +169,8 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <editable value="true"/>
+                  <enabled value="true"/>
                   <text value="Doe"/>
                 </properties>
               </component>

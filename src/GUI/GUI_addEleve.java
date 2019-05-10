@@ -1,6 +1,7 @@
 package GUI;
 
 import static UsefulFunctions.CountRows_TableCell.getRows;
+
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
@@ -19,6 +20,7 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
     private JLabel labelError;
 
     private GUI_Groupe gui;
+    private GUI_chercherPersonne gui2;
 
     /**
      * Constructeur de l'interface
@@ -26,9 +28,10 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
      * @param code code du groupe concerné
      * @param gui  GUI_Groupe sur lequel on travaille
      */
-    public GUI_addEleve(int code, GUI_Groupe gui) {
+    public GUI_addEleve(int code, GUI_Groupe gui, GUI_chercherPersonne gui2) {
         super("Ajouter au Groupe", false, DIM_X, DIM_Y);
         this.gui = gui;
+        this.gui2 = gui2;
 
         buttonSave.addActionListener(e -> saveAddtoGroupe(code));
         putTheData();
@@ -78,15 +81,22 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
     private void saveAddtoGroupe(int code) {
         String sql = "";
         String elementToAdd = comboBoxItem.getSelectedItem().toString();
-        String[] result = elementToAdd.split(": ");
 
-        sql = "UPDATE etudiant SET Groupe_ID = " + code;
+        if (gui2 == null) {
+            sql = "UPDATE etudiant SET Groupe_ID = " + code + " WHERE Matricule = " + elementToAdd;
+        } else {
+            sql = "INSERT INTO tuteur (Matricule_Etudiant, Numero) VALUES (" + elementToAdd + ", " + code + ");";
+        }
 
         Database_Connection database = new Database_Connection();
         database.run_Statement_WRITE(sql);
         database.Database_Deconnection();
 
-        gui.displayEleves();
+        if (gui2 == null) {
+            gui.displayEleves();
+        } else {
+            gui2.displayEleves();
+        }
 
         dispose();
     }

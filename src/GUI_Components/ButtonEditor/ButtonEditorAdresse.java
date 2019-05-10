@@ -15,7 +15,6 @@ public class ButtonEditorAdresse extends ButtonEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JOptionPane.showMessageDialog(button, "L'adresse à été supprimé.");
             gui.deleteAddress(Integer.parseInt(label));
         }
         isPushed = false;
