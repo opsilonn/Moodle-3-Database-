@@ -2,9 +2,7 @@ package recherche;
 
 
 import static UsefulFunctions.CountRows_TableCell.getRows;
-
 import UsefulFunctions.Database_Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,10 +14,30 @@ import java.util.ArrayList;
  *
  * @author Hugues
  */
-public class Recherche {
-    protected Database_Connection database;
-    protected String query;
-    protected ResultSet resultat;
+public class Recherche
+{
+    /**
+     * Permet de récupérer une valeur précise dans la table Personne en fonction d'un élève
+     * @param matricule Matricule de l'élève connecté
+     * @param tablePersonne table de la personne connectée, soit professeur ou etudiant
+     * @param valeur Rang recherché dans la table
+     * @return la valeur recherchée, retourne null si non trouvée
+     */
+    public static String getPersonne(String matricule, String tablePersonne, String valeur)
+    {
+        Database_Connection database = new Database_Connection();
+
+        String query =
+                "SELECT * " +
+                        "FROM personne, " + tablePersonne + " " +
+                        "WHERE personne.ID = " + tablePersonne + ".ID_Personne " +
+                        "AND Matricule = " + matricule +  " ;";
+
+        ResultSet resultat = database.run_Statement_READ(query);
+
+        return RETOURNER_RESULTAT(resultat, valeur);
+    }
+
 
 
     /**
@@ -29,17 +47,20 @@ public class Recherche {
      * @param valeur   Rang recherché dans la requête
      * @return la valeur recherchée, retourne null si non trouvée
      */
-    protected String RETOURNER_RESULTAT(ResultSet resultat, String valeur) {
+    protected static String RETOURNER_RESULTAT(ResultSet resultat, String valeur)
+    {
         String result = null;
 
-        try {
+        try
+        {
             if (resultat.next())
                 result = resultat.getString(valeur);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
 
-        database.Database_Deconnection();
         return result;
     }
 
@@ -51,7 +72,7 @@ public class Recherche {
      * @param valeur   Rang recherché dans la requête
      * @return la liste contenant toutes les valeurs cherchées dans la requête donnée
      */
-    protected ArrayList<String> RETOURNER_ARRAY(ResultSet resultat, String valeur) {
+    protected static ArrayList<String> RETOURNER_ARRAY(ResultSet resultat, String valeur) {
         ArrayList<String> liste = new ArrayList<>();
 
         try {
@@ -61,7 +82,6 @@ public class Recherche {
             e.printStackTrace();
         }
 
-        database.Database_Deconnection();
         return liste;
     }
 
@@ -72,14 +92,16 @@ public class Recherche {
      * @param table Rang recherché dans la requête
      * @return la taille de la table recherchée
      */
-    public int TAILLE_TABLE(String table) {
-        database = new Database_Connection();
+    public static int TAILLE_TABLE(String table)
+    {
+        Database_Connection database = new Database_Connection();
 
-        query =
+        String query =
                 "SELECT * " +
                         "FROM " + table + " ;";
 
-        resultat = database.run_Statement_READ(query);
+        ResultSet resultat = database.run_Statement_READ(query);
+        database.Database_Deconnection();
 
         return getRows(resultat);
     }

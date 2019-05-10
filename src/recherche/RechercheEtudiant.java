@@ -14,31 +14,6 @@ import java.sql.SQLException;
  */
 public class RechercheEtudiant extends Recherche
 {
-    /* PERSONNE */
-
-
-    /**
-     * Permet de récupérer une valeur précise dans la table Personne en fonction d'un élève
-     * @param matricule Matricule de l'élève connecté
-     * @param valeur Rang recherché dans la table
-     * @return la valeur recherchée, retourne null si non trouvée
-     */
-    public String getPersonne(String matricule, String valeur)
-    {
-        database = new Database_Connection();
-
-        query =
-                "SELECT * " +
-                "FROM personne, etudiant " +
-                "WHERE personne.ID = etudiant.ID_Personne " +
-                "AND Matricule = " + matricule +  " ;";
-
-        resultat = database.run_Statement_READ(query);
-
-        return RETOURNER_RESULTAT(resultat, valeur);
-    }
-
-
     /* GROUPE */
 
 
@@ -47,18 +22,18 @@ public class RechercheEtudiant extends Recherche
      * @param matricule Matricule de l'élève connecté
      * @return True s'il possède un groupe, sinon retourne false
      */
-    public boolean possedeGroupe(String matricule)
+    public static boolean possedeGroupe(String matricule)
     {
         boolean result = false;
-        database = new Database_Connection();
+        Database_Connection database = new Database_Connection();
 
-        query =
+        String query =
                 "SELECT * " +
                         "FROM etudiant, groupe " +
-                        "WHERE Matricule = " + matricule +  " " +
-                        "AND groupe.Groupe_ID = etudiant.Groupe_ID ;";
+                        "WHERE etudiant.Matricule = " + matricule +  " " +
+                        "AND etudiant.Groupe_ID = groupe.Groupe_ID ;";
 
-        resultat = database.run_Statement_READ(query);
+        ResultSet resultat = database.run_Statement_READ(query);
 
         try
         {
@@ -80,16 +55,16 @@ public class RechercheEtudiant extends Recherche
      * @param valeur Rang recherché dans la table
      * @return la valeur recherchée, retourne null si non trouvée
      */
-    public String getGroupe(String matricule, String valeur)
+    public static String getGroupe(String matricule, String valeur)
     {
-        database = new Database_Connection();
-        query =
+        Database_Connection database = new Database_Connection();
+        String query =
                 "SELECT * " +
                 "FROM etudiant, groupe " +
-                "WHERE Matricule = " + matricule +  " " +
-                "AND groupe.Groupe_ID = etudiant.Groupe_ID ;";
+                "WHERE etudiant.Matricule = " + matricule +  " " +
+                "AND etudiant.Groupe_ID = groupe.Groupe_ID ;";
 
-        resultat = database.run_Statement_READ(query);
+        ResultSet resultat = database.run_Statement_READ(query);
 
         return RETOURNER_RESULTAT(resultat, valeur);
     }
@@ -103,16 +78,17 @@ public class RechercheEtudiant extends Recherche
      * @param matricule Matricule de l'élève connecté
      * @return le nombre de cours suivi
      */
-    public int nombreCours(String matricule)
+    public static int nombreCoursEtudiant(String matricule)
     {
-        database = new Database_Connection();
-        query =
+        Database_Connection database = new Database_Connection();
+        String query =
                 "SELECT * " +
-                        "FROM etudiant, suivre " +
-                        "WHERE etudiant.Matricule = " + matricule + " " +
-                        "AND etudiant.Groupe_ID = suivre.Groupe_ID;";
+                "FROM etudiant,suivre " +
+                "WHERE etudiant.Matricule = " + matricule + " " +
+                "AND etudiant.Groupe_ID = suivre.Groupe_ID";
 
-        resultat = database.run_Statement_READ(query);
+        System.out.println(query);
+        ResultSet resultat = database.run_Statement_READ(query);
 
         return getRows(resultat);
     }
@@ -125,15 +101,15 @@ public class RechercheEtudiant extends Recherche
      * @param valeur Rang recherché dans la table
      * @return la valeur recherchée, retourne null si non trouvée
      */
-    public String getCours(String coursCode, String valeur)
+    public static String getCours(String coursCode, String valeur)
     {
-        database = new Database_Connection();
-        query =
+        Database_Connection database = new Database_Connection();
+        String query =
                 "SELECT * " +
                 "FROM cours " +
                 "WHERE cours.Code = " + coursCode +  ";";
 
-        resultat = database.run_Statement_READ(query);
+        ResultSet resultat = database.run_Statement_READ(query);
 
         return RETOURNER_RESULTAT(resultat, valeur);
     }
@@ -147,7 +123,7 @@ public class RechercheEtudiant extends Recherche
      * @param coursCode ID du cours recherché
      * @return la moyenne dans le cours donné (retourne -1 si non calculable)
      */
-    public float moyenne(String matricule, String coursCode)
+    public static float moyenne(String matricule, String coursCode)
     {
         float MOYENNE = -1;
 
@@ -159,12 +135,11 @@ public class RechercheEtudiant extends Recherche
         float DE_coef = Float.parseFloat(getCours(coursCode, "DE_pourcentage"));
         float PROJET_coef = Float.parseFloat(getCours(coursCode, "Projet_pourcentage"));
 
-        database = new Database_Connection();
+        Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                "FROM cours, note " +
-                "WHERE cours.Code = " + coursCode + " " +
-                "AND cours.Code = note.Code " +
+                "FROM note " +
+                "WHERE note.Code = " + coursCode + " " +
                 "AND note.Matricule_Etudiant = " + matricule + " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
@@ -213,20 +188,19 @@ public class RechercheEtudiant extends Recherche
      * @param matricule Matricule de l'élève connecté
      * @return la moyenne générale de l'élève connecté (retourne -1 si non calculable)
      */
-    public float moyenneGenerale(String matricule)
+    public static float moyenneGenerale(String matricule)
     {
         float MOYENNE_GENERALE = -1;
 
         float moyenneGenerale = 0;
         float coefficientGeneral = 0;
 
-        database = new Database_Connection();
-        query =
+        Database_Connection database = new Database_Connection();
+        String query =
                 "SELECT * " +
-                "FROM etudiant, groupe, cours, suivre " +
+                "FROM etudiant, cours, suivre " +
                 "WHERE etudiant.Matricule = " + matricule + " " +
-                "AND etudiant.Groupe_ID = groupe.Groupe_ID " +
-                "AND groupe.Groupe_ID = suivre.Groupe_ID " +
+                "AND etudiant.Groupe_ID = suivre.Groupe_ID " +
                 "AND suivre.Code = cours.Code;";
 
         ResultSet resultat = database.run_Statement_READ(query);

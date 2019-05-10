@@ -1,9 +1,16 @@
 package GUI_Components;
 
+
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
+
+/**
+ * Code that limits the size of a {@link CustomJTextField}
+ *
+ * @author Hugues
+ */
 class Limit_JTextField extends PlainDocument
 {
     private final int limit;
@@ -14,11 +21,6 @@ class Limit_JTextField extends PlainDocument
         this.limit = limit;
     }
 
-    Limit_JTextField(int limit, boolean upper)
-    {
-        super();
-        this.limit = limit;
-    }
 
     @Override
     public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 
-public class GUI_Admin extends GUI_Components.CustomJFrame {
+public class GUI_USER_Admin extends GUI_Components.CustomJFrame {
 
     private static final int DIM_X = 400;
     private static final int DIM_Y = 300;
@@ -30,7 +30,7 @@ public class GUI_Admin extends GUI_Components.CustomJFrame {
     /**
      * Création de l'interface pour une personne de l'administration
      */
-    public GUI_Admin() {
+    public GUI_USER_Admin() {
         super("Bienvenue", true, DIM_X, DIM_Y);
 
         panelChoice.setVisible(false);

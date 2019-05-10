@@ -4,15 +4,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.sql.ResultSet;
 
-public class CountRows_TableCell {
+public class CountRows_TableCell
+{
 
-    public static int getRows(ResultSet res) {
+    public static int getRows(ResultSet res)
+    {
         int totalRows = 0;
-        try {
+        try
+        {
             res.last();
             totalRows = res.getRow();
             res.beforeFirst();
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex);
             return 0;
         }
         return totalRows;

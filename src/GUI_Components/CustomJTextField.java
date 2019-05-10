@@ -7,6 +7,7 @@ import javax.swing.text.Document;
 import javax.swing.text.Segment;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 
 /**
@@ -41,11 +42,15 @@ public class CustomJTextField extends JPasswordField
         validInput();
 
         // Pour cacher si mot de passe
-        setEchoChar('*');
-        if(!password) passwordUnset();
+        if(password) setEchoChar('*');
+        else setEchoChar((char)0);
     }
 
 
+    /**
+     * Verifies if the currently typed characted is valid or not.
+     * If it isn't, or if the maximum size of the field is reached, we edit the character out.
+     */
     private void validInput()
     {
         addKeyListener(new KeyAdapter()
@@ -57,6 +62,12 @@ public class CustomJTextField extends JPasswordField
             }
         });
     }
+
+
+    /**
+     * Verifies if the currently typed characted is valid or not.
+     * @return true if the currently typed characted is valid or not, false otherwise.
+     */
     private boolean isCorrect(char ch)
     {
         boolean numeric = ch >= '0' && ch <= '9';
@@ -92,23 +103,27 @@ public class CustomJTextField extends JPasswordField
     }
 
 
-    public int length() { return Field().length(); }
+    /**
+     * Returns the length of the input.
+     * @return the length of the input
+     */
+    public int length() { return Objects.requireNonNull(Field()).length(); }
 
 
+    /**
+     * This function is to be associated to a button.
+     * If the password attribute is true,
+     * then the password will be reveal if it is currently hidden,
+     * or hidden it it is currently displayed.
+     */
     public void hideOrReveal()
     {
         if(password)
         {
-            if(echoCharIsSet()) passwordUnset();
-            else                passwordSet();
+            if(echoCharIsSet())
+                setEchoChar((char)0);
+            else
+                setEchoChar('*');
         }
-    }
-    private void passwordUnset()
-    {
-        setEchoChar((char)0);
-    }
-    private void passwordSet()
-    {
-        setEchoChar('*');
     }
 }

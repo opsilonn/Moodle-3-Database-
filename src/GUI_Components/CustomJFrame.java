@@ -71,5 +71,7 @@ public abstract class CustomJFrame extends JFrame
             table.getColumnModel().getColumn(i).setCellRenderer(custom);
 
         ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+
+        table.setEnabled(false);
     }
 }

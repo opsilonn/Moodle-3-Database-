@@ -8,11 +8,58 @@
   <component name="ChangeListManager">
     <list default="true" id="5649d6a6-8244-44c3-a737-425e665ac77a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Moodle-3-Database-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Moodle-3-Database-.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Cours$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Cours.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Cours.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Etudiant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Groupe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Groupe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Professeur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addAddress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addAddress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addCours.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addCours.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addEleve.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addEleve.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addID.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addID.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addProfGroupe_toCours.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addProfGroupe_toCours.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_chercherEtudiant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_chercherEtudiant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_chercherPersonne.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_chercherPersonne.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_consulterCours.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_consulterCours.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_modifierNote.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_modifierNote.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_noConnexion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_noConnexion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditorAdresse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditorGroupe.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditorProf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/CustomJFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/CustomJFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/CustomJTextField$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/CustomJTextField$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/CustomJTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/CustomJTextField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/Limit_JTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/Limit_JTextField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Gestion_admin/Database_Connection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Gestion_admin/Display_ResultSet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Gestion_admin/Gestion_Personne.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/recherche.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/recherche.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/rechercheEtudiant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/rechercheEtudiant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/rechercheProfesseur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/rechercheProfesseur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Admin.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Admin.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Professeur.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_noConnexion.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_noConnexion.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Components/Limit_JTextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/Limit_JTextField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UsefulFunctions/CountRows_TableCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UsefulFunctions/CountRows_TableCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UsefulFunctions/Database_Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UsefulFunctions/Database_Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recherche/Recherche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recherche/Recherche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recherche/RechercheEtudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recherche/RechercheEtudiant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recherche/RechercheProfesseur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recherche/RechercheProfesseur.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,60 +92,45 @@
     </expand>
     <select />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.java">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+            <state relative-caret-position="87">
+              <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#remplirInformations#0;class#GUI_Professeur#0" />
-                <element signature="method#remplirCours#0;class#GUI_Professeur#0" />
-                <element signature="method#remplirCoursGroupes#0;class#GUI_Professeur#0" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Etudiant.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#GUI_Etudiant#0;class#GUI_Etudiant#0" />
-                <element signature="method#remplirInformations#0;class#GUI_Etudiant#0" />
-                <element signature="method#remplirNotes#0;class#GUI_Etudiant#0" />
-                <element signature="method#remplirNotesCours#0;class#GUI_Etudiant#0" />
-                <element signature="method#bulletin#0;class#GUI_Etudiant#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Etudiant.form">
-          <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+            <state relative-caret-position="346">
+              <caret line="188" column="45" lean-forward="true" selection-start-line="188" selection-start-column="45" selection-end-line="188" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#getInput#0;class#GUI_chercherEtudiant#0" />
+                <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />
+                <element signature="method#ID_GROUPE#0;class#GUI_modifierNote#0" />
+                <element signature="method#ID_MATRICULE#0;class#GUI_modifierNote#0" />
+                <element signature="method#setGroupes#0;class#GUI_modifierNote#0" />
+                <element signature="method#setNotes#0;class#GUI_modifierNote#0" />
+                <element signature="method#setNote#0;class#GUI_modifierNote#0" />
+                <element signature="method#setLabelErreur#0;class#GUI_modifierNote#0" />
+                <element signature="method#setDisplay#0;class#GUI_modifierNote#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.form">
           <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
@@ -134,39 +166,43 @@
         <option value="$PROJECT_DIR$/src/settings/Settings.java" />
         <option value="$PROJECT_DIR$/src/Windows/Window_Login.java" />
         <option value="$PROJECT_DIR$/src/GUI/Window_Login.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java" />
         <option value="$PROJECT_DIR$/src/Login.java" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/Gestion_admin/Display_ResultSet.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_Eleve.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_Login.form" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_noConnexion.form" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_noConnexion.java" />
         <option value="$PROJECT_DIR$/src/TableHorizontal.java" />
         <option value="$PROJECT_DIR$/src/GUI_Components/ButtonEditorProf.java" />
         <option value="$PROJECT_DIR$/src/GUI_Components/ButtonEditorAdresse.java" />
         <option value="$PROJECT_DIR$/src/GUI_Components/ButtonEditorGroupe.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_Login.java" />
         <option value="$PROJECT_DIR$/src/recherche/rechercheProfesseur.java" />
         <option value="$PROJECT_DIR$/src/recherche/rechercheEtudiant.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_modifierNote.form" />
         <option value="$PROJECT_DIR$/src/Gestion_admin/Database_Connection.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" />
         <option value="$PROJECT_DIR$/src/recherche/recherche.java" />
-        <option value="$PROJECT_DIR$/src/recherche/RechercheEtudiant.java" />
-        <option value="$PROJECT_DIR$/src/recherche/RechercheProfesseur.java" />
-        <option value="$PROJECT_DIR$/src/recherche/Recherche.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_consulterCours.form" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_consulterCours.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.form" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_Professeur.form" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_Etudiant.form" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form" />
+        <option value="$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_noConnexion.form" />
+        <option value="$PROJECT_DIR$/src/UsefulFunctions/Database_Connection.java" />
+        <option value="$PROJECT_DIR$/src/UsefulFunctions/CountRows_TableCell.java" />
+        <option value="$PROJECT_DIR$/src/recherche/Recherche.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_Professeur.java" />
+        <option value="$PROJECT_DIR$/src/recherche/RechercheProfesseur.java" />
+        <option value="$PROJECT_DIR$/src/recherche/RechercheEtudiant.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Components/Limit_JTextField.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_Login.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_Login.form" />
+        <option value="$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" />
       </list>
     </option>
   </component>
@@ -180,7 +216,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -204,29 +239,37 @@
               <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI_Etudiant" type="e9f4de52:FormNode" />
+              <item name="GUI_modifierNote" type="e9f4de52:FormNode" />
             </path>
             <path>
               <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
               <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI_Professeur" type="e9f4de52:FormNode" />
+              <item name="GUI_USER_Professeur" type="e9f4de52:FormNode" />
+            </path>
+            <path>
+              <item name="Moodle-3-Database-" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Moodle-3-Database-" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI_Components" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557256186596" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/LGoodDatePicker-10.4.1.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -307,17 +350,21 @@
       <workItem from="1557074802047" duration="36276000" />
       <workItem from="1557176389328" duration="1872000" />
       <workItem from="1557224437912" duration="18249000" />
+      <workItem from="1557320036457" duration="586000" />
+      <workItem from="1557480877653" duration="412000" />
+      <workItem from="1557490444933" duration="5562000" />
+      <workItem from="1557499301315" duration="3100000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119574000" />
+    <option name="totallyTimeSpent" value="131244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3033557" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3261745" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -348,38 +395,6 @@
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.295302" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3297587" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3297587" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.3297587" />
-      <window_info anchor="bottom" id="Duplicate detector" order="13" weight="0.3297587" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Database" order="4" weight="0.3295302" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -387,45 +402,16 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/settings/SettingsWindow.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI_Components/RoundedCustom_JTextFieldUI.java" />
-    <entry file="file://$PROJECT_DIR$/src/GUI_Components/Limit_JTextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/test.java" />
     <entry file="file://$PROJECT_DIR$/src/settings/SettingsColor.java" />
     <entry file="file://$PROJECT_DIR$/src/settings/Settings.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3943b407-fb51-40d0-acc4-4861c3a15986/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/Gestion_admin/Display_ResultSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gestion_admin/Display_ResultSet.java" />
     <entry file="file://$PROJECT_DIR$/src/Login.java" />
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_noConnexion.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_noConnexion.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -444,145 +430,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TableHorizontal.java" />
-    <entry file="file://$PROJECT_DIR$/src/GUI_Components/ButtonEditorProf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Components/ButtonEditorAdresse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Components/ButtonEditorGroupe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Components/ButtonEditorProf.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI_Components/ButtonEditorAdresse.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI_Components/ButtonEditorGroupe.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI_Components/ButtonEditor/ButtonEditorCours.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="106" column="13" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gestion_admin/Database_Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="247" column="41" lean-forward="true" selection-start-line="221" selection-start-column="8" selection-end-line="247" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />
-            <element signature="method#ID_GROUPE#0;class#GUI_modifierNote#0" />
-            <element signature="method#ID_MATRICULE#0;class#GUI_modifierNote#0" />
-            <element signature="method#ID_NOTE#0;class#GUI_modifierNote#0" />
-            <element signature="method#setCours#0;class#GUI_modifierNote#0" />
-            <element signature="method#setGroupes#0;class#GUI_modifierNote#0" />
-            <element signature="method#setNotes#0;class#GUI_modifierNote#0" />
-            <element signature="method#setNote#0;class#GUI_modifierNote#0" />
-            <element signature="method#setLabelErreur#0;class#GUI_modifierNote#0" />
-            <element signature="method#setDisplay#0;class#GUI_modifierNote#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gestion_admin/Gestion_Personne.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/recherche/RechercheEtudiant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/recherche/RechercheProfesseur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/recherche/Recherche.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-21">
-          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#RETOURNER_COMPTEUR#0;class#Recherche#0" />
-            <element signature="method#RETOURNER_ARRAY#0;class#Recherche#0" />
-            <element signature="method#TAILLE_TABLE#0;class#Recherche#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gestion_admin/Database_Connection.java" />
+    <entry file="file://$PROJECT_DIR$/src/Gestion_admin/Gestion_Personne.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_consulterCours.form">
       <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_consulterCours.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -594,53 +451,211 @@
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_addEleve.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Professeur.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI_Components/DateFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#remplirInformations#0;class#GUI_Professeur#0" />
-            <element signature="method#remplirCours#0;class#GUI_Professeur#0" />
-            <element signature="method#remplirCoursGroupes#0;class#GUI_Professeur#0" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Etudiant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#GUI_Etudiant#0;class#GUI_Etudiant#0" />
-            <element signature="method#remplirInformations#0;class#GUI_Etudiant#0" />
-            <element signature="method#remplirNotes#0;class#GUI_Etudiant#0" />
-            <element signature="method#remplirNotesCours#0;class#GUI_Etudiant#0" />
-            <element signature="method#bulletin#0;class#GUI_Etudiant#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Etudiant.form">
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_addAddress.form">
       <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_noConnexion.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UsefulFunctions/Database_Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UsefulFunctions/CountRows_TableCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="9" lean-forward="true" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Cours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Cours.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/recherche/RechercheEtudiant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#possedeGroupe#0;class#RechercheEtudiant#0" />
+            <element signature="method#getGroupe#0;class#RechercheEtudiant#0" />
+            <element signature="method#nombreCours#0;class#RechercheEtudiant#0" />
+            <element signature="method#getCours#0;class#RechercheEtudiant#0" />
+            <element signature="method#moyenne#0;class#RechercheEtudiant#0" />
+            <element signature="method#moyenneGenerale#0;class#RechercheEtudiant#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_consulterCours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/recherche/RechercheProfesseur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/recherche/Recherche.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#RETOURNER_RESULTAT#0;class#Recherche#0" />
+            <element signature="method#RETOURNER_ARRAY#0;class#Recherche#0" />
+            <element signature="method#TAILLE_TABLE#0;class#Recherche#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Components/Limit_JTextField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#validInput#0;class#CustomJTextField#0" />
+            <element signature="method#isCorrect#0;class#CustomJTextField#0" />
+            <element signature="method#Field#0;class#CustomJTextField#0" />
+            <element signature="method#hideOrReveal#0;class#CustomJTextField#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-174">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#CustomJFrame#1;class#CustomJFrame#0" />
+            <element signature="method#centrerJTable#0;class#CustomJFrame#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+        <state relative-caret-position="-68">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getInput#0;class#GUI_chercherEtudiant#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="188" column="45" lean-forward="true" selection-start-line="188" selection-start-column="45" selection-end-line="188" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />
+            <element signature="method#ID_GROUPE#0;class#GUI_modifierNote#0" />
+            <element signature="method#ID_MATRICULE#0;class#GUI_modifierNote#0" />
+            <element signature="method#setGroupes#0;class#GUI_modifierNote#0" />
+            <element signature="method#setNotes#0;class#GUI_modifierNote#0" />
+            <element signature="method#setNote#0;class#GUI_modifierNote#0" />
+            <element signature="method#setLabelErreur#0;class#GUI_modifierNote#0" />
+            <element signature="method#setDisplay#0;class#GUI_modifierNote#0" />
           </folding>
         </state>
       </provider>
@@ -712,11 +727,11 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>mysql-connector-java-5.1.47</last-edited>
+          <last-edited>LGoodDatePicker-10.4.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.26551723" />
               </list>
             </option>
           </splitter-proportions>

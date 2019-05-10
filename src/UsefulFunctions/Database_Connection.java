@@ -2,9 +2,10 @@ package UsefulFunctions;
 
 import java.sql.*;
 
-public class Database_Connection {
-    private static final String url = "jdbc:mysql://localhost:3306/projet_database";
-    // private static final String url = "jdbc:mysql://localhost:3306/moodle3?autoReconnect=true&useSSL=false";
+public class Database_Connection
+{
+    //private static final String url = "jdbc:mysql://localhost:3306/projet_database";
+    private static final String url = "jdbc:mysql://localhost:3306/moodle3?autoReconnect=true&useSSL=false";
 
     private static final String user = "root";
     private static final String password = "";

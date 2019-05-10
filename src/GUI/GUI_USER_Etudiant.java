@@ -3,16 +3,16 @@ package GUI;
 
 import GUI_Components.CustomJFrame;
 import UsefulFunctions.Database_Connection;
-import recherche.RechercheEtudiant;
-
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
 import static UsefulFunctions.CountRows_TableCell.createModel;
+import static recherche.Recherche.getPersonne;
+import static recherche.RechercheEtudiant.*;
+
 
 /**
  * Fenêtre dédiée à l'utilisation du logiciel par un Eleve
@@ -21,11 +21,10 @@ import static UsefulFunctions.CountRows_TableCell.createModel;
  *
  * @author Hugues
  */
-class GUI_Etudiant extends CustomJFrame {
+class GUI_USER_Etudiant extends CustomJFrame
+{
     private static final int DIM_X = 800;
     private static final int DIM_Y = 600;
-
-    private RechercheEtudiant ETUDIANT;
 
     private String matricule;
 
@@ -55,18 +54,16 @@ class GUI_Etudiant extends CustomJFrame {
      *
      * @param matricule - Matricule de l'élève connecté
      */
-    public GUI_Etudiant(String matricule) {
+    public GUI_USER_Etudiant(String matricule)
+    {
         super("Etudiant", true, DIM_X, DIM_Y);
         this.matricule = matricule;
-        ETUDIANT = new RechercheEtudiant();
 
 
         remplirInformations();
         remplirNotes();
 
-        buttonCours.addActionListener(e -> {
-            GUI_consulterCours frame = new GUI_consulterCours();
-        });
+        buttonCours.addActionListener(e -> { GUI_consulterCours frame = new GUI_consulterCours(); });
         buttonBulletin.addActionListener(e -> bulletin());
 
 
@@ -77,14 +74,17 @@ class GUI_Etudiant extends CustomJFrame {
     }
 
 
+
+
     /**
      * Remplissage des champs sur l'information de l'étudiant connecté
      */
-    private void remplirInformations() {
+    private void remplirInformations()
+    {
         // ON AFFICHE LE PRENOM + NOM
         labelNom.setText(
-                ETUDIANT.getPersonne(matricule, "Prenom") + " " +
-                        ETUDIANT.getPersonne(matricule, "Nom").toUpperCase());
+                getPersonne(matricule, "etudiant", "Prenom") + " " +
+                getPersonne(matricule, "etudiant", "Nom").toUpperCase());
 
 
         // ON AFFICHE LE MATRICULE
@@ -92,17 +92,20 @@ class GUI_Etudiant extends CustomJFrame {
 
 
         // ON AFFICHE LE GROUPE (si aucun trouvé, on affiche "aucun groupe")
-        if (ETUDIANT.possedeGroupe(matricule)) {
+        if (possedeGroupe(matricule))
+        {
             labelGroupe.setText(
-                    ETUDIANT.getGroupe(matricule, "Groupe_ID") + " - " +
-                            ETUDIANT.getGroupe(matricule, "Nom"));
-        } else {
+                    getGroupe(matricule, "Groupe_ID") + " - " +
+                    getGroupe(matricule, "Nom"));
+        }
+        else
+        {
             labelGroupe.setText("N'appartient à aucun Groupe");
         }
 
 
         // ON AFFICHE LA MOYENNE (si aucun trouvé, on affiche "indéfinie")
-        float moyenneGenerale = ETUDIANT.moyenneGenerale(matricule);
+        float moyenneGenerale = moyenneGenerale(matricule);
         if (moyenneGenerale == -1)
             labelMoyenne.setText("indéfinie");
         else
@@ -113,12 +116,14 @@ class GUI_Etudiant extends CustomJFrame {
     /**
      * Remplissage des champs sur les notes de l'étudiant connecté
      */
-    private void remplirNotes() {
+    private void remplirNotes()
+    {
         String query;
         ResultSet resultat;
         CURSOR = 0;
 
-        int nombreCours = ETUDIANT.nombreCours(matricule);
+        int nombreCours = nombreCoursEtudiant(matricule);
+        System.out.println(nombreCours);
 
         if (nombreCours == 0) {
             bulletin.setVisible(false);
@@ -171,7 +176,8 @@ class GUI_Etudiant extends CustomJFrame {
      * @param coursNom     Code du cours en question
      * @param coefficients Tableau des coefficients des notes du cours en question
      */
-    private void remplirNotesCours(String coursCode, String coursNom, String coursCoef, Map<String, String> coefficients) {
+    private void remplirNotesCours(String coursCode, String coursNom, String coursCoef, Map<String, String> coefficients)
+    {
         String TP_note = "Pas de note";
         String DE_note = "Pas de note";
         String PROJET_note = "Pas de note";
@@ -183,14 +189,14 @@ class GUI_Etudiant extends CustomJFrame {
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                        "FROM cours, note " +
-                        "WHERE cours.Code = " + coursCode + " " +
-                        "AND cours.Code = note.Code " +
+                        "FROM note " +
+                        "WHERE note.Code = " +coursCode + " " +
                         "AND note.Matricule_Etudiant = " + matricule + " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
-        try {
+        try
+        {
             while (resultat.next()) {
                 String note = resultat.getString("note.Valeur");
                 String noteID = resultat.getString("note.ID");
@@ -220,7 +226,7 @@ class GUI_Etudiant extends CustomJFrame {
 
             DATA[CURSOR + 1][0] = coursNom;
             DATA[CURSOR + 1][1] = coursCode;
-            float moyenne = ETUDIANT.moyenne(matricule, coursCode);
+            float moyenne = moyenne(matricule, coursCode);
             if (moyenne == -1)
                 DATA[CURSOR + 1][2] = "indéfinie";
             else
@@ -229,24 +235,26 @@ class GUI_Etudiant extends CustomJFrame {
             DATA[CURSOR + 2][0] = "coef : " + coursCoef;
 
 
-            DATA[CURSOR + 0][3] = "TP";
+            DATA[CURSOR][3] = "TP";
             DATA[CURSOR + 1][3] = "DE";
             DATA[CURSOR + 2][3] = "Projet";
 
-            DATA[CURSOR + 0][4] = TP_note;
+            DATA[CURSOR][4] = TP_note;
             DATA[CURSOR + 1][4] = DE_note;
             DATA[CURSOR + 2][4] = PROJET_note;
 
-            DATA[CURSOR + 0][5] = coefficients.get("TP");
+            DATA[CURSOR][5] = coefficients.get("TP");
             DATA[CURSOR + 1][5] = coefficients.get("DE");
             DATA[CURSOR + 2][5] = coefficients.get("PROJET");
 
-            DATA[CURSOR + 0][6] = TP_ID;
+            DATA[CURSOR][6] = TP_ID;
             DATA[CURSOR + 1][6] = DE_ID;
             DATA[CURSOR + 2][6] = PROJET_ID;
 
             CURSOR += SIZE_OCCUPIED_BY_COURSE;
-        } catch (SQLException e1) {
+        }
+        catch (SQLException e1)
+        {
             e1.printStackTrace();
         }
 
@@ -257,8 +265,9 @@ class GUI_Etudiant extends CustomJFrame {
     /**
      * Affichage du bulletin officiel du Bulletin de l'élève
      */
-    private void bulletin() {
-        if (Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1"))
+    private void bulletin()
+    {
+        if (Objects.equals(getGroupe(matricule, "Bulletin"), "1"))
             JOptionPane.showMessageDialog(this, "Votre Bulletin est fini !");
         else
             JOptionPane.showMessageDialog(this, "Votre Bulletin n'est pas encore fini !");

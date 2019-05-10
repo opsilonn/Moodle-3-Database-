@@ -4,8 +4,6 @@ package GUI;
 import GUI_Components.CustomJFrame;
 import GUI_Components.CustomJTextField;
 import UsefulFunctions.Database_Connection;
-import recherche.RechercheEtudiant;
-
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -84,7 +82,7 @@ public class GUI_chercherEtudiant extends CustomJFrame
 
 
 
-    private RechercheEtudiant RECHERCHE_ETUDIANT;
+
     private boolean isFound;
     private String NOM;
     private String GROUPE;
@@ -133,7 +131,6 @@ public class GUI_chercherEtudiant extends CustomJFrame
                 ResultSet resultSet2 = database.run_Statement_READ(query2);
                 try
                 {
-                    System.out.println("tro");
                     while( resultSet2.next() )
                         COURS.add(
                                 resultSet2.getString("cours.Code") + " - " +
@@ -147,6 +144,7 @@ public class GUI_chercherEtudiant extends CustomJFrame
         }
         catch (SQLException e)
         {
+            e.printStackTrace();
         }
 
         afficherEtudiant();

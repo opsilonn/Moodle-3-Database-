@@ -6,7 +6,6 @@ import GUI_Components.CustomJTextField;
 import GUI_Components.DateFunctions;
 import UsefulFunctions.Database_Connection;
 import com.github.lgooddatepicker.components.DatePicker;
-
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +25,8 @@ import static UsefulFunctions.CountRows_TableCell.getRows;
  *
  * @author Hugues
  */
-class GUI_modifierNote extends CustomJFrame {
+class GUI_modifierNote extends CustomJFrame
+{
     private static final int DIM_X = 900;
     private static final int DIM_Y = 400;
 
@@ -49,7 +49,8 @@ class GUI_modifierNote extends CustomJFrame {
     private DatePicker textDate;
 
 
-    public GUI_modifierNote(String matricule) {
+    public GUI_modifierNote(String matricule)
+    {
         super("Ajouter note", false, DIM_X, DIM_Y);
         this.matricule = matricule;
 
@@ -62,7 +63,8 @@ class GUI_modifierNote extends CustomJFrame {
         comboBoxCours.addActionListener(e -> setGroupes());
         comboBoxGroupe.addActionListener(e -> setMatricules());
 
-        if (matricule.equals("-1")) {
+        if (matricule.equals("-1"))
+        {
             //Si l'administration modifie des notes, la date doit bouger également.
             comboBoxNote.addActionListener(e -> moveDate());
         }
@@ -77,7 +79,8 @@ class GUI_modifierNote extends CustomJFrame {
     }
 
 
-    private void createUIComponents() {
+    private void createUIComponents()
+    {
         fieldNote = new CustomJTextField("DECIMAL", false, 5);
         textDate = new DatePicker();
     }
@@ -88,7 +91,8 @@ class GUI_modifierNote extends CustomJFrame {
      *
      * @return la valeur sélectionnée dans le combobox comboboxCours
      */
-    private String ID_COURS() {
+    private String ID_COURS()
+    {
         String S = String.valueOf(comboBoxCours.getSelectedItem());
         int index = S.indexOf(" ");
         return S.substring(0, index);
@@ -100,7 +104,8 @@ class GUI_modifierNote extends CustomJFrame {
      *
      * @return la valeur sélectionnée dans le combobox comboboxCours
      */
-    private String ID_GROUPE() {
+    private String ID_GROUPE()
+    {
         String S = String.valueOf(comboBoxGroupe.getSelectedItem());
         int index = S.indexOf(" ");
         return S.substring(0, index);
@@ -124,13 +129,16 @@ class GUI_modifierNote extends CustomJFrame {
      *
      * @return la valeur sélectionnée dans le combobox comboboxNote
      */
-    private String ID_NOTE() {
+    private String ID_NOTE()
+    {
         String S = String.valueOf(comboBoxNote.getSelectedItem());
         int index = S.indexOf(" ");
         return S.substring(0, index);
     }
 
-    private String CODE_NOTE() {
+
+    private String CODE_NOTE()
+    {
         String S = String.valueOf(comboBoxNote.getSelectedItem());
         int index = S.indexOf(".");
         return S.substring(0, index);
@@ -138,42 +146,47 @@ class GUI_modifierNote extends CustomJFrame {
 
 
     /**
-     * Met à jour le comboBox contenant les différents cours délivré par le professeur connecté.
+     * Met à jour le comboBox contenant les différents cours délivrés par le professeur connecté.
      * S'il n'est pas vide après remplissage, on lance la fonction setGroupe
      */
-    private void setCours() {
+    private void setCours()
+    {
         comboBoxCours.removeAllItems();
         String query = "";
         Database_Connection database = new Database_Connection();
 
         //Si un professeur ajoute des notes
-        if (!matricule.equals("-1")) {
-            query =
-                    "SELECT * " +
-                            "FROM enseigner, cours " +
-                            "WHERE enseigner.Matricule_Prof = " + matricule + " " +
-                            "AND enseigner.Code = cours.Code " +
-                            "ORDER BY cours.Nom;";
-        } else {
+        if (matricule.equals("-1"))
+        {
             //Si l'administration souhaite modifier des notes
             query = "SELECT * FROM cours ORDER BY cours.Nom;";
+        }
+        else
+        {
+            query =
+                    "SELECT * " +
+                    "FROM enseigner, cours " +
+                    "WHERE enseigner.Matricule_Prof = " + matricule + " " +
+                    "AND enseigner.Code = cours.Code " +
+                    "ORDER BY cours.Nom;";
         }
 
         ResultSet resultat = database.run_Statement_READ(query);
 
         // On remplit le dropdown contenant le code et nom du cours
         try {
-            while (resultat.next()) {
+            while (resultat.next())
+            {
                 comboBoxCours.addItem(
                         resultat.getString("cours.Code") + " : " +
-                                resultat.getString("cours.Nom"));
+                        resultat.getString("cours.Nom"));
             }
         } catch (SQLException ignore) {
         }
         database.Database_Deconnection();
 
 
-        // Si le dropdown précédemment remplit est toujours vide, on affiche un message d'erreur
+        // Si le dropdown précédemment rempli est toujours vide, on affiche un message d'erreur
         // Sinon, on appelle la fonction suivante
 
         boolean result = (comboBoxCours.getItemCount() != 0);
@@ -188,15 +201,16 @@ class GUI_modifierNote extends CustomJFrame {
      * Met à jour le comboBox contenant les différents Groupes contenus dans le cours sélectionné.
      * S'il n'est pas vide après remplissage, on lance la fonction setMatricule
      */
-    private void setGroupes() {
+    private void setGroupes()
+    {
         comboBoxGroupe.removeAllItems();
 
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                        "FROM suivre, groupe " +
-                        "WHERE suivre.Code = " + ID_COURS() + " " +
-                        "AND suivre.Groupe_ID = groupe.Groupe_ID;";
+                "FROM suivre, groupe " +
+                "WHERE suivre.Code = " + ID_COURS() + " " +
+                "AND suivre.Groupe_ID = groupe.Groupe_ID;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
@@ -227,7 +241,8 @@ class GUI_modifierNote extends CustomJFrame {
      * Met à jour le comboBox contenant les différents étudiants contenus dans le Groupe sélectionné.
      * S'il n'est pas vide après remplissage, on lance la fonction setGroupe
      */
-    private void setMatricules() {
+    private void setMatricules()
+    {
         comboBoxMatricule.removeAllItems();
 
         Database_Connection database = new Database_Connection();
