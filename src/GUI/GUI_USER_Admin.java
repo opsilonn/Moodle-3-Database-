@@ -38,7 +38,7 @@ public class GUI_USER_Admin extends GUI_Components.CustomJFrame {
         buttonSearch.addActionListener(e -> action(true));
         buttonCreate.addActionListener(e -> action(false));
         buttonConsult.addActionListener(e -> consult());
-        buttonModif.addActionListener(e -> new GUI_modifierNote("-1"));
+        buttonModif.addActionListener(e -> new GUI_modifierNote(-1));
 
         etudiantButton.addActionListener(e -> action("etudiant", 1));
         professeurButton.addActionListener(e -> action("professeur", 2));

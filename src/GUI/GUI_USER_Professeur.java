@@ -3,10 +3,12 @@ package GUI;
 
 import GUI_Components.CustomJFrame;
 import UsefulFunctions.Database_Connection;
+
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import static UsefulFunctions.CountRows_TableCell.createModel;
 import static recherche.RechercheProfesseur.*;
 
@@ -18,12 +20,11 @@ import static recherche.RechercheProfesseur.*;
  *
  * @author Hugues
  */
-class GUI_USER_Professeur extends CustomJFrame
-{
+class GUI_USER_Professeur extends CustomJFrame {
     private static final int DIM_X = 600;
     private static final int DIM_Y = 650;
 
-    private String matricule;
+    private int matricule;
 
 
     private JPanel panel;
@@ -49,8 +50,7 @@ class GUI_USER_Professeur extends CustomJFrame
      *
      * @param matricule - Matricule du professeur connecté
      */
-    public GUI_USER_Professeur(String matricule)
-    {
+    public GUI_USER_Professeur(int matricule) {
         super("Professeur", true, DIM_X, DIM_Y);
         this.matricule = matricule;
 
@@ -74,20 +74,18 @@ class GUI_USER_Professeur extends CustomJFrame
     /**
      * Remplissage des champs sur l'information du professeur connecté
      */
-    private void remplirInformations()
-    {
+    private void remplirInformations() {
         labelNom.setText(
                 getPersonne(matricule, "professeur", "Prenom") + " " +
-                getPersonne(matricule, "professeur", "Nom").toUpperCase());
-        labelMatricule.setText(matricule);
+                        getPersonne(matricule, "professeur", "Nom").toUpperCase());
+        labelMatricule.setText(matricule + "");
     }
 
 
     /**
      * Remplissage des champs sur les cours dispensés du professeur connecté
      */
-    private void remplirCours()
-    {
+    private void remplirCours() {
         int nombreCours = nombreCoursProfesseur(matricule);
         boolean avoirCours = (nombreCours != 0);
 
@@ -95,8 +93,7 @@ class GUI_USER_Professeur extends CustomJFrame
         coursTable.setVisible(avoirCours);
         coursPane.setVisible(avoirCours);
 
-        if(avoirCours)
-        {
+        if (avoirCours) {
             ArrayList<String> listeCours = getCoursArray(matricule, "Code");
             nombreCours = 0;
             for (String cours : listeCours)
@@ -120,8 +117,7 @@ class GUI_USER_Professeur extends CustomJFrame
      *
      * @param coursCode Code du cours en question
      */
-    private void remplirCoursGroupes(String coursCode)
-    {
+    private void remplirCoursGroupes(String coursCode) {
         String NOM = getCours(coursCode, "Nom");
         String CODE = getCours(coursCode, "Code");
         String ANNEE = getCours(coursCode, "Annee").substring(0, 4);
@@ -131,9 +127,9 @@ class GUI_USER_Professeur extends CustomJFrame
 
         String query =
                 "SELECT * " +
-                "FROM suivre, groupe " +
-                "WHERE suivre.Code = " + coursCode + " " +
-                "AND suivre.Groupe_ID = groupe.Groupe_ID;";
+                        "FROM suivre, groupe " +
+                        "WHERE suivre.Code = " + coursCode + " " +
+                        "AND suivre.Groupe_ID = groupe.Groupe_ID;";
 
 
         ResultSet resultat = database.run_Statement_READ(query);

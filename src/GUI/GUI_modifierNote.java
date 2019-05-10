@@ -30,7 +30,7 @@ class GUI_modifierNote extends CustomJFrame
     private static final int DIM_X = 900;
     private static final int DIM_Y = 400;
 
-    private String matricule;
+    private int matricule;
 
     private JPanel panel;
 
@@ -49,7 +49,7 @@ class GUI_modifierNote extends CustomJFrame
     private DatePicker textDate;
 
 
-    public GUI_modifierNote(String matricule)
+    public GUI_modifierNote(int matricule)
     {
         super("Ajouter note", false, DIM_X, DIM_Y);
         this.matricule = matricule;
@@ -63,7 +63,7 @@ class GUI_modifierNote extends CustomJFrame
         comboBoxCours.addActionListener(e -> setGroupes());
         comboBoxGroupe.addActionListener(e -> setMatricules());
 
-        if (matricule.equals("-1"))
+        if (matricule == -1)
         {
             //Si l'administration modifie des notes, la date doit bouger également.
             comboBoxNote.addActionListener(e -> moveDate());
@@ -156,7 +156,7 @@ class GUI_modifierNote extends CustomJFrame
         Database_Connection database = new Database_Connection();
 
         //Si un professeur ajoute des notes
-        if (matricule.equals("-1"))
+        if (matricule == -1)
         {
             //Si l'administration souhaite modifier des notes
             query = "SELECT * FROM cours ORDER BY cours.Nom;";
@@ -287,7 +287,7 @@ class GUI_modifierNote extends CustomJFrame
         comboBoxNote.removeAllItems();
 
         //Si l'administration veut modifier une note
-        if (matricule.equals("-1")) {
+        if (matricule == -1) {
             Database_Connection database = new Database_Connection();
             String query =
                     "SELECT Code, Valeur, Type " +
@@ -365,7 +365,7 @@ class GUI_modifierNote extends CustomJFrame
 
                 // Si la note est entrée par un professeur on en ajoute une
                 // Sinon, en modifie la note existante
-                if (!matricule.equals("-1"))
+                if (matricule != -1)
                     query =
                             "INSERT INTO note (Valeur, Type, Date_Exam, Code, Matricule_Etudiant)" +
                                     "VALUES ('" +

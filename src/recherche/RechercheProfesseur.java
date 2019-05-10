@@ -15,8 +15,7 @@ import java.util.ArrayList;
  *
  * @author Hugues
  */
-public class RechercheProfesseur extends Recherche
-{
+public class RechercheProfesseur extends Recherche {
     /* COURS */
 
 
@@ -26,13 +25,12 @@ public class RechercheProfesseur extends Recherche
      * @param matricule Matricule du professeur connecté
      * @return le nombre de cours dispensé
      */
-    public static int nombreCoursProfesseur(String matricule)
-    {
+    public static int nombreCoursProfesseur(int matricule) {
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                "FROM enseigner " +
-                "WHERE enseigner.Matricule_Prof = " + matricule;
+                        "FROM enseigner " +
+                        "WHERE enseigner.Matricule_Prof = " + matricule;
 
         ResultSet resultat = database.run_Statement_READ(query);
 
@@ -48,8 +46,7 @@ public class RechercheProfesseur extends Recherche
      * @param valeur    Rang recherché dans la table
      * @return la valeur recherchée, retourne null si non trouvée
      */
-    public static String getCours(String coursCode, String valeur)
-    {
+    public static String getCours(String coursCode, String valeur) {
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
@@ -68,8 +65,7 @@ public class RechercheProfesseur extends Recherche
      * @param matricule Matricule du professeur connecté
      * @return la liste des Codes des cours dispensés
      */
-    public static ArrayList<String> getCoursArray(String matricule, String valeur)
-    {
+    public static ArrayList<String> getCoursArray(int matricule, String valeur) {
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
@@ -90,8 +86,7 @@ public class RechercheProfesseur extends Recherche
      * @param coursCode Code du cours donné
      * @return le nombre de Groupes suivant le cours
      */
-    public static int nombreGroupeSuivantCours(String coursCode)
-    {
+    public static int nombreGroupeSuivantCours(String coursCode) {
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +

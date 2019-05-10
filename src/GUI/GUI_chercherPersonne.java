@@ -83,13 +83,10 @@ public class GUI_chercherPersonne extends CustomJFrame {
      * @param newPersonne ID de la personne si cette personne est nouvelle. -1 sinon
      */
     public GUI_chercherPersonne(String table, int newPersonne) {
-        super("Chercher Personne", true, DIMX, DIMY);
+        super("Chercher Personne", false, DIMX, DIMY);
         this.table = table;
 
         ID_personne = -1;
-
-        /*TODO : ENLEVER CA*/
-        fieldID.setText("20160124");
 
         textDate.setSettings(DateFunctions.customDates());
         LocalDate date = LocalDate.of(2000, Month.JANUARY, 1);

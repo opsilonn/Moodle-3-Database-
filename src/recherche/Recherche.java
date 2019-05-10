@@ -23,7 +23,7 @@ public class Recherche
      * @param valeur Rang recherché dans la table
      * @return la valeur recherchée, retourne null si non trouvée
      */
-    public static String getPersonne(String matricule, String tablePersonne, String valeur)
+    public static String getPersonne(int matricule, String tablePersonne, String valeur)
     {
         Database_Connection database = new Database_Connection();
 

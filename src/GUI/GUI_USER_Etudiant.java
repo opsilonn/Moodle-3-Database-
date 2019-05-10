@@ -3,12 +3,18 @@ package GUI;
 
 import GUI_Components.CustomJFrame;
 import UsefulFunctions.Database_Connection;
+import com.lowagie.text.*;
+import com.lowagie.text.Font;
+import com.lowagie.text.pdf.*;
+
 import javax.swing.*;
+import java.awt.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+
 import static UsefulFunctions.CountRows_TableCell.createModel;
 import static recherche.Recherche.getPersonne;
 import static recherche.RechercheEtudiant.*;
@@ -21,12 +27,11 @@ import static recherche.RechercheEtudiant.*;
  *
  * @author Hugues
  */
-class GUI_USER_Etudiant extends CustomJFrame
-{
+class GUI_USER_Etudiant extends CustomJFrame {
     private static final int DIM_X = 800;
     private static final int DIM_Y = 600;
 
-    private String matricule;
+    private int matricule;
 
     private JPanel panel;
 
@@ -54,8 +59,7 @@ class GUI_USER_Etudiant extends CustomJFrame
      *
      * @param matricule - Matricule de l'élève connecté
      */
-    public GUI_USER_Etudiant(String matricule)
-    {
+    public GUI_USER_Etudiant(int matricule) {
         super("Etudiant", true, DIM_X, DIM_Y);
         this.matricule = matricule;
 
@@ -63,7 +67,9 @@ class GUI_USER_Etudiant extends CustomJFrame
         remplirInformations();
         remplirNotes();
 
-        buttonCours.addActionListener(e -> { GUI_consulterCours frame = new GUI_consulterCours(); });
+        buttonCours.addActionListener(e -> {
+            GUI_consulterCours frame = new GUI_consulterCours();
+        });
         buttonBulletin.addActionListener(e -> bulletin());
 
 
@@ -74,32 +80,26 @@ class GUI_USER_Etudiant extends CustomJFrame
     }
 
 
-
-
     /**
      * Remplissage des champs sur l'information de l'étudiant connecté
      */
-    private void remplirInformations()
-    {
+    private void remplirInformations() {
         // ON AFFICHE LE PRENOM + NOM
         labelNom.setText(
                 getPersonne(matricule, "etudiant", "Prenom") + " " +
-                getPersonne(matricule, "etudiant", "Nom").toUpperCase());
+                        getPersonne(matricule, "etudiant", "Nom").toUpperCase());
 
 
         // ON AFFICHE LE MATRICULE
-        labelMatricule.setText(matricule);
+        labelMatricule.setText("" + matricule);
 
 
         // ON AFFICHE LE GROUPE (si aucun trouvé, on affiche "aucun groupe")
-        if (possedeGroupe(matricule))
-        {
+        if (possedeGroupe(matricule)) {
             labelGroupe.setText(
                     getGroupe(matricule, "Groupe_ID") + " - " +
-                    getGroupe(matricule, "Nom"));
-        }
-        else
-        {
+                            getGroupe(matricule, "Nom"));
+        } else {
             labelGroupe.setText("N'appartient à aucun Groupe");
         }
 
@@ -116,8 +116,7 @@ class GUI_USER_Etudiant extends CustomJFrame
     /**
      * Remplissage des champs sur les notes de l'étudiant connecté
      */
-    private void remplirNotes()
-    {
+    private void remplirNotes() {
         String query;
         ResultSet resultat;
         CURSOR = 0;
@@ -146,7 +145,7 @@ class GUI_USER_Etudiant extends CustomJFrame
 
             try {
                 while (resultat.next()) {
-                    String coursCode = resultat.getString("cours.Code");
+                    int coursCode = resultat.getInt("cours.Code");
                     String coursNom = resultat.getString("cours.Nom");
                     String coursCoef = resultat.getString("cours.Coefficient");
 
@@ -176,8 +175,7 @@ class GUI_USER_Etudiant extends CustomJFrame
      * @param coursNom     Code du cours en question
      * @param coefficients Tableau des coefficients des notes du cours en question
      */
-    private void remplirNotesCours(String coursCode, String coursNom, String coursCoef, Map<String, String> coefficients)
-    {
+    private void remplirNotesCours(int coursCode, String coursNom, String coursCoef, Map<String, String> coefficients) {
         String TP_note = "Pas de note";
         String DE_note = "Pas de note";
         String PROJET_note = "Pas de note";
@@ -190,13 +188,12 @@ class GUI_USER_Etudiant extends CustomJFrame
         String query =
                 "SELECT * " +
                         "FROM note " +
-                        "WHERE note.Code = " +coursCode + " " +
+                        "WHERE note.Code = " + coursCode + " " +
                         "AND note.Matricule_Etudiant = " + matricule + " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
-        try
-        {
+        try {
             while (resultat.next()) {
                 String note = resultat.getString("note.Valeur");
                 String noteID = resultat.getString("note.ID");
@@ -252,9 +249,7 @@ class GUI_USER_Etudiant extends CustomJFrame
             DATA[CURSOR + 2][6] = PROJET_ID;
 
             CURSOR += SIZE_OCCUPIED_BY_COURSE;
-        }
-        catch (SQLException e1)
-        {
+        } catch (SQLException e1) {
             e1.printStackTrace();
         }
 
@@ -265,11 +260,84 @@ class GUI_USER_Etudiant extends CustomJFrame
     /**
      * Affichage du bulletin officiel du Bulletin de l'élève
      */
-    private void bulletin()
-    {
-        if (Objects.equals(getGroupe(matricule, "Bulletin"), "1"))
+    private void bulletin() {
+        createBulletin();
+        /*if (Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1")) {
             JOptionPane.showMessageDialog(this, "Votre Bulletin est fini !");
-        else
-            JOptionPane.showMessageDialog(this, "Votre Bulletin n'est pas encore fini !");
+        } else
+            JOptionPane.showMessageDialog(this, "Votre Bulletin n'est pas encore fini !");*/
+    }
+
+
+    private void createBulletin() {
+        String name = "Bulletin_" + matricule + ".pdf";
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int index = labelGroupe.getText().indexOf(" ");
+        int groupeID = Integer.parseInt(labelGroupe.getText().substring(0, index));
+        System.out.println("GROUPE IF+D : " + groupeID);
+
+
+        Document PDF;
+        PdfWriter MyWriter;
+
+        FileOutputStream PDFOutputStream = null;
+        PDF = new Document(PageSize.A4, 50, 50, 50, 50);
+
+        try {
+            PDFOutputStream = new FileOutputStream(name);
+            MyWriter = PdfWriter.getInstance(PDF, PDFOutputStream);
+            PDF.open();
+
+            PDF.add(new Paragraph("Bulletin de l'étudiant",
+                    new Font(Font.TIMES_ROMAN, 22, Font.BOLD, Color.BLACK)));
+
+
+            PDF.add(new Paragraph(labelNom.getText() + " - " + labelMatricule.getText()));
+            PDF.add(new Paragraph("Année " + year + " - Groupe " + labelGroupe.getText()));
+
+
+            Table tableau = new Table(4, 1);
+            tableau.addCell("Cours");
+            tableau.addCell("Moyenne");
+            tableau.addCell("Moyenne minimum");
+            tableau.addCell("Moyenne maximum");
+
+            //Rechercher les cours suivis par le groupe auquel appartient l'étudiant
+            ArrayList<Integer> cours = CoursfollowedByGroup(groupeID);
+
+            for (int j = 0; j < cours.size(); j++) {
+                //Affichage de la moyenne de l'étudiant dans le cours.
+                tableau.addCell(formatMoy(moyenne(matricule, cours.get(j))));
+                //Affichage de la moyenne minimum des élèves dans le cours.
+                tableau.addCell(formatMoy(moyenneMinMax(groupeID, false, cours.get(j))));
+                //Affichage de la moyenne maximum des élèves dans le cours.
+                tableau.addCell(formatMoy(moyenneMinMax(groupeID, true, cours.get(j))));
+            }
+
+            //Affichage de la moyenne générale de l'étudiant.
+            tableau.addCell(formatMoy(moyenneGenerale(matricule)));
+            //Affichage de la moyenne minimum des élèves dans le cours.
+            tableau.addCell(formatMoy(moyenneGeneraleMinMax(groupeID, false)));
+            //Affichage de la moyenne maximum des élèves dans le cours.
+            tableau.addCell(formatMoy(moyenneGeneraleMinMax(groupeID, true)));
+
+            //Ajouter le tableau au PDF
+            PDF.add(tableau);
+
+
+            PDF.close();
+            PDFOutputStream.close();
+
+
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String formatMoy(float moy) {
+        if (moy == -1) {
+            return "NaN";
+        }
+        return "" + moy;
     }
 }
