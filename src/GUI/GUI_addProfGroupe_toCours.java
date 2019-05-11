@@ -29,7 +29,7 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
      * @param code Code du cours concerné
      * @param gui  Interface d'affichage du cours
      * @param mode si true = on ajoute un professeur
-     *             si fals = on ajoute un groupe
+     *             si false = on ajoute un groupe
      */
     public GUI_addProfGroupe_toCours(int code, GUI_Cours gui, boolean mode) {
         super("Ajouter au Cours", false, DIM_X, DIM_Y);
@@ -37,9 +37,11 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
         this.mode = mode;
 
         buttonSave.addActionListener(e -> saveAddtoCours(code));
-        putTheData();
+        putTheData(code);
 
-        labelError.setVisible(false);
+        if (!mode){
+            labelError.setText("Pas de Groupe à ajouter.");
+        }
 
         add(panel);
         pack();
@@ -51,37 +53,65 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
     /**
      * Ajout des données des professeurs ou groupes dans la drop-down box
      */
-    private void putTheData() {
+    private void putTheData(int code) {
         Database_Connection database = new Database_Connection();
         String sql = "";
+        String query = "";
         if (mode) {
             sql = "SELECT Matricule FROM professeur";
+            query = "SELECT Matricule_Prof FROM enseigner WHERE Code = " + code;
         } else {
             sql = "SELECT Nom, Groupe_ID FROM groupe";
+            query = "SELECT Groupe_ID FROM suivre WHERE Code = " + code;
         }
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
             if (getRows(data) == 0) {
-                labelError.setVisible(true);
-                comboBoxItem.setVisible(false);
-                buttonSave.setVisible(false);
-                labelThingtoadd.setVisible(false);
+                ErrorDisplay(true);
             } else {
-                labelError.setVisible(false);
-                labelThingtoadd.setVisible(true);
+
                 while (data.next()) {
-                    if (mode) {
+                    ResultSet alreadyAdded = database.run_Statement_READ(query);
+                    boolean alreadyThere = false;
+
+                    while (alreadyAdded.next()) {
+                        //Condition pour eviter une ViolationPrimaryConstraint
+                        if (mode && alreadyAdded.getString("Matricule_Prof").equals(data.getString("Matricule"))) {
+                            alreadyThere = true;
+                        } else if (!mode && alreadyAdded.getString("Groupe_ID").equals(data.getString("Groupe_ID"))) {
+                            alreadyThere = true;
+                        }
+                    }
+
+                    if (mode && !alreadyThere) {
                         comboBoxItem.addItem(data.getInt("Matricule"));
-                    } else {
+                    } else if (!mode && !alreadyThere) {
                         comboBoxItem.addItem(data.getInt("Groupe_ID") + ": " + data.getString("Nom"));
                     }
                 }
 
-                comboBoxItem.setVisible(true);
-                buttonSave.setVisible(true);
+                if (comboBoxItem.getItemCount() == 0) {
+                    ErrorDisplay(true);
+                } else {
+                    ErrorDisplay(false);
+                }
             }
         } catch (SQLException e) {
+        }
+    }
+
+    private void ErrorDisplay(boolean mode) {
+        if (mode) {
+            labelError.setVisible(true);
+            comboBoxItem.setVisible(false);
+            buttonSave.setVisible(false);
+            labelThingtoadd.setVisible(false);
+        } else {
+            comboBoxItem.setVisible(true);
+            buttonSave.setVisible(true);
+            labelError.setVisible(false);
+            labelThingtoadd.setVisible(true);
         }
     }
 
