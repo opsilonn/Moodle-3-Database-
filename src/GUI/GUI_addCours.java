@@ -1,6 +1,7 @@
 package GUI;
 
 import static UsefulFunctions.CountRows_TableCell.getRows;
+import static GUI.GUI_USER_Admin.WindowClosingVisible;
 
 import UsefulFunctions.Database_Connection;
 
@@ -35,10 +36,15 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
         this.gui = gui;
         this.guiGroupe = guiGroupe;
 
-        buttonSave.addActionListener(e -> saveAddtoGroupe(code));
-        putTheData();
+        if (gui == null) {
+            WindowClosingVisible(this, guiGroupe);
+        } else {
+            WindowClosingVisible(this, gui);
+        }
 
-        labelError.setVisible(false);
+
+        buttonSave.addActionListener(e -> saveAddtoGroupe(code));
+        putTheData(code);
 
         add(panel);
         pack();
@@ -49,30 +55,59 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
     /**
      * Fonction de remplissage de la drop-down box
      */
-    private void putTheData() {
+    private void putTheData(int code) {
         Database_Connection database = new Database_Connection();
         String sql = "SELECT * FROM cours";
+        String query = "";
+        if (gui == null) {
+            query = "SELECT Code FROM suivre WHERE Groupe_ID = " + code;
+        } else {
+            query = "SELECT Code FROM enseigner WHERE Matricule_Prof = " + code;
+        }
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
             if (getRows(data) == 0) {
-                labelError.setVisible(true);
-                comboBoxItem.setVisible(false);
-                buttonSave.setVisible(false);
-                labelThingtoadd.setVisible(false);
+                ErrorDisplay(true);
             } else {
-                labelError.setVisible(false);
-                labelThingtoadd.setVisible(true);
                 while (data.next()) {
+                    ResultSet alreadyAdded = database.run_Statement_READ(query);
+                    boolean alreadyThere = false;
 
-                    //Met le code et le nom du Cours dans la drop-down Box
-                    comboBoxItem.addItem(data.getString("Code") + ": " + data.getString("Nom"));
+                    while (alreadyAdded.next()) {
+                        //Condition pour eviter une ViolationPrimaryConstraint
+
+                        if (alreadyAdded.getString("Code").equals(data.getString("Code"))) {
+                            alreadyThere = true;
+                        }
+                    }
+
+                    if (alreadyThere == false) {
+                        //Met le code et le nom du Cours dans la drop-down Box
+                        comboBoxItem.addItem(data.getString("Code") + ": " + data.getString("Nom"));
+                    }
                 }
-
-                comboBoxItem.setVisible(true);
-                buttonSave.setVisible(true);
+                if (comboBoxItem.getItemCount() == 0) {
+                    ErrorDisplay(true);
+                } else {
+                    ErrorDisplay(false);
+                }
             }
         } catch (SQLException e) {
+        }
+    }
+
+    private void ErrorDisplay(boolean mode) {
+        if (mode) {
+            labelError.setVisible(true);
+            comboBoxItem.setVisible(false);
+            buttonSave.setVisible(false);
+            labelThingtoadd.setVisible(false);
+        } else {
+            comboBoxItem.setVisible(true);
+            buttonSave.setVisible(true);
+            labelError.setVisible(false);
+            labelThingtoadd.setVisible(true);
         }
     }
 
@@ -102,8 +137,10 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
 
         if (gui != null) {
             gui.displayCours();
+            gui.setVisible(true);
         } else {
             guiGroupe.displayCours();
+            guiGroupe.setVisible(true);
         }
 
         dispose();

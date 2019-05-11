@@ -7,38 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5649d6a6-8244-44c3-a737-425e665ac77a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_lowagie_text_2_1_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Moodle-3-Database-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Moodle-3-Database-.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Cours.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Cours.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Groupe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Groupe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_USER_Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_USER_Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_USER_Etudiant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_USER_Etudiant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_USER_Professeur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_USER_Professeur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addAddress.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addAddress.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addEleve.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_addEleve.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_chercherEtudiant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_chercherEtudiant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_chercherPersonne.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_chercherPersonne.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_modifierNote.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI/GUI_modifierNote.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorAdresse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorAdresse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorCours.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorCours.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorCours4Groupe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorCours4Groupe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorEleve.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorEleve.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorGroupe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorGroupe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorProf.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/GUI_Components/ButtonEditor/ButtonEditorProf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/recherche.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/recherche.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/rechercheEtudiant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/rechercheEtudiant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/rechercheProfesseur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Moodle-3-Database-/recherche/rechercheProfesseur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Cours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Cours.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Groupe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Groupe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_USER_Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/recherche/Recherche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recherche/Recherche.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/recherche/RechercheEtudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recherche/RechercheEtudiant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/recherche/RechercheProfesseur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recherche/RechercheProfesseur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addAddress.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addAddress.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addCours.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addEleve.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addEleve.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addProfGroupe_toCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addProfGroupe_toCours.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_consulterCours.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_consulterListes.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_consulterCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_consulterListes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Components/ButtonEditor/ButtonEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/ButtonEditor/ButtonEditor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="505" column="14" lean-forward="true" selection-start-line="505" selection-start-column="14" selection-end-line="505" selection-end-column="14" />
+            <state relative-caret-position="201">
+              <caret line="486" column="5" lean-forward="true" selection-start-line="486" selection-start-column="5" selection-end-line="486" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />
@@ -338,7 +322,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156963000" />
+    <option name="totallyTimeSpent" value="157260000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -674,8 +658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="505" column="14" lean-forward="true" selection-start-line="505" selection-start-column="14" selection-end-line="505" selection-end-column="14" />
+        <state relative-caret-position="201">
+          <caret line="486" column="5" lean-forward="true" selection-start-line="486" selection-start-column="5" selection-end-line="486" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />

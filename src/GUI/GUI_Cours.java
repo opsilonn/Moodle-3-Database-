@@ -49,12 +49,11 @@ public class GUI_Cours extends CustomJFrame {
      * @param newCours Code du cours si celui-ci vient d'être créer
      */
     public GUI_Cours(int newCours) {
-        super("Chercher Cours", true, DIM_X, DIM_Y);
+        super("Chercher Cours", false, DIM_X, DIM_Y);
+        GUI_USER_Admin.WindowClosing(this);
 
         codeCours = -1;
 
-        /*TODO enlever*/
-        fieldID.setText("1");
         panelResultat.setVisible(false);
         labelErreur.setVisible(false);
         buttonSave.setVisible(false);
@@ -112,6 +111,7 @@ public class GUI_Cours extends CustomJFrame {
                 /*Cours non trouvé*/
                 labelErreur.setVisible(true);
                 panelResultat.setVisible(false);
+                buttonSave.setVisible(false);
             } else {
                 labelErreur.setVisible(false);
 
@@ -220,6 +220,7 @@ public class GUI_Cours extends CustomJFrame {
      * Ajouter un professeur enseignant ce cours
      */
     private void addProf() {
+        this.setVisible(false);
         new GUI_addProfGroupe_toCours(codeCours, this, true);
     }
 
@@ -227,6 +228,7 @@ public class GUI_Cours extends CustomJFrame {
      * Ajouter un groupe suivant ce cours
      */
     private void addGroupe() {
+        this.setVisible(false);
         new GUI_addProfGroupe_toCours(codeCours, this, false);
     }
 

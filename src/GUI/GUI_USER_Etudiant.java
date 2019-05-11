@@ -70,7 +70,8 @@ class GUI_USER_Etudiant extends CustomJFrame {
         remplirNotes();
 
         buttonCours.addActionListener(e -> {
-            GUI_consulterCours frame = new GUI_consulterCours();
+            this.setVisible(false);
+            new GUI_consulterListes(this);
         });
         buttonBulletin.addActionListener(e -> bulletin());
 
@@ -271,7 +272,7 @@ class GUI_USER_Etudiant extends CustomJFrame {
         /*if (Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1")) {
             JOptionPane.showMessageDialog(this, "Votre Bulletin est fini !");
         } else
-            JOptionPane.showMessageDialog(this, "Votre Bulletin n'est pas encore fini !");*/
+            JOptionPane.showMessageDialog(this, "Votre Bulletin n'a pas encore été édité.", "Bulletin", JOptionPane.INFORMATION_MESSAGE);*/
     }
 
 
@@ -281,8 +282,6 @@ class GUI_USER_Etudiant extends CustomJFrame {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int index = labelGroupe.getText().indexOf(" ");
         int groupeID = Integer.parseInt(labelGroupe.getText().substring(0, index));
-        System.out.println("GROUPE IF+D : " + groupeID);
-
 
         Document PDF;
         PdfWriter MyWriter;
@@ -295,12 +294,12 @@ class GUI_USER_Etudiant extends CustomJFrame {
             MyWriter = PdfWriter.getInstance(PDF, PDFOutputStream);
             PDF.open();
 
-            PDF.add(new Paragraph("Bulletin de l'étudiant",
+            PDF.add(new Paragraph("Bulletin de l'étudiant\n",
                     new Font(Font.TIMES_ROMAN, 22, Font.BOLD, Color.BLACK)));
 
 
             PDF.add(new Paragraph(labelNom.getText() + " - " + labelMatricule.getText()));
-            PDF.add(new Paragraph("Année " + year + " - Groupe " + labelGroupe.getText()));
+            PDF.add(new Paragraph("Année " + year + " - Groupe " + labelGroupe.getText() + "\n\n"));
 
             //PdfPTable table = new PdfPTable(8);
 
@@ -338,9 +337,7 @@ class GUI_USER_Etudiant extends CustomJFrame {
             //Ajouter le tableau au PDF
             PDF.add(tableau);
 
-            Cell cell = new Cell(new Paragraph("Signature du Responsable"));
-            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-            PDF.add(cell);
+            PDF.add(new Paragraph("Signature du Responsable"));
 
 
             PDF.close();

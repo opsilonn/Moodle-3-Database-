@@ -41,7 +41,6 @@ public abstract class ButtonEditor extends DefaultCellEditor {
         return button;
     }
 
-
     @Override
     public boolean stopCellEditing() {
         isPushed = false;

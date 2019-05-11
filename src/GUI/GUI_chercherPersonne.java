@@ -66,7 +66,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
      */
     private void createUIComponents() {
         fieldID = new CustomJTextField("NUMERIC", false, 8);
-        textNom = new CustomJTextField("NUMERIC", false, 20);
+        textNom = new CustomJTextField("ALPHABET", false, 20);
         textPrenom = new CustomJTextField("ALPHABET", false, 20);
         textDate = new DatePicker();
         textCity = new CustomJTextField("ALPHABET", false, 20);
@@ -85,6 +85,8 @@ public class GUI_chercherPersonne extends CustomJFrame {
      */
     public GUI_chercherPersonne(String table, int newPersonne) {
         super("Chercher Personne", false, DIMX, DIMY);
+        GUI_USER_Admin.WindowClosing(this);
+
         this.table = table;
 
         ID_personne = -1;
@@ -138,6 +140,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
         if (fieldID.getText().length() == 0) {
             labelErreur.setVisible(true);
             panelResultat.setVisible(false);
+            buttonSave.setVisible(false);
         } else {
             IDinput = Integer.parseInt(fieldID.getText());
             int ID_result = find_Matricule(IDinput, table);
@@ -145,6 +148,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
             if (ID_result == -1) {
                 labelErreur.setVisible(true);
                 panelResultat.setVisible(false);
+                buttonSave.setVisible(false);
             } else {
                 labelErreur.setVisible(false);
                 panelResultat.setVisible(true);
@@ -310,7 +314,8 @@ public class GUI_chercherPersonne extends CustomJFrame {
      * Ajout d'un identité si il s'agit d'un étudiant.
      */
     private void addID() {
-        GUI_addID add = new GUI_addID(ID_personne, this);
+        this.setVisible(false);
+        new GUI_addID(ID_personne, this);
     }
 
     /**
@@ -353,6 +358,7 @@ public class GUI_chercherPersonne extends CustomJFrame {
      * Ajouter une adresse pour la personne
      */
     private void addAddress() {
+        this.setVisible(false);
         new GUI_addAddress(ID_personne, this);
     }
 

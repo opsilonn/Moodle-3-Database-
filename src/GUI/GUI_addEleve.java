@@ -1,6 +1,7 @@
 package GUI;
 
 import static UsefulFunctions.CountRows_TableCell.getRows;
+import static GUI.GUI_USER_Admin.WindowClosingVisible;
 
 import UsefulFunctions.Database_Connection;
 
@@ -33,10 +34,16 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
         this.gui = gui;
         this.gui2 = gui2;
 
-        buttonSave.addActionListener(e -> saveAddtoGroupe(code));
-        putTheData();
+        if (gui == null) {
+            WindowClosingVisible(this, gui2);
+        } else {
+            System.out.println("IN THE GOOD");
+            WindowClosingVisible(this, gui);
+        }
 
-        labelError.setVisible(false);
+        buttonSave.addActionListener(e -> saveAddtoGroupe(code));
+        putTheData(code);
+
 
         add(panel);
         pack();
@@ -48,28 +55,59 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
     /**
      * Mise des informations étudiantes dans la drop-down box.
      */
-    private void putTheData() {
+    private void putTheData(int code) {
         Database_Connection database = new Database_Connection();
         String sql = "SELECT Matricule FROM etudiant";
+        String query = "";
+        if (gui != null) {
+            query = "SELECT Matricule FROM etudiant WHERE Groupe_ID = " + code;
+        } else {
+            //Un etudiant ne peut pas avoir plus d'un responsable
+            query = "SELECT Matricule_Etudiant AS Matricule FROM tuteur";
+        }
 
         ResultSet data = database.run_Statement_READ(sql);
         try {
             if (getRows(data) == 0) {
-                labelError.setVisible(true);
-                comboBoxItem.setVisible(false);
-                buttonSave.setVisible(false);
-                labelThingtoadd.setVisible(false);
+                ErrorDisplay(true);
             } else {
-                labelError.setVisible(false);
-                labelThingtoadd.setVisible(true);
                 while (data.next()) {
-                    comboBoxItem.addItem(data.getString("Matricule"));
+                    ResultSet alreadyAdded = database.run_Statement_READ(query);
+                    boolean alreadyThere = false;
+
+                    while (alreadyAdded.next()) {
+                        //Condition pour eviter une ViolationPrimaryConstraint
+                        if (alreadyAdded.getString("Matricule").equals(data.getString("Matricule"))) {
+                            alreadyThere = true;
+                        }
+                    }
+                    if (!alreadyThere) {
+                        //Met le code et le nom du Cours dans la drop-down Box
+                        comboBoxItem.addItem(data.getString("Matricule"));
+                    }
                 }
 
-                comboBoxItem.setVisible(true);
-                buttonSave.setVisible(true);
+                if (comboBoxItem.getItemCount() == 0) {
+                    ErrorDisplay(true);
+                } else {
+                    ErrorDisplay(false);
+                }
             }
         } catch (SQLException e) {
+        }
+    }
+
+    private void ErrorDisplay(boolean mode) {
+        if (mode) {
+            comboBoxItem.setVisible(false);
+            buttonSave.setVisible(false);
+            labelThingtoadd.setVisible(false);
+            labelError.setVisible(true);
+        } else {
+            comboBoxItem.setVisible(true);
+            buttonSave.setVisible(true);
+            labelError.setVisible(false);
+            labelThingtoadd.setVisible(true);
         }
     }
 
@@ -94,10 +132,12 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
 
         if (gui2 == null) {
             gui.displayEleves();
+            gui.setVisible(true);
         } else {
             gui2.displayEleves();
+            gui2.setVisible(true);
         }
-
         dispose();
+
     }
 }

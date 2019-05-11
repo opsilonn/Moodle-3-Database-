@@ -3,14 +3,16 @@ package GUI;
 import GUI_Components.*;
 import GUI_Components.ButtonEditor.ButtonEditorCours4Groupe;
 import GUI_Components.ButtonEditor.ButtonEditorEleve;
-import UsefulFunctions.CountRows_TableCell;
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static UsefulFunctions.CountRows_TableCell.createModel;
+import static UsefulFunctions.CountRows_TableCell.getRows;
+import static GUI.GUI_USER_Admin.WindowClosing;
 
 public class GUI_Groupe extends CustomJFrame {
 
@@ -44,12 +46,10 @@ public class GUI_Groupe extends CustomJFrame {
      * @param newGroupe Code du groupe si celui-ci créer sinon contient -1.
      */
     public GUI_Groupe(int newGroupe) {
-        super("Chercher Groupe", true, DIM_X, DIM_Y);
+        super("Chercher Groupe", false, DIM_X, DIM_Y);
+        WindowClosing(this);
 
         codeGroupe = -1;
-
-        /*TODO enlever*/
-        fieldID.setText("1");
 
         panelResultat.setVisible(false);
         labelErreur.setVisible(false);
@@ -100,10 +100,11 @@ public class GUI_Groupe extends CustomJFrame {
             ResultSet data = database.run_Statement_READ("SELECT * FROM groupe WHERE Groupe_ID = " + codeGroupe);
 
 
-            if (CountRows_TableCell.getRows(data) == 0) {
+            if (getRows(data) == 0) {
                 /*Groupe non trouvé*/
                 labelErreur.setVisible(true);
                 panelResultat.setVisible(false);
+                buttonSave.setVisible(false);
             } else {
                 labelErreur.setVisible(false);
 
@@ -134,11 +135,13 @@ public class GUI_Groupe extends CustomJFrame {
      */
     public void displayCours() {
         /*TROUVER LES COURS SUIVIS*/
+        tableCours.removeAll();
+
         Database_Connection database = new Database_Connection();
         try {
             String sql = "SELECT cours.Code, Nom FROM suivre INNER JOIN cours on cours.Code = suivre.Code WHERE Groupe_ID = " + codeGroupe;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = CountRows_TableCell.getRows(data);
+            int totalRows = getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Cours", " X "};
@@ -183,6 +186,7 @@ public class GUI_Groupe extends CustomJFrame {
      * Lancement de l'interface pour l'ajout d'un cours
      */
     public void addCours() {
+        this.setVisible(false);
         new GUI_addCours(codeGroupe, null, this);
     }
 
@@ -190,6 +194,7 @@ public class GUI_Groupe extends CustomJFrame {
      * Lancement de l'interface pour l'ajout d'un élève dans le groupe
      */
     public void addEleve() {
+        this.setVisible(false);
         new GUI_addEleve(codeGroupe, this, null);
     }
 
@@ -198,11 +203,13 @@ public class GUI_Groupe extends CustomJFrame {
      */
     public void displayEleves() {
         /*TROUVER LES ELEVES QUI FONT PARTIS DU GROUPE*/
+        tableEleve.removeAll();
+
         Database_Connection database = new Database_Connection();
         try {
             String sql = "SELECT Groupe_ID, Matricule FROM etudiant WHERE Groupe_ID = " + codeGroupe;
             ResultSet data = database.run_Statement_READ(sql);
-            int totalRows = CountRows_TableCell.getRows(data);
+            int totalRows = getRows(data);
 
             if (totalRows > 0) {
                 String[] columns = new String[]{"Eleves", " X "};
@@ -214,6 +221,7 @@ public class GUI_Groupe extends CustomJFrame {
                     eleves[index][1] = data.getString("Matricule");
                     index++;
                 }
+
 
                 tableEleve.setModel(createModel(eleves, columns));
                 tableEleve.getColumn(" X ").setCellRenderer(new ButtonRenderer());
@@ -240,7 +248,23 @@ public class GUI_Groupe extends CustomJFrame {
         String sql = "UPDATE etudiant SET Groupe_ID = NULL WHERE Matricule = " + matricule;
         database.run_Statement_WRITE(sql);
         database.Database_Deconnection();
-        displayEleves();
+
+        DefaultTableModel model = (DefaultTableModel) tableEleve.getModel();
+
+        // get selected row index
+        try {
+            int SelectedRowIndex = tableEleve.getSelectedRow();
+            if (tableEleve.getRowCount() == 1) {
+                scrollEleve.setVisible(false);
+                labelErrorEleve.setVisible(true);
+            } else {
+                model.removeRow(SelectedRowIndex);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("Remove DONE");
+        //displayEleves();
     }
 
     /**
@@ -259,12 +283,25 @@ public class GUI_Groupe extends CustomJFrame {
      * Edition des bulletins pour les étudiants du groupe
      */
     private void editBulletin() {
-
-        String sql = "UPDATE groupe SET bulletin = 1 WHERE Groupe_ID = " + codeGroupe;
         Database_Connection database = new Database_Connection();
-        database.run_Statement_WRITE(sql);
-        database.Database_Deconnection();
-        JOptionPane.showMessageDialog(this, "Les bulletins ont été édités.", "Saved", JOptionPane.INFORMATION_MESSAGE);
-        searchGroupe();
+        String sql = "SELECT MAX(CPT) AS max, MIN(CPT) AS min FROM " +
+                "(SELECT COUNT(ID) AS CPT FROM note INNER JOIN etudiant WHERE Matricule = Matricule_Etudiant AND Groupe_ID = " + codeGroupe
+                + " GROUP BY Matricule_Etudiant) AS T";
+        ResultSet res = database.run_Statement_READ(sql);
+
+        try {
+            if (res.next() && res.getInt("max") == 3 && res.getInt("min") == 3) {
+                sql = "UPDATE groupe SET bulletin = 1 WHERE Groupe_ID = " + codeGroupe;
+                database.run_Statement_WRITE(sql);
+                database.Database_Deconnection();
+                JOptionPane.showMessageDialog(this, "Les bulletins ont été édités.", "Saved", JOptionPane.INFORMATION_MESSAGE);
+                searchGroupe();
+            } else {
+                JOptionPane.showMessageDialog(this, "Tous les étudiants non pas toutes leurs notes. Les bulletins ne peuvent donc pas être édités.", "Saved", JOptionPane.WARNING_MESSAGE);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
