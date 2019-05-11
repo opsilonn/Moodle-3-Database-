@@ -7,22 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5649d6a6-8244-44c3-a737-425e665ac77a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Cours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Cours.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Groupe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Groupe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_USER_Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addAddress.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addAddress.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addCours.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addEleve.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addEleve.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_addProfGroupe_toCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_addProfGroupe_toCours.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_chercherPersonne.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_consulterCours.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_consulterListes.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_consulterCours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_consulterListes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI_Components/ButtonEditor/ButtonEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Components/ButtonEditor/ButtonEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="486" column="5" lean-forward="true" selection-start-line="486" selection-start-column="5" selection-end-line="486" selection-end-column="5" />
+            <state relative-caret-position="214">
+              <caret line="204" column="5" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />
@@ -72,30 +58,13 @@
                 <element signature="method#ID_MATRICULE#0;class#GUI_modifierNote#0" />
                 <element signature="method#ID_NOTE#0;class#GUI_modifierNote#0" />
                 <element signature="method#ID_NOTE#0;class#GUI_modifierNote#0" />
+                <element signature="method#setGroupes#0;class#GUI_modifierNote#0" />
                 <element signature="method#setMatricules#0;class#GUI_modifierNote#0" />
                 <element signature="method#setNotes#0;class#GUI_modifierNote#0" />
                 <element signature="method#moveDate#0;class#GUI_modifierNote#0" />
                 <element signature="method#setNote#0;class#GUI_modifierNote#0" />
                 <element signature="method#setLabelErreur#0;class#GUI_modifierNote#0" />
                 <element signature="method#setDisplay#0;class#GUI_modifierNote#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUI_addProfGroupe_toCours.form">
-          <provider selected="true" editor-type-id="ui-designer" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.desktop/javax/swing/JComboBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="1356" column="8" selection-start-line="1356" selection-start-column="8" selection-end-line="1356" selection-end-column="8" />
-              <folding>
-                <element signature="e#48112#48113#0" expanded="true" />
-                <element signature="e#48146#48147#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -166,21 +135,21 @@
         <option value="$PROJECT_DIR$/src/GUI/GUI_chercherEtudiant.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_Etudiant.java" />
         <option value="$PROJECT_DIR$/src/GUI_Components/Limit_JTextField.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_Login.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_Login.form" />
         <option value="$PROJECT_DIR$/src/GUI_Components/CustomJTextField.java" />
         <option value="$PROJECT_DIR$/src/recherche/RechercheProfesseur.java" />
         <option value="$PROJECT_DIR$/src/recherche/RechercheEtudiant.java" />
         <option value="$PROJECT_DIR$/src/recherche/Recherche.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_USER_Professeur.form" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_modifierNote.form" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUI_Login.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="950" />
     <option name="width" value="980" />
     <option name="height" value="1090" />
@@ -322,7 +291,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157260000" />
+    <option name="totallyTimeSpent" value="158225000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -480,16 +449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
@@ -574,16 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1228">
-          <caret line="278" column="4" selection-start-line="278" selection-start-column="4" selection-end-line="278" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI_Components/CustomJFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -632,13 +581,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.form">
-      <provider selected="true" editor-type-id="ui-designer" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="3318" column="18" selection-start-line="3318" selection-start-column="18" selection-end-line="3318" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_USER_Etudiant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="274" column="139" selection-start-line="274" selection-start-column="139" selection-end-line="274" selection-end-column="139" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -656,10 +612,23 @@
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_addProfGroupe_toCours.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="486" column="5" lean-forward="true" selection-start-line="486" selection-start-column="5" selection-end-line="486" selection-end-column="5" />
+        <state relative-caret-position="214">
+          <caret line="204" column="5" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />
@@ -667,6 +636,7 @@
             <element signature="method#ID_MATRICULE#0;class#GUI_modifierNote#0" />
             <element signature="method#ID_NOTE#0;class#GUI_modifierNote#0" />
             <element signature="method#ID_NOTE#0;class#GUI_modifierNote#0" />
+            <element signature="method#setGroupes#0;class#GUI_modifierNote#0" />
             <element signature="method#setMatricules#0;class#GUI_modifierNote#0" />
             <element signature="method#setNotes#0;class#GUI_modifierNote#0" />
             <element signature="method#moveDate#0;class#GUI_modifierNote#0" />

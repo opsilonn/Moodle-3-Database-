@@ -70,9 +70,16 @@ class GUI_modifierNote extends CustomJFrame
 
         setCours();
 
+        /*
         comboBoxCours.addActionListener( e -> setGroupes() );
         comboBoxGroupe.addActionListener( e -> setMatricules() );
         comboBoxMatricule.addActionListener( e -> setNotes() );
+        */
+
+
+        comboBoxCours.addActionListener( LISTENER_CALL_GROUPES );
+        comboBoxGroupe.addActionListener( LISTENER_CALL_MATRICULES );
+        comboBoxMatricule.addActionListener( LISTENER_CALL_NOTES );
 
         buttonValider.addActionListener(e -> setNote());
 
@@ -82,6 +89,10 @@ class GUI_modifierNote extends CustomJFrame
         revalidate();
         setVisible(true);
     }
+
+    private ActionListener LISTENER_CALL_GROUPES = e -> setGroupes();
+    private ActionListener LISTENER_CALL_MATRICULES = e -> setMatricules();
+    private ActionListener LISTENER_CALL_NOTES = e -> setNotes();
 
 
     private void createUIComponents()
@@ -192,7 +203,6 @@ class GUI_modifierNote extends CustomJFrame
      */
     private void setCours()
     {
-        //comboBoxCours.removeAllItems();
         String query = "";
         Database_Connection database = new Database_Connection();
 
@@ -243,7 +253,10 @@ class GUI_modifierNote extends CustomJFrame
      */
     private void setGroupes()
     {
+        comboBoxGroupe.removeActionListener( LISTENER_CALL_MATRICULES );
         comboBoxGroupe.removeAllItems();
+        comboBoxGroupe.addActionListener( LISTENER_CALL_MATRICULES );
+
 
         Database_Connection database = new Database_Connection();
 
@@ -289,7 +302,9 @@ class GUI_modifierNote extends CustomJFrame
      */
     private void setMatricules()
     {
+        comboBoxMatricule.removeActionListener( LISTENER_CALL_NOTES );
         comboBoxMatricule.removeAllItems();
+        comboBoxMatricule.removeActionListener( LISTENER_CALL_NOTES );
 
         Database_Connection database = new Database_Connection();
 
