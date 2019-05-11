@@ -83,6 +83,8 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
 
                 setVisible(false);
                 gui.displayID();
+                gui.setVisible(true);
+
                 dispose(); //Destroy the Frame object
             }
         }

@@ -276,8 +276,6 @@ class GUI_USER_Etudiant extends CustomJFrame {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int index = labelGroupe.getText().indexOf(" ");
         int groupeID = Integer.parseInt(labelGroupe.getText().substring(0, index));
-        System.out.println("GROUPE IF+D : " + groupeID);
-
 
         Document PDF;
         PdfWriter MyWriter;
@@ -290,12 +288,12 @@ class GUI_USER_Etudiant extends CustomJFrame {
             MyWriter = PdfWriter.getInstance(PDF, PDFOutputStream);
             PDF.open();
 
-            PDF.add(new Paragraph("Bulletin de l'étudiant",
+            PDF.add(new Paragraph("Bulletin de l'étudiant\n",
                     new Font(Font.TIMES_ROMAN, 22, Font.BOLD, Color.BLACK)));
 
 
             PDF.add(new Paragraph(labelNom.getText() + " - " + labelMatricule.getText()));
-            PDF.add(new Paragraph("Année " + year + " - Groupe " + labelGroupe.getText()));
+            PDF.add(new Paragraph("Année " + year + " - Groupe " + labelGroupe.getText() + "\n\n"));
 
             //PdfPTable table = new PdfPTable(8);
 

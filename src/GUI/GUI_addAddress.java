@@ -77,6 +77,7 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
                 database.Database_Deconnection();
                 setVisible(false);
                 gui.displayAddress();
+                gui.setVisible(true);
                 dispose(); //Destroy the Frame object
             }
         }

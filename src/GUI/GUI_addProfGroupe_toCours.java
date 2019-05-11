@@ -146,6 +146,7 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
             gui.displayGroup();
         }
 
+        gui.setVisible(true);
         dispose();
     }
 

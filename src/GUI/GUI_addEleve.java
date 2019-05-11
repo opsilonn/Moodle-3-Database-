@@ -37,6 +37,7 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
         if (gui == null) {
             WindowClosingVisible(this, gui2);
         } else {
+            System.out.println("IN THE GOOD");
             WindowClosingVisible(this, gui);
         }
 
@@ -131,10 +132,12 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
 
         if (gui2 == null) {
             gui.displayEleves();
+            gui.setVisible(true);
         } else {
             gui2.displayEleves();
+            gui2.setVisible(true);
         }
-
         dispose();
+
     }
 }

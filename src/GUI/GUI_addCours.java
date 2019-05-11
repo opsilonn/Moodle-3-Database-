@@ -137,8 +137,10 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
 
         if (gui != null) {
             gui.displayCours();
+            gui.setVisible(true);
         } else {
             guiGroupe.displayCours();
+            guiGroupe.setVisible(true);
         }
 
         dispose();
