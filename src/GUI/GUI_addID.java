@@ -1,5 +1,8 @@
 package GUI;
 
+
+import static GUI.GUI_USER_Admin.WindowClosingVisible;
+
 import GUI_Components.CustomJTextField;
 import GUI_Components.DateFunctions;
 import UsefulFunctions.Database_Connection;
@@ -32,8 +35,7 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
     public GUI_addID(int ID_personne, GUI_chercherPersonne gui) {
         super("Ajouter une identité", false, DIM_X, DIM_Y);
         this.gui = gui;
-        GUI_USER_Admin.WindowClosingVisible(this, gui);
-
+        WindowClosingVisible(this, gui);
 
 
         buttonSave.addActionListener(e -> saveID(ID_personne));

@@ -60,7 +60,7 @@ class GUI_USER_Professeur extends CustomJFrame {
 
 
         buttonEtudiant.addActionListener(e -> new GUI_chercherEtudiant(matricule));
-        buttonCours.addActionListener(e -> new GUI_consulterCours());
+        buttonCours.addActionListener(e -> new GUI_consulterListes());
         buttonModifier.addActionListener(e -> new GUI_modifierNote(matricule));
 
 

@@ -1,6 +1,7 @@
 package GUI;
 
 import static UsefulFunctions.CountRows_TableCell.getRows;
+import static GUI.GUI_USER_Admin.WindowClosingVisible;
 
 import UsefulFunctions.Database_Connection;
 
@@ -34,9 +35,9 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
         this.gui2 = gui2;
 
         if (gui == null) {
-            GUI_USER_Admin.WindowClosingVisible(this, gui2);
+            WindowClosingVisible(this, gui2);
         } else {
-            GUI_USER_Admin.WindowClosingVisible(this, gui);
+            WindowClosingVisible(this, gui);
         }
 
         buttonSave.addActionListener(e -> saveAddtoGroupe(code));

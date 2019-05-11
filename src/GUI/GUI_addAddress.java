@@ -4,10 +4,8 @@ import GUI_Components.CustomJTextField;
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
-import javax.swing.text.MaskFormatter;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.text.ParseException;
+
+import static GUI.GUI_USER_Admin.WindowClosingVisible;
 
 public class GUI_addAddress extends GUI_Components.CustomJFrame {
     private JTextField street;
@@ -44,7 +42,7 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
         super("Ajouter une adresse", false, DIMX, DIMY);
         this.gui = gui;
 
-        GUI_USER_Admin.WindowClosingVisible(this, gui);
+        WindowClosingVisible(this, gui);
 
         buttonSave.addActionListener(e -> saveAddress(ID_personne));
 

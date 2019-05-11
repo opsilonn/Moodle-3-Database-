@@ -69,7 +69,7 @@ class GUI_USER_Etudiant extends CustomJFrame {
         remplirNotes();
 
         buttonCours.addActionListener(e -> {
-            GUI_consulterCours frame = new GUI_consulterCours();
+            GUI_consulterListes frame = new GUI_consulterListes();
         });
         buttonBulletin.addActionListener(e -> bulletin());
 

@@ -1,6 +1,7 @@
 package GUI;
 
 import static UsefulFunctions.CountRows_TableCell.getRows;
+import static GUI.GUI_USER_Admin.WindowClosingVisible;
 
 import UsefulFunctions.Database_Connection;
 
@@ -36,7 +37,7 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
         this.gui = gui;
         this.mode = mode;
 
-        GUI_USER_Admin.WindowClosingVisible(this, gui);
+        WindowClosingVisible(this, gui);
 
         buttonSave.addActionListener(e -> saveAddtoCours(code));
         putTheData(code);
