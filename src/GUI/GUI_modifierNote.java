@@ -48,6 +48,12 @@ class GUI_modifierNote extends CustomJFrame
     private JLabel labelErreurNote;
 
 
+
+    private final ActionListener LISTENER_CALL_GROUPES = e -> setGroupes();
+    private final ActionListener LISTENER_CALL_MATRICULES = e -> setMatricules();
+    private final ActionListener LISTENER_CALL_NOTES = e -> setNotes();
+
+
     public GUI_modifierNote(int matricule)
     {
         super("Ajouter note", false, DIM_X, DIM_Y);
@@ -89,10 +95,6 @@ class GUI_modifierNote extends CustomJFrame
         revalidate();
         setVisible(true);
     }
-
-    private ActionListener LISTENER_CALL_GROUPES = e -> setGroupes();
-    private ActionListener LISTENER_CALL_MATRICULES = e -> setMatricules();
-    private ActionListener LISTENER_CALL_NOTES = e -> setNotes();
 
 
     private void createUIComponents()
@@ -203,7 +205,11 @@ class GUI_modifierNote extends CustomJFrame
      */
     private void setCours()
     {
-        String query = "";
+        comboBoxCours.removeActionListener( LISTENER_CALL_GROUPES );
+        comboBoxCours.removeAllItems();
+        comboBoxCours.addActionListener( LISTENER_CALL_GROUPES );
+
+        String query;
         Database_Connection database = new Database_Connection();
 
         if (matricule == -1) //Si l'administration est connecté, on selectionne tous les cours

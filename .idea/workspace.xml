@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5649d6a6-8244-44c3-a737-425e665ac77a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GUI/GUI_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI_modifierNote.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -49,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="204" column="5" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
+            <state relative-caret-position="216">
+              <caret line="209" column="61" selection-start-line="209" selection-start-column="61" selection-end-line="209" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />
@@ -149,7 +148,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="950" />
     <option name="width" value="980" />
     <option name="height" value="1090" />
@@ -291,7 +290,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158225000" />
+    <option name="totallyTimeSpent" value="158990000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -627,8 +626,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI_modifierNote.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="204" column="5" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
+        <state relative-caret-position="216">
+          <caret line="209" column="61" selection-start-line="209" selection-start-column="61" selection-end-line="209" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#ID_COURS#0;class#GUI_modifierNote#0" />
