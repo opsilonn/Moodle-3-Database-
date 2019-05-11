@@ -35,6 +35,13 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
         this.gui = gui;
         this.guiGroupe = guiGroupe;
 
+        if (gui == null) {
+            GUI_USER_Admin.WindowClosingVisible(this, guiGroupe);
+        } else {
+            GUI_USER_Admin.WindowClosingVisible(this, gui);
+        }
+
+
         buttonSave.addActionListener(e -> saveAddtoGroupe(code));
         putTheData(code);
 
@@ -80,7 +87,6 @@ public class GUI_addCours extends GUI_Components.CustomJFrame {
                     }
                 }
                 if (comboBoxItem.getItemCount() == 0) {
-                    System.out.println("ERROR DIS");
                     ErrorDisplay(true);
                 } else {
                     ErrorDisplay(false);

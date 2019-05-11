@@ -32,6 +32,10 @@ public class GUI_addID extends GUI_Components.CustomJFrame {
     public GUI_addID(int ID_personne, GUI_chercherPersonne gui) {
         super("Ajouter une identité", false, DIM_X, DIM_Y);
         this.gui = gui;
+        GUI_USER_Admin.WindowClosingVisible(this, gui);
+
+
+
         buttonSave.addActionListener(e -> saveID(ID_personne));
 
         textDate.setSettings(DateFunctions.customDates());

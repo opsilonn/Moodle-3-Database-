@@ -36,10 +36,12 @@ public class GUI_addProfGroupe_toCours extends GUI_Components.CustomJFrame {
         this.gui = gui;
         this.mode = mode;
 
+        GUI_USER_Admin.WindowClosingVisible(this, gui);
+
         buttonSave.addActionListener(e -> saveAddtoCours(code));
         putTheData(code);
 
-        if (!mode){
+        if (!mode) {
             labelError.setText("Pas de Groupe à ajouter.");
         }
 

@@ -5,6 +5,8 @@ import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 
 public class GUI_addAddress extends GUI_Components.CustomJFrame {
@@ -41,6 +43,9 @@ public class GUI_addAddress extends GUI_Components.CustomJFrame {
     public GUI_addAddress(int ID_personne, GUI_chercherPersonne gui) {
         super("Ajouter une adresse", false, DIMX, DIMY);
         this.gui = gui;
+
+        GUI_USER_Admin.WindowClosingVisible(this, gui);
+
         buttonSave.addActionListener(e -> saveAddress(ID_personne));
 
         add(panel);

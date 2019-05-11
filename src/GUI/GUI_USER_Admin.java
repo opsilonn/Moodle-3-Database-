@@ -3,6 +3,9 @@ package GUI;
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -248,5 +251,23 @@ public class GUI_USER_Admin extends GUI_Components.CustomJFrame {
         }
         database.Database_Deconnection();
         return -1;
+    }
+
+    public static void WindowClosing(Window w) {
+        w.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                new GUI_USER_Admin();
+            }
+        });
+    }
+
+    public static void WindowClosingVisible(Window w, Window toShow) {
+        w.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                toShow.setVisible(true);
+            }
+        });
     }
 }

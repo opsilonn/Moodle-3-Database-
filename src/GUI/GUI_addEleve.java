@@ -33,6 +33,12 @@ public class GUI_addEleve extends GUI_Components.CustomJFrame {
         this.gui = gui;
         this.gui2 = gui2;
 
+        if (gui == null) {
+            GUI_USER_Admin.WindowClosingVisible(this, gui2);
+        } else {
+            GUI_USER_Admin.WindowClosingVisible(this, gui);
+        }
+
         buttonSave.addActionListener(e -> saveAddtoGroupe(code));
         putTheData(code);
 
