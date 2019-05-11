@@ -69,7 +69,8 @@ class GUI_USER_Etudiant extends CustomJFrame {
         remplirNotes();
 
         buttonCours.addActionListener(e -> {
-            GUI_consulterListes frame = new GUI_consulterListes();
+            this.setVisible(false);
+            new GUI_consulterListes(this);
         });
         buttonBulletin.addActionListener(e -> bulletin());
 
@@ -262,11 +263,11 @@ class GUI_USER_Etudiant extends CustomJFrame {
      * Affichage du bulletin officiel du Bulletin de l'élève
      */
     private void bulletin() {
-        createBulletin();
-        /*if (Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1")) {
-            JOptionPane.showMessageDialog(this, "Votre Bulletin est fini !");
+        if (Objects.equals(getGroupe(matricule, "Bulletin"), "1")) {
+            JOptionPane.showMessageDialog(this, "Votre Bulletin est là! Il va s'ouvrir dans un instant.", "Bulletin", JOptionPane.INFORMATION_MESSAGE);
+            createBulletin();
         } else
-            JOptionPane.showMessageDialog(this, "Votre Bulletin n'est pas encore fini !");*/
+            JOptionPane.showMessageDialog(this, "Votre Bulletin n'a pas encore été édité.", "Bulletin", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
@@ -332,9 +333,7 @@ class GUI_USER_Etudiant extends CustomJFrame {
             //Ajouter le tableau au PDF
             PDF.add(tableau);
 
-            Cell cell = new Cell(new Paragraph("Signature du Responsable"));
-            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-            PDF.add(cell);
+            PDF.add(new Paragraph("Signature du Responsable"));
 
 
             PDF.close();

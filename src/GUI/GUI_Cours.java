@@ -220,6 +220,7 @@ public class GUI_Cours extends CustomJFrame {
      * Ajouter un professeur enseignant ce cours
      */
     private void addProf() {
+        this.setVisible(false);
         new GUI_addProfGroupe_toCours(codeCours, this, true);
     }
 
@@ -227,6 +228,7 @@ public class GUI_Cours extends CustomJFrame {
      * Ajouter un groupe suivant ce cours
      */
     private void addGroupe() {
+        this.setVisible(false);
         new GUI_addProfGroupe_toCours(codeCours, this, false);
     }
 

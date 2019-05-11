@@ -72,7 +72,8 @@ public class GUI_USER_Admin extends GUI_Components.CustomJFrame {
      * Lancement de l'interface de consultation des cours
      */
     private void consult() {
-        new GUI_consulterListes();
+        this.setVisible(false);
+        new GUI_consulterListes(this);
     }
 
     /**

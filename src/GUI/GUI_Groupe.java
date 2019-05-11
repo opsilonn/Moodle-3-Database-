@@ -7,13 +7,12 @@ import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static UsefulFunctions.CountRows_TableCell.createModel;
 import static UsefulFunctions.CountRows_TableCell.getRows;
+import static GUI.GUI_USER_Admin.WindowClosing;
 
 public class GUI_Groupe extends CustomJFrame {
 
@@ -48,7 +47,7 @@ public class GUI_Groupe extends CustomJFrame {
      */
     public GUI_Groupe(int newGroupe) {
         super("Chercher Groupe", false, DIM_X, DIM_Y);
-        GUI_USER_Admin.WindowClosing(this);
+        WindowClosing(this);
 
         codeGroupe = -1;
 
@@ -187,6 +186,7 @@ public class GUI_Groupe extends CustomJFrame {
      * Lancement de l'interface pour l'ajout d'un cours
      */
     public void addCours() {
+        this.setVisible(false);
         new GUI_addCours(codeGroupe, null, this);
     }
 
@@ -194,6 +194,7 @@ public class GUI_Groupe extends CustomJFrame {
      * Lancement de l'interface pour l'ajout d'un élève dans le groupe
      */
     public void addEleve() {
+        this.setVisible(false);
         new GUI_addEleve(codeGroupe, this, null);
     }
 
