@@ -60,7 +60,8 @@ class GUI_USER_Etudiant extends CustomJFrame {
      *
      * @param matricule - Matricule de l'élève connecté
      */
-    public GUI_USER_Etudiant(int matricule) {
+    public GUI_USER_Etudiant(int matricule)
+    {
         super("Etudiant", true, DIM_X, DIM_Y);
         this.matricule = matricule;
 
@@ -176,7 +177,8 @@ class GUI_USER_Etudiant extends CustomJFrame {
      * @param coursNom     Code du cours en question
      * @param coefficients Tableau des coefficients des notes du cours en question
      */
-    private void remplirNotesCours(int coursCode, String coursNom, String coursCoef, Map<String, String> coefficients) {
+    private void remplirNotesCours(int coursCode, String coursNom, String coursCoef, Map<String, String> coefficients)
+    {
         String TP_note = "Pas de note";
         String DE_note = "Pas de note";
         String PROJET_note = "Pas de note";
@@ -188,14 +190,16 @@ class GUI_USER_Etudiant extends CustomJFrame {
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                        "FROM note " +
-                        "WHERE note.Code = " + coursCode + " " +
-                        "AND note.Matricule_Etudiant = " + matricule + " ;";
+                "FROM note " +
+                "WHERE note.Code = " + coursCode + " " +
+                "AND note.Matricule_Etudiant = " + matricule + " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
-        try {
-            while (resultat.next()) {
+        try
+        {
+            while (resultat.next())
+            {
                 String note = resultat.getString("note.Valeur");
                 String noteID = resultat.getString("note.ID");
 
@@ -261,7 +265,8 @@ class GUI_USER_Etudiant extends CustomJFrame {
     /**
      * Affichage du bulletin officiel du Bulletin de l'élève
      */
-    private void bulletin() {
+    private void bulletin()
+    {
         createBulletin();
         /*if (Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1")) {
             JOptionPane.showMessageDialog(this, "Votre Bulletin est fini !");
@@ -270,7 +275,8 @@ class GUI_USER_Etudiant extends CustomJFrame {
     }
 
 
-    private void createBulletin() {
+    private void createBulletin()
+    {
         String name = "Bulletin_" + matricule + ".pdf";
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int index = labelGroupe.getText().indexOf(" ");

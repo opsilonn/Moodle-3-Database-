@@ -16,7 +16,8 @@ import java.util.ArrayList;
  *
  * @author Hugues
  */
-public class RechercheEtudiant extends Recherche {
+public class RechercheEtudiant extends Recherche
+{
     /* GROUPE */
 
 

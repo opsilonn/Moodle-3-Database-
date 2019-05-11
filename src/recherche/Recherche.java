@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
 
 /**
- * Classe permettant de faciliter les requêtes SQL relatives à un Professeur
- * *
+ * Classe permettant de faciliter les requêtes SQL
  *
  * @author Hugues
  */
@@ -29,9 +28,9 @@ public class Recherche
 
         String query =
                 "SELECT * " +
-                        "FROM personne, " + tablePersonne + " " +
-                        "WHERE personne.ID = " + tablePersonne + ".ID_Personne " +
-                        "AND Matricule = " + matricule +  " ;";
+                "FROM personne, " + tablePersonne + " " +
+                "WHERE personne.ID = " + tablePersonne + ".ID_Personne " +
+                "AND Matricule = " + matricule +  " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 

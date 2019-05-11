@@ -4,7 +4,6 @@ package recherche;
 import static UsefulFunctions.CountRows_TableCell.getRows;
 
 import UsefulFunctions.Database_Connection;
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -15,7 +14,8 @@ import java.util.ArrayList;
  *
  * @author Hugues
  */
-public class RechercheProfesseur extends Recherche {
+public class RechercheProfesseur extends Recherche
+{
     /* COURS */
 
 
@@ -25,12 +25,13 @@ public class RechercheProfesseur extends Recherche {
      * @param matricule Matricule du professeur connecté
      * @return le nombre de cours dispensé
      */
-    public static int nombreCoursProfesseur(int matricule) {
+    public static int nombreCoursProfesseur(int matricule)
+    {
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                        "FROM enseigner " +
-                        "WHERE enseigner.Matricule_Prof = " + matricule;
+                "FROM enseigner " +
+                "WHERE enseigner.Matricule_Prof = " + matricule;
 
         ResultSet resultat = database.run_Statement_READ(query);
 

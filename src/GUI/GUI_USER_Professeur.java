@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static UsefulFunctions.CountRows_TableCell.createModel;
+import static recherche.Recherche.*;
 import static recherche.RechercheProfesseur.*;
 
 
@@ -20,7 +21,8 @@ import static recherche.RechercheProfesseur.*;
  *
  * @author Hugues
  */
-class GUI_USER_Professeur extends CustomJFrame {
+class GUI_USER_Professeur extends CustomJFrame
+{
     private static final int DIM_X = 600;
     private static final int DIM_Y = 650;
 
@@ -40,17 +42,18 @@ class GUI_USER_Professeur extends CustomJFrame {
     private JScrollPane coursPane;
     private JButton buttonCours;
 
-    private String[] columns = new String[]{"Cours", "Code", "Groupe - ID", "Groupe - Nom", "année"};
+    private String[] columns = new String[]{"Cours", "Groupe - ID", "Groupe - Nom", "année"};
     private Object[][] DATA;
     private int CURSOR;
 
 
     /**
-     * Création de l'interface pour un Eleve
+     * Création de l'interface pour un Professeur
      *
      * @param matricule - Matricule du professeur connecté
      */
-    public GUI_USER_Professeur(int matricule) {
+    public GUI_USER_Professeur(int matricule)
+    {
         super("Professeur", true, DIM_X, DIM_Y);
         this.matricule = matricule;
 
@@ -74,10 +77,11 @@ class GUI_USER_Professeur extends CustomJFrame {
     /**
      * Remplissage des champs sur l'information du professeur connecté
      */
-    private void remplirInformations() {
+    private void remplirInformations()
+    {
         labelNom.setText(
                 getPersonne(matricule, "professeur", "Prenom") + " " +
-                        getPersonne(matricule, "professeur", "Nom").toUpperCase());
+                getPersonne(matricule, "professeur", "Nom").toUpperCase());
         labelMatricule.setText(matricule + "");
     }
 
@@ -85,7 +89,8 @@ class GUI_USER_Professeur extends CustomJFrame {
     /**
      * Remplissage des champs sur les cours dispensés du professeur connecté
      */
-    private void remplirCours() {
+    private void remplirCours()
+    {
         int nombreCours = nombreCoursProfesseur(matricule);
         boolean avoirCours = (nombreCours != 0);
 
@@ -93,9 +98,11 @@ class GUI_USER_Professeur extends CustomJFrame {
         coursTable.setVisible(avoirCours);
         coursPane.setVisible(avoirCours);
 
-        if (avoirCours) {
+        if (avoirCours)
+        {
             ArrayList<String> listeCours = getCoursArray(matricule, "Code");
             nombreCours = 0;
+
             for (String cours : listeCours)
                 nombreCours += nombreGroupeSuivantCours(cours) + 1;
 
@@ -117,9 +124,9 @@ class GUI_USER_Professeur extends CustomJFrame {
      *
      * @param coursCode Code du cours en question
      */
-    private void remplirCoursGroupes(String coursCode) {
-        String NOM = getCours(coursCode, "Nom");
-        String CODE = getCours(coursCode, "Code");
+    private void remplirCoursGroupes(String coursCode)
+    {
+        String NOM = getCours(coursCode, "Code") + " - " + getCours(coursCode, "Nom");
         String ANNEE = getCours(coursCode, "Annee").substring(0, 4);
 
 
@@ -127,20 +134,20 @@ class GUI_USER_Professeur extends CustomJFrame {
 
         String query =
                 "SELECT * " +
-                        "FROM suivre, groupe " +
-                        "WHERE suivre.Code = " + coursCode + " " +
-                        "AND suivre.Groupe_ID = groupe.Groupe_ID;";
+                "FROM suivre, groupe " +
+                "WHERE suivre.Code = " + coursCode + " " +
+                "AND suivre.Groupe_ID = groupe.Groupe_ID;";
 
 
         ResultSet resultat = database.run_Statement_READ(query);
 
         try {
-            while (resultat.next()) {
+            while (resultat.next())
+            {
                 DATA[CURSOR][0] = NOM;
-                DATA[CURSOR][1] = CODE;
-                DATA[CURSOR][2] = resultat.getString("groupe.Groupe_ID");
-                DATA[CURSOR][3] = resultat.getString("groupe.Nom");
-                DATA[CURSOR][4] = ANNEE;
+                DATA[CURSOR][1] = resultat.getString("groupe.Groupe_ID");
+                DATA[CURSOR][2] = resultat.getString("groupe.Nom");
+                DATA[CURSOR][3] = ANNEE;
                 CURSOR++;
             }
             CURSOR++;
