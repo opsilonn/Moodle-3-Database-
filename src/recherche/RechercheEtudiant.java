@@ -7,6 +7,7 @@ import UsefulFunctions.Database_Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -88,7 +89,6 @@ public class RechercheEtudiant extends Recherche
                         "WHERE etudiant.Matricule = " + matricule + " " +
                         "AND etudiant.Groupe_ID = suivre.Groupe_ID";
 
-        System.out.println(query);
         ResultSet resultat = database.run_Statement_READ(query);
 
         return getRows(resultat);
@@ -174,6 +174,7 @@ public class RechercheEtudiant extends Recherche
         }
 
         database.Database_Deconnection();
+
         return MOYENNE / 100;
     }
 
@@ -231,7 +232,6 @@ public class RechercheEtudiant extends Recherche
         Database_Connection database = new Database_Connection();
         ResultSet resultat = database.run_Statement_READ(sql);
         if (getRows(resultat) == 0) {
-            System.out.println("NO etudiant");
             return null;
         }
         try {

@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.*;
 
 import static UsefulFunctions.CountRows_TableCell.createModel;
@@ -54,14 +55,14 @@ class GUI_USER_Etudiant extends CustomJFrame {
     private Object[][] DATA;
     private int CURSOR;
     private final static int SIZE_OCCUPIED_BY_COURSE = 4;
+    private final DecimalFormat df = new DecimalFormat("#.##");
 
     /**
      * Création de l'interface pour un Eleve
      *
      * @param matricule - Matricule de l'élève connecté
      */
-    public GUI_USER_Etudiant(int matricule)
-    {
+    public GUI_USER_Etudiant(int matricule) {
         super("Etudiant", true, DIM_X, DIM_Y);
         this.matricule = matricule;
 
@@ -112,7 +113,7 @@ class GUI_USER_Etudiant extends CustomJFrame {
         if (moyenneGenerale == -1)
             labelMoyenne.setText("indéfinie");
         else
-            labelMoyenne.setText(String.valueOf(moyenneGenerale));
+            labelMoyenne.setText(df.format(moyenneGenerale));
     }
 
 
@@ -125,7 +126,6 @@ class GUI_USER_Etudiant extends CustomJFrame {
         CURSOR = 0;
 
         int nombreCours = nombreCoursEtudiant(matricule);
-        System.out.println(nombreCours);
 
         if (nombreCours == 0) {
             bulletin.setVisible(false);
@@ -178,8 +178,7 @@ class GUI_USER_Etudiant extends CustomJFrame {
      * @param coursNom     Code du cours en question
      * @param coefficients Tableau des coefficients des notes du cours en question
      */
-    private void remplirNotesCours(int coursCode, String coursNom, String coursCoef, Map<String, String> coefficients)
-    {
+    private void remplirNotesCours(int coursCode, String coursNom, String coursCoef, Map<String, String> coefficients) {
         String TP_note = "Pas de note";
         String DE_note = "Pas de note";
         String PROJET_note = "Pas de note";
@@ -191,16 +190,14 @@ class GUI_USER_Etudiant extends CustomJFrame {
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                "FROM note " +
-                "WHERE note.Code = " + coursCode + " " +
-                "AND note.Matricule_Etudiant = " + matricule + " ;";
+                        "FROM note " +
+                        "WHERE note.Code = " + coursCode + " " +
+                        "AND note.Matricule_Etudiant = " + matricule + " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
-        try
-        {
-            while (resultat.next())
-            {
+        try {
+            while (resultat.next()) {
                 String note = resultat.getString("note.Valeur");
                 String noteID = resultat.getString("note.ID");
 
@@ -221,7 +218,6 @@ class GUI_USER_Etudiant extends CustomJFrame {
                         break;
 
                     default:
-                        System.out.println("That's weird");
                         break;
                 }
             }
@@ -266,18 +262,16 @@ class GUI_USER_Etudiant extends CustomJFrame {
     /**
      * Affichage du bulletin officiel du Bulletin de l'élève
      */
-    private void bulletin()
-    {
-        createBulletin();
-        /*if (Objects.equals(ETUDIANT.getGroupe(matricule, "Bulletin"), "1")) {
-            JOptionPane.showMessageDialog(this, "Votre Bulletin est fini !");
+    private void bulletin() {
+        if (Objects.equals(getGroupe(matricule, "Bulletin"), "1")) {
+            JOptionPane.showMessageDialog(this, "Votre Bulletin est là! Il va s'ouvrir dans un instant.", "Bulletin", JOptionPane.INFORMATION_MESSAGE);
+            createBulletin();
         } else
-            JOptionPane.showMessageDialog(this, "Votre Bulletin n'a pas encore été édité.", "Bulletin", JOptionPane.INFORMATION_MESSAGE);*/
+            JOptionPane.showMessageDialog(this, "Votre Bulletin n'a pas encore été édité.", "Bulletin", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
-    private void createBulletin()
-    {
+    private void createBulletin() {
         String name = "Bulletin_" + matricule + ".pdf";
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int index = labelGroupe.getText().indexOf(" ");
@@ -294,50 +288,51 @@ class GUI_USER_Etudiant extends CustomJFrame {
             MyWriter = PdfWriter.getInstance(PDF, PDFOutputStream);
             PDF.open();
 
-            PDF.add(new Paragraph("Bulletin de l'étudiant\n",
+            PDF.add(new Paragraph("Bulletin de l'étudiant",
                     new Font(Font.TIMES_ROMAN, 22, Font.BOLD, Color.BLACK)));
 
 
-            PDF.add(new Paragraph(labelNom.getText() + " - " + labelMatricule.getText()));
-            PDF.add(new Paragraph("Année " + year + " - Groupe " + labelGroupe.getText() + "\n\n"));
+            PDF.add(new Paragraph("\n\n" + labelNom.getText() + " - " + labelMatricule.getText()));
+            PDF.add(new Paragraph("Année " + year + " - Groupe " + labelGroupe.getText()));
+            PDF.add(new Paragraph("\n\n"));
 
-            //PdfPTable table = new PdfPTable(8);
+            PdfPTable tableau = new PdfPTable(4);
+            tableau.setHeaderRows(0);
 
-            Table tableau = new Table(4, 1);
-            tableau.setAlignment(Element.ALIGN_CENTER);
-            tableau.addCell(createCell("Cours", true));
-            tableau.addCell(createCell("Moyenne", true));
-            tableau.addCell(createCell("Moyenne minimum", true));
-            tableau.addCell(createCell("Moyenne maximum", true));
-            tableau.endHeaders();
+            tableau.addCell(createCell("Cours"));
+            tableau.addCell(createCell("Moyenne"));
+            tableau.addCell(createCell("Moyenne minimum"));
+            tableau.addCell(createCell("Moyenne maximum"));
 
             //Rechercher les cours suivis par le groupe auquel appartient l'étudiant
             ArrayList<Integer> cours = CoursfollowedByGroup(groupeID);
 
             for (int j = 0; j < cours.size(); j++) {
-                tableau.addCell(createCell(getCours(cours.get(j), "Nom"), false));
+                tableau.addCell(createCell(getCours(cours.get(j), "Nom")));
                 //Affichage de la moyenne de l'étudiant dans le cours.
-                tableau.addCell(createCell(formatMoy(moyenne(matricule, cours.get(j))), false));
+                tableau.addCell(createCell(formatMoy(moyenne(matricule, cours.get(j)))));
                 //Affichage de la moyenne minimum des élèves dans le cours.
-                tableau.addCell(createCell(formatMoy(moyenneMinMax(groupeID, false, cours.get(j))), false));
+                tableau.addCell(createCell(formatMoy(moyenneMinMax(groupeID, false, cours.get(j)))));
                 //Affichage de la moyenne maximum des élèves dans le cours.
-                tableau.addCell(createCell(formatMoy(moyenneMinMax(groupeID, true, cours.get(j))), false));
+                tableau.addCell(createCell(formatMoy(moyenneMinMax(groupeID, true, cours.get(j)))));
             }
 
 
-            tableau.addCell(createCell("MOYENNE GENERALE ", false));
+            tableau.addCell(createCell("MOYENNE GENERALE "));
             //Affichage de la moyenne générale de l'étudiant.
-            tableau.addCell(createCell(formatMoy(moyenneGenerale(matricule)), false));
+            tableau.addCell(createCell(formatMoy(moyenneGenerale(matricule))));
             //Affichage de la moyenne minimum des élèves dans le cours.
-            tableau.addCell(createCell(formatMoy(moyenneGeneraleMinMax(groupeID, false)), false));
+            tableau.addCell(createCell(formatMoy(moyenneGeneraleMinMax(groupeID, false))));
             //Affichage de la moyenne maximum des élèves dans le cours.
-            tableau.addCell(createCell(formatMoy(moyenneGeneraleMinMax(groupeID, true)), false));
+            tableau.addCell(createCell(formatMoy(moyenneGeneraleMinMax(groupeID, true))));
 
 
             //Ajouter le tableau au PDF
             PDF.add(tableau);
 
-            PDF.add(new Paragraph("Signature du Responsable"));
+            Paragraph p = new Paragraph("\n\nSignature du Responsable\n Monsieur le Directeur");
+            p.setAlignment(Paragraph.ALIGN_LEFT);
+            PDF.add(new Paragraph("\n\nSignature du Responsable\n Monsieur le Directeur"));
 
 
             PDF.close();
@@ -352,19 +347,17 @@ class GUI_USER_Etudiant extends CustomJFrame {
     }
 
     private String formatMoy(float moy) {
+
         if (moy == -1) {
             return "NaN";
         }
-        return "" + moy;
+        return df.format(moy);
     }
 
-    private Cell createCell(String text, boolean header) {
-        Cell cell = new Cell(text);
-        if (header) {
-            cell.setHeader(true);
-        }
+    private PdfPCell createCell(String text) {
+        PdfPCell cell = new PdfPCell(new Phrase(text));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         return cell;
     }
 }

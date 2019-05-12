@@ -48,7 +48,6 @@ public class Database_Connection
 
 
     public void Database_Deconnection() {
-        //System.out.println("Objet nettoyé de la mémoire");
         if (connexion != null)
             try {
                 //Fermeture de la connexion

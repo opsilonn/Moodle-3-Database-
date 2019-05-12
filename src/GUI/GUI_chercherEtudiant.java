@@ -120,7 +120,6 @@ public class GUI_chercherEtudiant extends CustomJFrame {
                                 "AND cours.Code = enseigner.Code " +
                                 "AND enseigner.Matricule_Prof = " + matricule + " ;";
 
-                System.out.println(query2);
                 ResultSet resultSet2 = database.run_Statement_READ(query2);
                 try {
                     while (resultSet2.next())

@@ -39,6 +39,7 @@ public class GUI_Groupe extends CustomJFrame {
     private JLabel labelBulletin;
 
     private int codeGroupe;
+    private ButtonEditorEleve buttonEdit;
 
     /**
      * Constructeur de l'interface d'affichage d'un groupe
@@ -225,7 +226,9 @@ public class GUI_Groupe extends CustomJFrame {
 
                 tableEleve.setModel(createModel(eleves, columns));
                 tableEleve.getColumn(" X ").setCellRenderer(new ButtonRenderer());
-                tableEleve.getColumn(" X ").setCellEditor(new ButtonEditorEleve(new JCheckBox(), this));
+
+                buttonEdit = new ButtonEditorEleve(new JCheckBox(), this);
+                tableEleve.getColumn(" X ").setCellEditor(buttonEdit);
 
                 scrollEleve.setVisible(true);
                 labelErrorEleve.setVisible(false);
@@ -248,7 +251,7 @@ public class GUI_Groupe extends CustomJFrame {
         String sql = "UPDATE etudiant SET Groupe_ID = NULL WHERE Matricule = " + matricule;
         database.run_Statement_WRITE(sql);
         database.Database_Deconnection();
-
+        
         DefaultTableModel model = (DefaultTableModel) tableEleve.getModel();
 
         // get selected row index
@@ -263,7 +266,6 @@ public class GUI_Groupe extends CustomJFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        System.out.println("Remove DONE");
         //displayEleves();
     }
 

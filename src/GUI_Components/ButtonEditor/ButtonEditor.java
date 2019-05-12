@@ -12,17 +12,19 @@ public abstract class ButtonEditor extends DefaultCellEditor {
     protected JButton button;
     protected String label;
     protected boolean isPushed;
+    private ActionListener LISTEN_TO_BUTTON;
 
     public ButtonEditor(JCheckBox checkBox) {
         super(checkBox);
+        if (checkBox == null)
+            return;
+
+
+        LISTEN_TO_BUTTON = e -> fireEditingStopped();
+
         button = new JButton();
         button.setOpaque(true);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                fireEditingStopped();
-            }
-        });
+        button.addActionListener(LISTEN_TO_BUTTON);
     }
 
     @Override
@@ -45,5 +47,9 @@ public abstract class ButtonEditor extends DefaultCellEditor {
     public boolean stopCellEditing() {
         isPushed = false;
         return super.stopCellEditing();
+    }
+
+    public void deleteActionListener() {
+        button.removeActionListener(LISTEN_TO_BUTTON);
     }
 }

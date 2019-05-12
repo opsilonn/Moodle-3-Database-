@@ -36,6 +36,8 @@ public class GUI_USER_Admin extends GUI_Components.CustomJFrame {
     public GUI_USER_Admin() {
         super("Bienvenue", true, DIM_X, DIM_Y);
 
+
+
         panelChoice.setVisible(false);
 
         buttonSearch.addActionListener(e -> action(true));

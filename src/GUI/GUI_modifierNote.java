@@ -76,13 +76,6 @@ class GUI_modifierNote extends CustomJFrame
 
         setCours();
 
-        /*
-        comboBoxCours.addActionListener( e -> setGroupes() );
-        comboBoxGroupe.addActionListener( e -> setMatricules() );
-        comboBoxMatricule.addActionListener( e -> setNotes() );
-        */
-
-
         comboBoxCours.addActionListener( LISTENER_CALL_GROUPES );
         comboBoxGroupe.addActionListener( LISTENER_CALL_MATRICULES );
         comboBoxMatricule.addActionListener( LISTENER_CALL_NOTES );
@@ -468,14 +461,6 @@ class GUI_modifierNote extends CustomJFrame
                 Database_Connection database = new Database_Connection();
                 String query;
 
-                System.out.println("avant les query");
-                System.out.println(inputNote);
-                System.out.println(TYPE_NOTE());
-                System.out.println(textDate.getDate().toString());
-                System.out.println(ID_COURS());
-                System.out.println(ID_MATRICULE());
-
-
                 if (matricule != -1) // Si la note est entrée par un professeur on en ajoute une
                     query =
                             "INSERT INTO note (Valeur, Type, Date_Exam, Code, Matricule_Etudiant)" +
@@ -493,7 +478,6 @@ class GUI_modifierNote extends CustomJFrame
                             "WHERE ID = " + ID_NOTE() + " ;";
 
 
-                System.out.println(query);
                 database.run_Statement_WRITE(query);
                 database.Database_Deconnection();
 
