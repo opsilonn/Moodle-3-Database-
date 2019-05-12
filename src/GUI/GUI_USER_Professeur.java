@@ -5,6 +5,8 @@ import GUI_Components.CustomJFrame;
 import UsefulFunctions.Database_Connection;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -64,7 +66,11 @@ class GUI_USER_Professeur extends CustomJFrame
 
         buttonEtudiant.addActionListener(e -> new GUI_chercherEtudiant(matricule));
         buttonCours.addActionListener(e -> consulteListe());
-        buttonModifier.addActionListener(e -> new GUI_modifierNote(matricule));
+        buttonModifier.addActionListener(e ->
+        {
+            new GUI_modifierNote(matricule);
+            dispose();
+        });
 
 
         add(panel);

@@ -9,6 +9,8 @@ import com.github.lgooddatepicker.components.DatePicker;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -71,7 +73,19 @@ class GUI_modifierNote extends CustomJFrame
 
             labelErreurNote.setText("L'étudiant ne possède aucune note dans la matière !");
         }
-        else labelErreurNote.setText("L'étudiant a déjà toutes ses notes dans la matière !");
+        else
+        {
+            addWindowListener(new WindowAdapter()
+            {
+                @Override
+                public void windowClosing(WindowEvent e)
+                {
+                    GUI_USER_Professeur prof = new GUI_USER_Professeur(matricule);
+                    dispose();
+                }
+            });
+            labelErreurNote.setText("L'étudiant a déjà toutes ses notes dans la matière !");
+        }
 
 
         setCours();
@@ -481,6 +495,8 @@ class GUI_modifierNote extends CustomJFrame
                 database.run_Statement_WRITE(query);
                 database.Database_Deconnection();
 
+                CustomJFrame frame;
+                if(matricule != -1)  frame = new GUI_USER_Professeur(matricule);
                 dispose();
             }
         }
