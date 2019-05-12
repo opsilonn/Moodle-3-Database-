@@ -45,10 +45,7 @@ public class GUI_Login extends GUI_Components.CustomJFrame {
         Image newimg = image.getScaledInstance((int) (DIM_X * 0.6), DIM_Y / 3, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         imageIcon = new ImageIcon(newimg);  // transform it back
         labelLogo.setIcon(imageIcon);
-
-        fieldMatricule.setText("20160024");
-        fieldPassword.setText("bla");
-
+        
 
         labelIncorrect.setVisible(false);
         buttonLogin.addActionListener(e -> loginVerifier());

@@ -6,8 +6,8 @@ import GUI_Components.CustomJTextField;
 import GUI_Components.DateFunctions;
 import UsefulFunctions.Database_Connection;
 import com.github.lgooddatepicker.components.DatePicker;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -25,8 +25,7 @@ import static UsefulFunctions.CountRows_TableCell.getRows;
  *
  * @author Hugues
  */
-class GUI_modifierNote extends CustomJFrame
-{
+class GUI_modifierNote extends CustomJFrame {
     private static final int DIM_X = 1000;
     private static final int DIM_Y = 400;
 
@@ -50,37 +49,31 @@ class GUI_modifierNote extends CustomJFrame
     private JLabel labelErreurNote;
 
 
-
     private final ActionListener LISTENER_CALL_GROUPES = e -> setGroupes();
     private final ActionListener LISTENER_CALL_MATRICULES = e -> setMatricules();
     private final ActionListener LISTENER_CALL_NOTES = e -> setNotes();
 
 
-    public GUI_modifierNote(int matricule)
-    {
+    public GUI_modifierNote(int matricule) {
         super("Ajouter note", false, DIM_X, DIM_Y);
         this.matricule = matricule;
 
 
         textDate.setSettings(DateFunctions.customDates());
         labelErreur.setVisible(false);
-        if (matricule == -1)
-        {
+        if (matricule == -1) {
             //Si l'administration modifie des notes, on change le titre de la frame.
             setTitle("Modifier note");
             //Si l'administration modifie des notes, la date doit bouger également.
             comboBoxNote.addActionListener(e -> moveDate());
 
             labelErreurNote.setText("L'étudiant ne possède aucune note dans la matière !");
-        }
-        else
-        {
-            addWindowListener(new WindowAdapter()
-            {
+            GUI_USER_Admin.WindowClosing(this);
+        } else {
+            addWindowListener(new WindowAdapter() {
                 @Override
-                public void windowClosing(WindowEvent e)
-                {
-                    GUI_USER_Professeur prof = new GUI_USER_Professeur(matricule);
+                public void windowClosing(WindowEvent e) {
+                    new GUI_USER_Professeur(matricule);
                     dispose();
                 }
             });
@@ -90,9 +83,9 @@ class GUI_modifierNote extends CustomJFrame
 
         setCours();
 
-        comboBoxCours.addActionListener( LISTENER_CALL_GROUPES );
-        comboBoxGroupe.addActionListener( LISTENER_CALL_MATRICULES );
-        comboBoxMatricule.addActionListener( LISTENER_CALL_NOTES );
+        comboBoxCours.addActionListener(LISTENER_CALL_GROUPES);
+        comboBoxGroupe.addActionListener(LISTENER_CALL_MATRICULES);
+        comboBoxMatricule.addActionListener(LISTENER_CALL_NOTES);
 
         buttonValider.addActionListener(e -> setNote());
 
@@ -104,8 +97,7 @@ class GUI_modifierNote extends CustomJFrame
     }
 
 
-    private void createUIComponents()
-    {
+    private void createUIComponents() {
         fieldNote = new CustomJTextField("DECIMAL", false, 5);
         textDate = new DatePicker();
     }
@@ -116,10 +108,9 @@ class GUI_modifierNote extends CustomJFrame
      *
      * @return la valeur sélectionnée dans le combobox comboboxCours
      */
-    private String ID_COURS()
-    {
+    private String ID_COURS() {
         String S = String.valueOf(comboBoxCours.getSelectedItem());
-        if(S == null || S.length() == 0)
+        if (S == null || S.length() == 0)
             return "";
 
         int index = S.indexOf(" ");
@@ -132,10 +123,9 @@ class GUI_modifierNote extends CustomJFrame
      *
      * @return la valeur sélectionnée dans le combobox comboboxCours
      */
-    private String ID_GROUPE()
-    {
+    private String ID_GROUPE() {
         String S = String.valueOf(comboBoxGroupe.getSelectedItem());
-        if(S == null || S.length() == 0)
+        if (S == null || S.length() == 0)
             return "";
 
         int index = S.indexOf(" ");
@@ -148,10 +138,9 @@ class GUI_modifierNote extends CustomJFrame
      *
      * @return la valeur sélectionnée dans le combobox comboboxMatricule
      */
-    private String ID_MATRICULE()
-    {
+    private String ID_MATRICULE() {
         String S = String.valueOf(comboBoxMatricule.getSelectedItem());
-        if(S == null || S.length() == 0)
+        if (S == null || S.length() == 0)
             return "";
 
         int index = S.indexOf(" ");
@@ -164,18 +153,15 @@ class GUI_modifierNote extends CustomJFrame
      *
      * @return la type de la note sélectionnée dans le combobox comboboxNote
      */
-    private String TYPE_NOTE()
-    {
+    private String TYPE_NOTE() {
         String S = String.valueOf(comboBoxNote.getSelectedItem());
-        if(S == null || S.length() == 0)
+        if (S == null || S.length() == 0)
             return "";
 
-        if(matricule == -1)
-        {
+        if (matricule == -1) {
             int index = S.indexOf(" ");
             return S.substring(0, index);
-        }
-        else
+        } else
             return String.valueOf(comboBoxNote.getSelectedItem());
     }
 
@@ -185,14 +171,12 @@ class GUI_modifierNote extends CustomJFrame
      *
      * @return l'ID de la note sélectionnée dans le combobox comboboxNote
      */
-    private String ID_NOTE()
-    {
+    private String ID_NOTE() {
         String S = String.valueOf(comboBoxNote.getSelectedItem());
 
-        if(S == null || S.length() == 0 || matricule != -1)
+        if (S == null || S.length() == 0 || matricule != -1)
             return "";
-        else
-        {
+        else {
             int index = S.indexOf("(") + 1;
             int index2 = S.indexOf(")");
             return S.substring(index, index2);
@@ -200,21 +184,14 @@ class GUI_modifierNote extends CustomJFrame
     }
 
 
-
-
-
-
-
-
     /**
      * Met à jour le comboBox contenant les différents cours délivrés par le professeur connecté.
      * S'il n'est pas vide après remplissage, on lance la fonction setGroupe
      */
-    private void setCours()
-    {
-        comboBoxCours.removeActionListener( LISTENER_CALL_GROUPES );
+    private void setCours() {
+        comboBoxCours.removeActionListener(LISTENER_CALL_GROUPES);
         comboBoxCours.removeAllItems();
-        comboBoxCours.addActionListener( LISTENER_CALL_GROUPES );
+        comboBoxCours.addActionListener(LISTENER_CALL_GROUPES);
 
         String query;
         Database_Connection database = new Database_Connection();
@@ -225,25 +202,21 @@ class GUI_modifierNote extends CustomJFrame
         else //Si un prof est connecté, on selectionne tous ses cours
             query =
                     "SELECT * " +
-                    "FROM enseigner, cours " +
-                    "WHERE enseigner.Matricule_Prof = " + matricule + " " +
-                    "AND enseigner.Code = cours.Code " +
-                    "ORDER BY cours.Nom;";
+                            "FROM enseigner, cours " +
+                            "WHERE enseigner.Matricule_Prof = " + matricule + " " +
+                            "AND enseigner.Code = cours.Code " +
+                            "ORDER BY cours.Nom;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
         // On remplit le dropdown contenant le code et nom du cours
-        try
-        {
-            while (resultat.next())
-            {
+        try {
+            while (resultat.next()) {
                 comboBoxCours.addItem(
                         resultat.getString("cours.Code") + " : " +
-                        resultat.getString("cours.Nom"));
+                                resultat.getString("cours.Nom"));
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         database.Database_Deconnection();
@@ -264,11 +237,10 @@ class GUI_modifierNote extends CustomJFrame
      * Met à jour le comboBox contenant les différents Groupes contenus dans le cours sélectionné.
      * S'il n'est pas vide après remplissage, on lance la fonction setMatricule
      */
-    private void setGroupes()
-    {
-        comboBoxGroupe.removeActionListener( LISTENER_CALL_MATRICULES );
+    private void setGroupes() {
+        comboBoxGroupe.removeActionListener(LISTENER_CALL_MATRICULES);
         comboBoxGroupe.removeAllItems();
-        comboBoxGroupe.addActionListener( LISTENER_CALL_MATRICULES );
+        comboBoxGroupe.addActionListener(LISTENER_CALL_MATRICULES);
 
 
         Database_Connection database = new Database_Connection();
@@ -276,25 +248,21 @@ class GUI_modifierNote extends CustomJFrame
         // On sélectionne tous les groupes suivant le cours choisi
         String query =
                 "SELECT * " +
-                "FROM suivre, groupe " +
-                "WHERE suivre.Code = " + ID_COURS() + " " +
-                "AND suivre.Groupe_ID = groupe.Groupe_ID;";
+                        "FROM suivre, groupe " +
+                        "WHERE suivre.Code = " + ID_COURS() + " " +
+                        "AND suivre.Groupe_ID = groupe.Groupe_ID;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
 
         // On remplit le dropdown contenant l'ID et le nom des Groupes
-        try
-        {
-            while (resultat.next())
-            {
+        try {
+            while (resultat.next()) {
                 comboBoxGroupe.addItem(
                         resultat.getString("groupe.Groupe_ID") + " - " +
-                        resultat.getString("groupe.Nom"));
+                                resultat.getString("groupe.Nom"));
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         database.Database_Deconnection();
@@ -313,38 +281,33 @@ class GUI_modifierNote extends CustomJFrame
      * Met à jour le comboBox contenant les différents étudiants contenus dans le Groupe sélectionné.
      * S'il n'est pas vide après remplissage, on lance la fonction setGroupe
      */
-    private void setMatricules()
-    {
-        comboBoxMatricule.removeActionListener( LISTENER_CALL_NOTES );
+    private void setMatricules() {
+        comboBoxMatricule.removeActionListener(LISTENER_CALL_NOTES);
         comboBoxMatricule.removeAllItems();
-        comboBoxMatricule.removeActionListener( LISTENER_CALL_NOTES );
+        comboBoxMatricule.removeActionListener(LISTENER_CALL_NOTES);
 
         Database_Connection database = new Database_Connection();
 
         // On sélectionne tous les étudiant contenus dans le groupe choisi.
         String query =
                 "SELECT * " +
-                "FROM personne, etudiant " +
-                "WHERE etudiant.Groupe_ID = " + ID_GROUPE() + " " +
-                "AND etudiant.ID_Personne = personne.ID ;";
+                        "FROM personne, etudiant " +
+                        "WHERE etudiant.Groupe_ID = " + ID_GROUPE() + " " +
+                        "AND etudiant.ID_Personne = personne.ID ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
 
         // On remplit le dropdown contenant l'ID et le nom des étudiants
 
-        try
-        {
-            while (resultat.next())
-            {
+        try {
+            while (resultat.next()) {
                 comboBoxMatricule.addItem(
                         resultat.getString("etudiant.Matricule") + " - " +
-                        resultat.getString("personne.Prenom") + " " +
-                        resultat.getString("personne.Nom").toUpperCase());
+                                resultat.getString("personne.Prenom") + " " +
+                                resultat.getString("personne.Nom").toUpperCase());
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         database.Database_Deconnection();
@@ -362,8 +325,7 @@ class GUI_modifierNote extends CustomJFrame
      * Si un admin est connecté, on affiche les notes de l'étudiant ;
      * Si un Professeur est connecté, on affiche les types des notes pas encore rentrées.
      */
-    private void setNotes()
-    {
+    private void setNotes() {
         boolean isTP = false;
         boolean isDE = false;
         boolean isPROJET = false;
@@ -373,49 +335,39 @@ class GUI_modifierNote extends CustomJFrame
         Database_Connection database = new Database_Connection();
         String query =
                 "SELECT * " +
-                "FROM note " +
-                "WHERE Matricule_Etudiant = " + ID_MATRICULE() + " " +
-                "AND Code = " + ID_COURS() + " ;";
+                        "FROM note " +
+                        "WHERE Matricule_Etudiant = " + ID_MATRICULE() + " " +
+                        "AND Code = " + ID_COURS() + " ;";
 
         ResultSet resultat = database.run_Statement_READ(query);
 
         // si admin connecté : on affiche les notes
-        if(matricule == -1)
-        {
-            try
-            {
-                while (resultat.next())
-                {
+        if (matricule == -1) {
+            try {
+                while (resultat.next()) {
                     comboBoxNote.addItem(
                             resultat.getString("Type") + " : " +
-                            resultat.getString("Valeur") + " (" + resultat.getString("ID") + ")");
+                                    resultat.getString("Valeur") + " (" + resultat.getString("ID") + ")");
                 }
-            }
-            catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         // si prof connecté : on cherche les notes qui sont déjà rentrées pour NE PAS les ajouter par la suite.
-        else
-        {
-            try
-            {
-                while (resultat.next())
-                {
-                    if(Objects.equals(resultat.getString("Type"), "TP")) isTP = true;
-                    if(Objects.equals(resultat.getString("Type"), "DE")) isDE = true;
-                    if(Objects.equals(resultat.getString("Type"), "Projet")) isPROJET = true;
+        else {
+            try {
+                while (resultat.next()) {
+                    if (Objects.equals(resultat.getString("Type"), "TP")) isTP = true;
+                    if (Objects.equals(resultat.getString("Type"), "DE")) isDE = true;
+                    if (Objects.equals(resultat.getString("Type"), "Projet")) isPROJET = true;
                 }
-            }
-            catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            if(!isTP) comboBoxNote.addItem("TP");
-            if(!isDE) comboBoxNote.addItem("DE");
-            if(!isPROJET) comboBoxNote.addItem("Projet");
+            if (!isTP) comboBoxNote.addItem("TP");
+            if (!isDE) comboBoxNote.addItem("DE");
+            if (!isPROJET) comboBoxNote.addItem("Projet");
         }
 
         database.Database_Deconnection();
@@ -425,29 +377,17 @@ class GUI_modifierNote extends CustomJFrame
     }
 
 
-
-
-
-
-
-
-
     /**
      * Bouge la valeur de la date à laquelle l'examen a eu lieu
      */
-    private void moveDate()
-    {
+    private void moveDate() {
         String sql = " SELECT from note WHERE Code = " + ID_COURS();
         Database_Connection database = new Database_Connection();
         ResultSet data = database.run_Statement_READ(sql);
-        if (getRows(data) == 1)
-        {
-            try
-            {
+        if (getRows(data) == 1) {
+            try {
                 textDate.setDate(DateFunctions.convertDate(data.getString("Date_exam")));
-            }
-            catch (SQLException ignore)
-            {
+            } catch (SQLException ignore) {
                 ignore.printStackTrace();
             }
         }
@@ -458,10 +398,8 @@ class GUI_modifierNote extends CustomJFrame
      * Si la note entrée est correcte, appelle la fonction permettant d'ajouter
      * de modifier une note chez l'Etudiant connecté
      */
-    private void setNote()
-    {
-        try
-        {
+    private void setNote() {
+        try {
             float inputNote = Float.parseFloat(fieldNote.getText());
 
             if (inputNote < 0)
@@ -470,38 +408,39 @@ class GUI_modifierNote extends CustomJFrame
             else if (20 < inputNote)
                 setLabelErreur("Note trop grande !!");
 
-            else
-            {
+            else {
                 Database_Connection database = new Database_Connection();
                 String query;
 
                 if (matricule != -1) // Si la note est entrée par un professeur on en ajoute une
                     query =
                             "INSERT INTO note (Valeur, Type, Date_Exam, Code, Matricule_Etudiant)" +
-                            "VALUES ('" +
-                            inputNote + "', '" +
-                            TYPE_NOTE() + "', '" +
-                            textDate.getDate().toString() + "', '" +
-                            ID_COURS() + "', '" +
-                            ID_MATRICULE() + "');";
+                                    "VALUES ('" +
+                                    inputNote + "', '" +
+                                    TYPE_NOTE() + "', '" +
+                                    textDate.getDate().toString() + "', '" +
+                                    ID_COURS() + "', '" +
+                                    ID_MATRICULE() + "');";
 
                 else // Sinon, en modifie la note existante
                     query =
                             "UPDATE note " +
-                            "SET Valeur = " + inputNote + " " +
-                            "WHERE ID = " + ID_NOTE() + " ;";
+                                    "SET Valeur = " + inputNote + " " +
+                                    "WHERE ID = " + ID_NOTE() + " ;";
 
 
                 database.run_Statement_WRITE(query);
                 database.Database_Deconnection();
 
-                CustomJFrame frame;
-                if(matricule != -1)  frame = new GUI_USER_Professeur(matricule);
+
+                if (matricule != -1) {
+                    new GUI_USER_Professeur(matricule);
+                } else {
+                    new GUI_USER_Admin();
+                }
                 dispose();
             }
-        }
-        catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             setLabelErreur("Erreur de syntaxe pour la note !!");
         }
 
@@ -510,15 +449,13 @@ class GUI_modifierNote extends CustomJFrame
 
     /**
      * Règle le message d'erreur à afficher quand la note en entrée est incorrecte
+     *
      * @param text Message à mettre dans le label
-     * */
-    private void setLabelErreur(String text)
-    {
+     */
+    private void setLabelErreur(String text) {
         labelErreur.setVisible(true);
         labelErreur.setText(text);
     }
-
-
 
 
     private final static int RANK_COURS = 3;
@@ -528,28 +465,24 @@ class GUI_modifierNote extends CustomJFrame
 
     /**
      * Affiche ou non les messages d'erreur et les comboBox
+     *
      * @param result vaut true si le comboBox d'un certain niveau est rempli, faux s'il est vide
-     * @param rank Rang du comboBox dont on a précédemment vérifié s'il était vide ou non
+     * @param rank   Rang du comboBox dont on a précédemment vérifié s'il était vide ou non
      */
-    private void setDisplay(boolean result, int rank)
-    {
-        if (rank >= 3)
-        {
+    private void setDisplay(boolean result, int rank) {
+        if (rank >= 3) {
             labelErreurCours.setVisible(!result);
             comboBoxCours.setVisible(result);
         }
-        if (rank >= 2)
-        {
+        if (rank >= 2) {
             labelErreurGroupe.setVisible(!result);
             comboBoxGroupe.setVisible(result);
         }
-        if (rank >= 1)
-        {
+        if (rank >= 1) {
             labelErreurMatricule.setVisible(!result);
             comboBoxMatricule.setVisible(result);
         }
-        if (rank >= 0)
-        {
+        if (rank >= 0) {
             labelErreurNote.setVisible(!result);
             comboBoxNote.setVisible(result);
         }

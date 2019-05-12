@@ -43,7 +43,7 @@ public class GUI_USER_Admin extends GUI_Components.CustomJFrame {
         buttonSearch.addActionListener(e -> action(true));
         buttonCreate.addActionListener(e -> action(false));
         buttonConsult.addActionListener(e -> consult());
-        buttonModif.addActionListener(e -> new GUI_modifierNote(-1));
+        buttonModif.addActionListener(e -> modifNotes());
 
         etudiantButton.addActionListener(e -> action("etudiant", 1));
         professeurButton.addActionListener(e -> action("professeur", 2));
@@ -76,6 +76,14 @@ public class GUI_USER_Admin extends GUI_Components.CustomJFrame {
     private void consult() {
         this.setVisible(false);
         new GUI_consulterListes(this);
+    }
+
+    /**
+     * Lancement de l'interface de modifications des notes
+     */
+    private void modifNotes(){
+        new GUI_modifierNote(-1);
+        dispose();
     }
 
     /**
